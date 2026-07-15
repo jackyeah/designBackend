@@ -93,6 +93,29 @@ document.addEventListener('DOMContentLoaded', function () {
     sw.addEventListener('click', function () { sw.classList.toggle('on'); });
   });
 
+  /* ---------- Permission matrix: per-column select-all + page-wide select-all ---------- */
+  document.querySelectorAll('.perm-table').forEach(function (table) {
+    table.querySelectorAll('thead th').forEach(function (th, idx) {
+      var toggle = th.querySelector('.col-toggle');
+      if (!toggle) return;
+      toggle.addEventListener('change', function () {
+        table.querySelectorAll('tbody tr').forEach(function (tr) {
+          var cell = tr.children[idx];
+          var cb = cell && cell.querySelector('input[type="checkbox"]');
+          if (cb) cb.checked = toggle.checked;
+        });
+      });
+    });
+  });
+  var permSelectAll = document.getElementById('permSelectAll');
+  if (permSelectAll) {
+    permSelectAll.addEventListener('change', function () {
+      document.querySelectorAll('.perm-table input[type="checkbox"]').forEach(function (cb) {
+        cb.checked = permSelectAll.checked;
+      });
+    });
+  }
+
   /* ---------- Copy icon demo ---------- */
   document.querySelectorAll('.cell-copy svg').forEach(function (icon) {
     icon.addEventListener('click', function (e) {

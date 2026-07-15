@@ -26,7 +26,12 @@
       <div id="breadcrumb-mount"></div>
 
       <div class="page-header">
-        <h1>會員詳情</h1>
+        <div class="entity-header">
+          <h1>會員詳情</h1>
+          <span class="entity-id">m10021836</span>
+          <span class="badge badge-info">VIP2</span>
+          <span class="badge badge-success">啟用中</span>
+        </div>
         <div class="flex gap-3 items-center" style="margin-left:auto;">
           <a class="btn btn-secondary btn-sm" href="members.html">返回列表</a>
           <button class="btn btn-secondary btn-sm">重設密碼</button>
@@ -34,39 +39,62 @@
         </div>
       </div>
 
-      <!-- 摘要列：一眼看完關鍵數字，避免再切一堆頁籤才找得到 -->
-      <div class="card">
-        <div class="stat-strip">
-          <div class="stat-item"><div class="stat-label">會員帳號</div><div class="stat-value" style="font-size:var(--text-md);">m10021836</div></div>
-          <div class="stat-item"><div class="stat-label">錢包餘額</div><div class="stat-value">128,450</div></div>
-          <div class="stat-item"><div class="stat-label">累計儲值</div><div class="stat-value accent-success">2,340,000</div></div>
-          <div class="stat-item"><div class="stat-label">累計提領</div><div class="stat-value accent-danger">2,105,600</div></div>
-          <div class="stat-item"><div class="stat-label">累計投注</div><div class="stat-value">18,204,330</div></div>
-          <div class="stat-item"><div class="stat-label">會員等級</div><div class="stat-value"><span class="badge badge-info">VIP2</span></div></div>
-          <div class="stat-item"><div class="stat-label">帳號狀態</div><div class="stat-value"><span class="badge badge-success">啟用</span></div></div>
+      <!-- 金額摘要：獨立為重點卡片，與純資訊區隔開 -->
+      <div class="finance-strip">
+        <div class="finance-card">
+          <div class="finance-card-icon tone-primary"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="18" height="13" rx="2"/><path d="M3 10h18"/><circle cx="16.5" cy="14.5" r="1"/></svg></div>
+          <div class="finance-card-body"><div class="finance-card-label">錢包餘額</div><div class="finance-card-value">128,450<span class="unit">TWD</span></div></div>
+        </div>
+        <div class="finance-card">
+          <div class="finance-card-icon tone-success"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></div>
+          <div class="finance-card-body"><div class="finance-card-label">累計儲值</div><div class="finance-card-value">2,340,000</div></div>
+        </div>
+        <div class="finance-card">
+          <div class="finance-card-icon tone-danger"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg></div>
+          <div class="finance-card-body"><div class="finance-card-label">累計提款</div><div class="finance-card-value">2,105,600</div></div>
+        </div>
+        <div class="finance-card">
+          <div class="finance-card-icon tone-info"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V10M11 19V5M18 19v-7"/></svg></div>
+          <div class="finance-card-body"><div class="finance-card-label">累計投注</div><div class="finance-card-value">18,204,330</div></div>
         </div>
       </div>
 
       <div class="card mt-4">
         <div class="card-section">
           <div class="card-section-title">基本資料</div>
-          <div class="detail-grid cols-4">
-            <div class="detail-item"><span class="detail-label">暱稱</span><span class="detail-value">阿翔</span></div>
-            <div class="detail-item"><span class="detail-label">所屬站別</span><span class="detail-value">金錢母</span></div>
-            <div class="detail-item"><span class="detail-label">推薦人</span><span class="detail-value">jgm7</span></div>
-            <div class="detail-item"><span class="detail-label">幣別</span><span class="detail-value">新臺幣</span></div>
-            <div class="detail-item"><span class="detail-label">手機號碼</span><span class="detail-value">0912-345-678</span></div>
-            <div class="detail-item"><span class="detail-label">Email</span><span class="detail-value">a-hsiang@example.com</span></div>
-            <div class="detail-item"><span class="detail-label">真實姓名</span><span class="detail-value">王＊翔</span></div>
-            <div class="detail-item"><span class="detail-label">出生日期</span><span class="detail-value">1994-06-12</span></div>
-            <div class="detail-item"><span class="detail-label">風控標籤</span><span class="detail-value"><span class="badge badge-neutral">正常</span></span></div>
-            <div class="detail-item"><span class="detail-label">註冊時間</span><span class="detail-value">2026-04-02 14:12:08</span></div>
-            <div class="detail-item"><span class="detail-label">註冊 IP</span><span class="detail-value">61.216.34.host</span></div>
-            <div class="detail-item"><span class="detail-label">註冊裝置</span><span class="detail-value">iOS App 3.4.1</span></div>
-            <div class="detail-item"><span class="detail-label">最後登入時間</span><span class="detail-value">2026-07-14 09:32:11</span></div>
-            <div class="detail-item"><span class="detail-label">最後登入 IP</span><span class="detail-value">111.240.88.host</span></div>
-            <div class="detail-item"><span class="detail-label">最後登入裝置</span><span class="detail-value">Android App 3.4.1</span></div>
-            <div class="detail-item"><span class="detail-label">綁定銀行帳戶</span><span class="detail-value">國泰世華 ****5231</span></div>
+
+          <div class="detail-section">
+            <div class="detail-section-title">帳號資訊</div>
+            <div class="detail-grid">
+              <div class="detail-item"><span class="detail-label">暱稱</span><span class="detail-value">阿翔</span></div>
+              <div class="detail-item"><span class="detail-label">所屬站別</span><span class="detail-value">金錢母</span></div>
+              <div class="detail-item"><span class="detail-label">推薦人</span><span class="detail-value">jgm7</span></div>
+              <div class="detail-item"><span class="detail-label">幣別</span><span class="detail-value">新臺幣</span></div>
+              <div class="detail-item"><span class="detail-label">真實姓名</span><span class="detail-value">王＊翔</span></div>
+              <div class="detail-item"><span class="detail-label">出生日期</span><span class="detail-value">1994-06-12</span></div>
+              <div class="detail-item"><span class="detail-label">風控標籤</span><span class="detail-value"><span class="badge badge-neutral">正常</span></span></div>
+              <div class="detail-item"><span class="detail-label">綁定銀行帳戶</span><span class="detail-value">國泰世華 ****5231</span></div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <div class="detail-section-title">聯絡資料</div>
+            <div class="detail-grid">
+              <div class="detail-item"><span class="detail-label">手機號碼</span><span class="detail-value">0912-345-678</span></div>
+              <div class="detail-item"><span class="detail-label">Email</span><span class="detail-value">a-hsiang@example.com</span></div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <div class="detail-section-title">登入資訊</div>
+            <div class="detail-grid">
+              <div class="detail-item"><span class="detail-label">註冊時間</span><span class="detail-value">2026-04-02 14:12:08</span></div>
+              <div class="detail-item"><span class="detail-label">註冊 IP</span><span class="detail-value">61.216.34.host</span></div>
+              <div class="detail-item"><span class="detail-label">註冊裝置</span><span class="detail-value">iOS App 3.4.1</span></div>
+              <div class="detail-item"><span class="detail-label">最後登入時間</span><span class="detail-value">2026-07-14 09:32:11</span></div>
+              <div class="detail-item"><span class="detail-label">最後登入 IP</span><span class="detail-value">111.240.88.host</span></div>
+              <div class="detail-item"><span class="detail-label">最後登入裝置</span><span class="detail-value">Android App 3.4.1</span></div>
+            </div>
           </div>
         </div>
       </div>

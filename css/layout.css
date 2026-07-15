@@ -365,19 +365,20 @@
 }
 .tab-label { white-space: nowrap; }
 .tab-close {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  color: var(--color-text-secondary);
-  opacity: .85;
+  background: var(--color-text-secondary);
+  color: #fff;
 }
-.tab.active .tab-close { color: var(--color-text-primary); }
-.tab-close:hover { background: var(--color-border-strong); color: #fff; opacity: 1; }
-.tab-close svg { width: 10px; height: 10px; }
+.tab.active .tab-close { background: var(--color-text-primary); color: #fff; }
+.tab-close:hover,
+.tab.active .tab-close:hover { background: var(--color-danger); color: #fff; }
+.tab-close svg { width: 17px; height: 17px; stroke-width: 3.5; stroke: currentColor; }
 
 /* ---------- Content ---------- */
 .content {

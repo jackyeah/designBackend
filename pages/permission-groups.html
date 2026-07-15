@@ -30,24 +30,24 @@
       <div class="card">
         <div class="card-section">
           <div class="table-toolbar">
-            <button class="btn btn-accent" data-modal-target="modalAddGroup">
+            <a class="btn btn-accent" href="permission-group-edit.html">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
               新增
-            </button>
+            </a>
             <span class="spacer"></span>
             <span class="text-sm text-tertiary">共 6 筆</span>
           </div>
 
           <div class="table-scroll">
             <table class="data-table">
-              <thead><tr><th>群組名稱</th><th>說明</th><th>成員數</th><th>建立時間</th><th>操作</th></tr></thead>
+              <thead><tr><th>群組名稱</th><th>站台</th><th>角色</th><th>成員數</th><th>建立時間</th><th class="col-actions">操作</th></tr></thead>
               <tbody>
-                <tr><td>預設權限群組(站長)</td><td>站長帳號預設權限，含帳號/現金/會員模組</td><td>6</td><td>2025-10-01 09:00:00</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditGroup">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>CS</td><td>客服人員，會員與帳務查詢</td><td>5</td><td>2025-11-17 16:50:12</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditGroup">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>財務</td><td>財務人員，現金系統與報表</td><td>3</td><td>2025-11-20 10:12:44</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditGroup">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>營運</td><td>營運人員，公告與活動管理</td><td>4</td><td>2025-12-02 14:30:19</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditGroup">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>QA</td><td>測試人員，僅測試站權限</td><td>4</td><td>2025-11-17 16:45:43</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditGroup">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>AUTO</td><td>自動化測試專用權限</td><td>1</td><td>2025-11-17 16:55:45</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditGroup">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>預設權限群組(站長)</td><td>金錢母</td><td>站長</td><td>6</td><td>2025-10-01 09:00:00</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>CS</td><td>金錢母</td><td>站長子帳號</td><td>5</td><td>2025-11-17 16:50:12</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>財務</td><td>YZ</td><td>站長子帳號</td><td>3</td><td>2025-11-20 10:12:44</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>營運</td><td>金錢母</td><td>站長子帳號</td><td>4</td><td>2025-12-02 14:30:19</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>QA</td><td>YZ</td><td>站長</td><td>4</td><td>2025-11-17 16:45:43</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>AUTO</td><td>金錢母</td><td>總控子帳號</td><td>1</td><td>2025-11-17 16:55:45</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
               </tbody>
             </table>
           </div>
@@ -55,32 +55,6 @@
         </div>
       </div>
     </main>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modalAddGroup">
-  <div class="modal">
-    <div class="modal-header"><h2>新增權限群組</h2><button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="form-field span-2"><label class="field-label"><span class="required">*</span>群組名稱</label><input class="input" type="text" placeholder="請輸入"></div>
-        <div class="form-field span-2"><label class="field-label"><span class="required">*</span>說明</label><input class="input" type="text" placeholder="請輸入"></div>
-      </div>
-    </div>
-    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>取消</button><button class="btn btn-primary">保存更改</button></div>
-  </div>
-</div>
-
-<div class="modal-overlay" id="modalEditGroup">
-  <div class="modal">
-    <div class="modal-header"><h2>編輯權限群組</h2><button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
-    <div class="modal-body">
-      <div class="form-grid">
-        <div class="form-field span-2"><label class="field-label"><span class="required">*</span>群組名稱</label><input class="input" type="text" value="預設權限群組(站長)"></div>
-        <div class="form-field span-2"><label class="field-label"><span class="required">*</span>說明</label><input class="input" type="text" value="站長帳號預設權限，含帳號/現金/會員模組"></div>
-      </div>
-    </div>
-    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>取消</button><button class="btn btn-primary">保存更改</button></div>
   </div>
 </div>
 

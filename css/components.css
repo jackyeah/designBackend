@@ -60,10 +60,10 @@
 .btn-secondary:hover { background: var(--color-bg-hover); color: var(--color-text-primary); }
 
 .btn-accent { background: var(--color-warning); color: #fff; }
-.btn-accent:hover { background: #D97706; }
+.btn-accent:hover { background: var(--color-warning-hover); }
 
 .btn-danger-ghost { color: var(--color-danger); background: var(--color-danger-light); }
-.btn-danger-ghost:hover { background: #FECACA; }
+.btn-danger-ghost:hover { background: var(--color-danger-border); }
 
 .btn-ghost { color: var(--color-text-secondary); }
 .btn-ghost:hover { background: var(--color-bg-hover); color: var(--color-text-primary); }
@@ -230,8 +230,19 @@
   vertical-align: middle;
   white-space: nowrap;
 }
-.data-table tbody tr:hover { background: var(--color-bg-subtle); }
+.data-table tbody tr:nth-child(odd) { background: var(--color-bg-card); }
+.data-table tbody tr:nth-child(even) { background: var(--color-bg-subtle); }
+.data-table tbody tr:hover { background: var(--color-bg-hover); }
 .data-table .col-actions { white-space: nowrap; }
+/* Pin the 操作 column to the right so actions stay reachable while scrolling wide tables */
+.data-table th.col-actions,
+.data-table td.col-actions {
+  position: sticky;
+  right: 0;
+  box-shadow: -6px 0 6px -6px rgba(15, 23, 42, 0.15);
+}
+.data-table th.col-actions { background: var(--color-bg-subtle); z-index: 6; }
+.data-table td.col-actions { background: inherit; z-index: 1; }
 .data-table .cell-copy { display: inline-flex; align-items: center; gap: 6px; }
 .data-table .cell-copy svg { width: 13px; height: 13px; color: var(--color-text-tertiary); flex-shrink: 0; }
 .data-table .cell-copy svg:hover { color: var(--color-primary); }
@@ -283,7 +294,89 @@
   font-weight: 600;
   white-space: nowrap;
 }
-.pill-btn-success:hover { background: #128A3E; }
+.pill-btn-success:hover { background: var(--color-success-hover); }
+.pill-btn-success,
+.pill-btn-danger {
+  border: none;
+}
+.pill-btn-success,
+.pill-btn-danger,
+.pill-btn-neutral {
+  cursor: pointer;
+  gap: 5px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12);
+  transition: background .12s ease, box-shadow .12s ease, transform .05s ease;
+}
+.pill-btn-success:active,
+.pill-btn-danger:active,
+.pill-btn-neutral:active { transform: translateY(1px); box-shadow: none; }
+.pill-btn-caret { width: 10px; height: 10px; flex-shrink: 0; opacity: .9; }
+
+.pill-btn-danger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-danger);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.pill-btn-danger:hover { background: var(--color-danger-hover); }
+
+.pill-btn-neutral {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-strong);
+  color: var(--color-text-secondary);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.pill-btn-neutral:hover { background: var(--color-bg-hover); border-color: var(--color-primary); color: var(--color-primary); }
+.pill-btn-neutral svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+/* Grouped counter (icon+label button fused with its value, e.g. 會員數 1,284) */
+.counter-btn {
+  display: inline-flex;
+  align-items: stretch;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-pill);
+  overflow: hidden;
+  background: var(--color-bg-card);
+}
+.counter-btn-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 var(--space-3);
+  height: 30px;
+  border: none;
+  background: transparent;
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.counter-btn-action:hover { background: var(--color-bg-hover); }
+.counter-btn-action svg { width: 15px; height: 15px; }
+.counter-btn-value {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 var(--space-3);
+  height: 30px;
+  border-left: 1px solid var(--color-border-strong);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
 
 /* Small square quick-add button appended after a filter input (e.g. SID/帳號 +) */
 .btn-icon-add {
@@ -398,9 +491,49 @@
 /* ---------- Detail grid (dense label/value info) ---------- */
 .detail-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-3) var(--space-6); }
 .detail-grid.cols-4 { grid-template-columns: repeat(4, 1fr); }
-.detail-item { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
-.detail-label { font-size: var(--text-xs); color: var(--color-text-tertiary); }
-.detail-value { font-size: var(--text-sm); color: var(--color-text-primary); font-weight: 500; overflow-wrap: anywhere; }
+.detail-item { display: flex; flex-direction: row; align-items: baseline; gap: var(--space-2); min-width: 0; }
+.detail-label { flex-shrink: 0; width: 72px; font-size: var(--text-xs); color: var(--color-text-tertiary); }
+.detail-value { font-size: var(--text-sm); color: var(--color-text-primary); font-weight: 500; overflow-wrap: anywhere; min-width: 0; }
+
+/* Grouped detail sections within one card (e.g. 帳號資訊/聯絡資料/登入資訊) */
+.detail-section + .detail-section { margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--color-border); }
+.detail-section-title { font-size: var(--text-xs); font-weight: 700; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: .03em; margin-bottom: var(--space-3); }
+
+/* ---------- Entity header (title + identity badges, e.g. member/site-owner detail pages) ---------- */
+.entity-header { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
+.entity-header h1 { font-size: var(--text-xl); font-weight: 700; }
+.entity-id { font-size: var(--text-md); color: var(--color-text-secondary); font-weight: 500; }
+
+/* ---------- Finance summary cards (soft icon + label + value) ---------- */
+.finance-strip { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4); }
+.finance-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.finance-card-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.finance-card-icon svg { width: 20px; height: 20px; stroke: currentColor; }
+.finance-card-icon.tone-primary { background: var(--color-primary-light); color: var(--color-primary); }
+.finance-card-icon.tone-success { background: var(--color-success-light); color: var(--color-success); }
+.finance-card-icon.tone-danger { background: var(--color-danger-light); color: var(--color-danger); }
+.finance-card-icon.tone-info { background: var(--color-info-light); color: var(--color-info); }
+.finance-card-body { min-width: 0; }
+.finance-card-label { font-size: var(--text-xs); color: var(--color-text-tertiary); margin-bottom: 2px; }
+.finance-card-value { font-size: var(--text-lg); font-weight: 700; color: var(--color-text-primary); white-space: nowrap; }
+.finance-card-value .unit { font-size: var(--text-xs); font-weight: 500; color: var(--color-text-tertiary); margin-left: 3px; }
 
 /* Compact table variant (denser padding for long detail-page histories) */
 .data-table.compact th, .data-table.compact td { padding: var(--space-2) var(--space-3); }
@@ -426,6 +559,68 @@
 .settings-list-item .settings-list-item-sub { font-size: var(--text-xs); color: var(--color-text-tertiary); font-weight: 400; }
 .settings-panel { flex: 1; min-width: 0; }
 .settings-divider { width: 1px; align-self: stretch; background: var(--color-border); }
+
+/* ---------- Permission matrix (權限群組 新增/編輯) ---------- */
+.perm-page { display: flex; align-items: flex-start; gap: var(--space-6); }
+.perm-jump {
+  width: 176px;
+  flex-shrink: 0;
+  position: sticky;
+  top: calc(var(--topbar-height) + var(--tabsbar-height) + var(--space-5));
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  max-height: calc(100vh - var(--topbar-height) - var(--tabsbar-height) - var(--space-8));
+  overflow-y: auto;
+}
+.perm-jump-title {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--space-2);
+}
+.perm-jump a {
+  padding: 7px var(--space-3);
+  border-radius: var(--radius-md);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.perm-jump a:hover { background: var(--color-bg-hover); color: var(--color-text-primary); }
+
+.perm-matrix { flex: 1; min-width: 0; column-count: 2; column-gap: var(--space-5); }
+.perm-category {
+  break-inside: avoid;
+  margin-bottom: var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--color-bg-card);
+  scroll-margin-top: calc(var(--topbar-height) + var(--tabsbar-height) + var(--space-4));
+}
+.perm-category-title {
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-subtle);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+}
+.perm-table-wrap { overflow-x: auto; }
+.perm-table { width: 100%; border-collapse: collapse; font-size: var(--text-xs); }
+.perm-table th, .perm-table td {
+  padding: var(--space-2) var(--space-3);
+  white-space: nowrap;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+.perm-table thead th {
+  border-top: none;
+  color: var(--color-text-secondary);
+  font-weight: 600;
+}
+.perm-table .perm-col-module { text-align: left; color: var(--color-text-primary); font-weight: 500; }
+.perm-col-head { display: inline-flex; align-items: center; justify-content: center; gap: 5px; cursor: pointer; }
+.perm-na { color: var(--color-text-tertiary); }
 
 /* ---------- Empty state ---------- */
 .empty-state { text-align: center; padding: var(--space-10) var(--space-4); color: var(--color-text-tertiary); }
