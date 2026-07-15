@@ -40,9 +40,6 @@
             </div>
           </div>
         </div>
-        <div class="card-section">
-          <label class="checkbox-field"><input class="checkbox" type="checkbox" id="permSelectAll">全選</label>
-        </div>
       </div>
 
       <div class="perm-page mt-4">
@@ -63,10 +60,19 @@
           <a href="#cat-log">操作記錄</a>
         </aside>
 
-        <div class="perm-matrix">
+        <div class="card perm-panel">
+          <div class="card-section perm-panel-header">
+            <div class="card-section-title">
+              權限設定
+              <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="8" r="0.6" fill="currentColor" stroke="none"/></svg>
+            </div>
+            <label class="checkbox-field"><input class="checkbox" type="checkbox" id="permSelectAll">全選所有權限</label>
+          </div>
+          <div class="card-section">
+            <div class="perm-matrix">
 
           <section class="perm-category" id="cat-account">
-            <div class="perm-category-title">帳號管理</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">帳號管理</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -97,7 +103,7 @@
           </section>
 
           <section class="perm-category" id="cat-vip">
-            <div class="perm-category-title">VIP等級</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">VIP等級</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -118,7 +124,7 @@
           </section>
 
           <section class="perm-category" id="cat-guild">
-            <div class="perm-category-title">公會管理</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">公會管理</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -141,7 +147,7 @@
           </section>
 
           <section class="perm-category" id="cat-cash">
-            <div class="perm-category-title">現金系統</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">現金系統</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -174,7 +180,7 @@
           </section>
 
           <section class="perm-category" id="cat-announcement">
-            <div class="perm-category-title">公告訊息</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">公告訊息</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -196,7 +202,7 @@
           </section>
 
           <section class="perm-category" id="cat-sms">
-            <div class="perm-category-title">短信管理</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">短信管理</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -216,7 +222,7 @@
           </section>
 
           <section class="perm-category" id="cat-report">
-            <div class="perm-category-title">報表</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">報表</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -241,7 +247,7 @@
           </section>
 
           <section class="perm-category" id="cat-promotion">
-            <div class="perm-category-title">優惠活動管理</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">優惠活動管理</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -265,7 +271,7 @@
           </section>
 
           <section class="perm-category" id="cat-task">
-            <div class="perm-category-title">任務管理</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">任務管理</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -286,7 +292,7 @@
           </section>
 
           <section class="perm-category" id="cat-checkin">
-            <div class="perm-category-title">簽到管理</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">簽到管理</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -306,7 +312,7 @@
           </section>
 
           <section class="perm-category" id="cat-blacklist">
-            <div class="perm-category-title">黑名單管理</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">黑名單管理</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -328,7 +334,7 @@
           </section>
 
           <section class="perm-category" id="cat-site">
-            <div class="perm-category-title">網站管理</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">網站管理</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -356,7 +362,7 @@
           </section>
 
           <section class="perm-category" id="cat-log">
-            <div class="perm-category-title">操作記錄</div>
+            <label class="perm-category-title"><input class="checkbox perm-category-toggle" type="checkbox">操作記錄</label>
             <div class="perm-table-wrap">
               <table class="perm-table">
                 <thead>
@@ -372,6 +378,8 @@
             </div>
           </section>
 
+            </div>
+          </div>
         </div>
       </div>
     </main>

@@ -29,13 +29,18 @@
         <div class="entity-header">
           <h1>會員詳情</h1>
           <span class="entity-id">m10021836</span>
-          <span class="badge badge-info">VIP2</span>
-          <span class="badge badge-success">啟用中</span>
         </div>
         <div class="flex gap-3 items-center" style="margin-left:auto;">
           <a class="btn btn-secondary btn-sm" href="members.html">返回列表</a>
-          <button class="btn btn-secondary btn-sm">重設密碼</button>
-          <button class="btn btn-danger-ghost btn-sm">凍結會員</button>
+          <div class="flex gap-3 items-center" id="viewActions">
+            <button class="btn btn-secondary btn-sm" type="button" id="editModeBtn">編輯</button>
+            <button class="btn btn-secondary btn-sm" type="button">重設密碼</button>
+            <button class="btn btn-danger-ghost btn-sm" type="button">凍結會員</button>
+          </div>
+          <div class="flex gap-3 items-center hidden" id="editActions">
+            <button class="btn btn-secondary btn-sm" type="button" id="cancelEditBtn">取消</button>
+            <button class="btn btn-primary btn-sm" type="button" id="saveEditBtn">保存更改</button>
+          </div>
         </div>
       </div>
 
@@ -59,6 +64,9 @@
         </div>
       </div>
 
+      <!-- 唯讀 / 編輯模式切換範圍：詳見 js/app.js 的 detail-fields-wrap 區塊 -->
+      <div class="detail-fields-wrap" id="detailFieldsWrap">
+
       <div class="card mt-4">
         <div class="card-section">
           <div class="card-section-title">基本資料</div>
@@ -66,13 +74,30 @@
           <div class="detail-section">
             <div class="detail-section-title">帳號資訊</div>
             <div class="detail-grid">
-              <div class="detail-item"><span class="detail-label">暱稱</span><span class="detail-value">阿翔</span></div>
+              <div class="detail-item is-editable">
+                <span class="detail-label">暱稱</span>
+                <span class="detail-value">阿翔</span>
+                <input class="input detail-input" type="text" value="阿翔">
+              </div>
+              <div class="detail-item is-editable">
+                <span class="detail-label">VIP 等級</span>
+                <span class="detail-value"><span class="badge badge-info">VIP2</span></span>
+                <div class="select-wrap detail-input">
+                  <select class="select">
+                    <option>VIP0</option><option>VIP1</option><option selected>VIP2</option><option>VIP3</option><option>VIP4</option><option>VIP5</option>
+                  </select>
+                </div>
+              </div>
+              <div class="detail-item is-editable">
+                <span class="detail-label">固定VIP等級</span>
+                <span class="detail-value">未固定</span>
+                <span class="switch detail-input"></span>
+              </div>
               <div class="detail-item"><span class="detail-label">所屬站別</span><span class="detail-value">金錢母</span></div>
               <div class="detail-item"><span class="detail-label">推薦人</span><span class="detail-value">jgm7</span></div>
               <div class="detail-item"><span class="detail-label">幣別</span><span class="detail-value">新臺幣</span></div>
               <div class="detail-item"><span class="detail-label">真實姓名</span><span class="detail-value">王＊翔</span></div>
               <div class="detail-item"><span class="detail-label">出生日期</span><span class="detail-value">1994-06-12</span></div>
-              <div class="detail-item"><span class="detail-label">風控標籤</span><span class="detail-value"><span class="badge badge-neutral">正常</span></span></div>
               <div class="detail-item"><span class="detail-label">綁定銀行帳戶</span><span class="detail-value">國泰世華 ****5231</span></div>
             </div>
           </div>
@@ -80,8 +105,31 @@
           <div class="detail-section">
             <div class="detail-section-title">聯絡資料</div>
             <div class="detail-grid">
-              <div class="detail-item"><span class="detail-label">手機號碼</span><span class="detail-value">0912-345-678</span></div>
-              <div class="detail-item"><span class="detail-label">Email</span><span class="detail-value">a-hsiang@example.com</span></div>
+              <div class="detail-item is-editable">
+                <span class="detail-label">手機號碼</span>
+                <span class="detail-value">+886 0912-345-678</span>
+                <div class="detail-input phone-input-group">
+                  <div class="select-wrap" style="width:130px;">
+                    <select class="select">
+                      <option value="+886" selected>台灣 +886</option>
+                      <option value="+852">香港 +852</option>
+                      <option value="+853">澳門 +853</option>
+                      <option value="+86">中國 +86</option>
+                      <option value="+65">新加坡 +65</option>
+                      <option value="+60">馬來西亞 +60</option>
+                      <option value="+81">日本 +81</option>
+                      <option value="+82">韓國 +82</option>
+                      <option value="+1">美國/加拿大 +1</option>
+                    </select>
+                  </div>
+                  <input class="input" type="text" value="0912-345-678" style="flex:1;">
+                </div>
+              </div>
+              <div class="detail-item is-editable">
+                <span class="detail-label">Email</span>
+                <span class="detail-value">a-hsiang@example.com</span>
+                <input class="input detail-input" type="text" value="a-hsiang@example.com">
+              </div>
             </div>
           </div>
 
@@ -98,6 +146,51 @@
           </div>
         </div>
       </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="card-section-title">安全設置</div>
+          <div class="detail-grid">
+            <div class="detail-item is-editable">
+              <span class="detail-label">狀態</span>
+              <span class="detail-value"><span class="badge badge-success">啟用中</span></span>
+              <div class="select-wrap detail-input">
+                <select class="select">
+                  <option selected>啟用</option>
+                  <option>停用</option>
+                </select>
+              </div>
+            </div>
+            <div class="detail-item is-editable">
+              <span class="detail-label">警告級別</span>
+              <span class="detail-value"><span class="badge badge-neutral">未知</span></span>
+              <div class="select-wrap detail-input">
+                <select class="select">
+                  <option>可疑</option><option selected>未知</option><option>安全</option><option>危險</option><option>無效</option><option>觀察</option>
+                </select>
+              </div>
+            </div>
+            <div class="detail-item is-editable">
+              <span class="detail-label">贈禮密碼</span>
+              <span class="detail-value">••••••</span>
+              <input class="input detail-input" type="text" value="gift2026">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="card-section-title">備註</div>
+          <div class="is-editable">
+            <p class="detail-value">尚未提款過，需留意近期高頻投注行為。</p>
+            <textarea class="textarea detail-input">尚未提款過，需留意近期高頻投注行為。</textarea>
+          </div>
+        </div>
+      </div>
+
+      </div>
+      <!-- /detail-fields-wrap -->
 
       <div class="card mt-4">
         <div class="card-section">

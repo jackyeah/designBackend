@@ -93,6 +93,17 @@ document.addEventListener('DOMContentLoaded', function () {
     sw.addEventListener('click', function () { sw.classList.toggle('on'); });
   });
 
+  /* ---------- Permission matrix: per-category select-all (checkbox merged into category title) ---------- */
+  document.querySelectorAll('.perm-category').forEach(function (category) {
+    var toggle = category.querySelector('.perm-category-toggle');
+    if (!toggle) return;
+    toggle.addEventListener('change', function () {
+      category.querySelectorAll('.perm-table input[type="checkbox"]').forEach(function (cb) {
+        cb.checked = toggle.checked;
+      });
+    });
+  });
+
   /* ---------- Permission matrix: per-column select-all + page-wide select-all ---------- */
   document.querySelectorAll('.perm-table').forEach(function (table) {
     table.querySelectorAll('thead th').forEach(function (th, idx) {
@@ -165,6 +176,32 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   });
+
+  /* ---------- 會員詳情：唯讀 / 編輯模式切換 ---------- */
+  var detailFieldsWrap = document.getElementById('detailFieldsWrap');
+  var editModeBtn = document.getElementById('editModeBtn');
+  var cancelEditBtn = document.getElementById('cancelEditBtn');
+  var saveEditBtn = document.getElementById('saveEditBtn');
+  var viewActions = document.getElementById('viewActions');
+  var editActions = document.getElementById('editActions');
+  if (detailFieldsWrap && editModeBtn) {
+    var enterEditMode = function () {
+      detailFieldsWrap.classList.add('editing');
+      viewActions.classList.add('hidden');
+      editActions.classList.remove('hidden');
+    };
+    var exitEditMode = function () {
+      detailFieldsWrap.classList.remove('editing');
+      viewActions.classList.remove('hidden');
+      editActions.classList.add('hidden');
+    };
+    editModeBtn.addEventListener('click', enterEditMode);
+    cancelEditBtn.addEventListener('click', exitEditMode);
+    saveEditBtn.addEventListener('click', function () {
+      exitEditMode();
+      showToast('已儲存變更');
+    });
+  }
 
   /* ---------- 會員清單：批量調整VIP等級 ---------- */
   var bulkVipBtn = document.getElementById('bulkVipBtn');

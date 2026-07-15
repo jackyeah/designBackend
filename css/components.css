@@ -30,6 +30,7 @@
   font-weight: 500;
   color: var(--color-text-tertiary);
 }
+.info-icon { width: 15px; height: 15px; color: var(--color-text-tertiary); flex-shrink: 0; }
 
 /* ---------- Buttons ---------- */
 .btn {
@@ -176,6 +177,7 @@
   color: var(--color-text-secondary);
 }
 .switch {
+  display: inline-block;
   position: relative;
   width: 36px;
   height: 20px;
@@ -503,6 +505,34 @@
 .subtable tbody tr:nth-child(even) { background: var(--color-bg-subtle); }
 .subtable tbody tr:hover { background: var(--color-bg-hover); }
 
+/* 遊戲權限：兩欄式分組清單，取代單欄表格避免中間留白過多 */
+.game-perm-matrix { column-count: 2; column-gap: var(--space-4); }
+.game-perm-group {
+  break-inside: avoid;
+  margin-bottom: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--color-bg-card);
+}
+.game-perm-group-title {
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-bg-subtle);
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  border-bottom: 1px solid var(--color-border);
+}
+.game-perm-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+}
+.game-perm-row + .game-perm-row { border-top: 1px solid var(--color-border); }
+
 /* ---------- Toast (transient feedback message, e.g. 未選取任何項目) ---------- */
 .toast {
   position: fixed;
@@ -541,6 +571,14 @@
 /* Grouped detail sections within one card (e.g. 帳號資訊/聯絡資料/登入資訊) */
 .detail-section + .detail-section { margin-top: var(--space-5); padding-top: var(--space-5); border-top: 1px solid var(--color-border); }
 .detail-section-title { font-size: var(--text-xs); font-weight: 700; color: var(--color-text-tertiary); text-transform: uppercase; letter-spacing: .03em; margin-bottom: var(--space-3); }
+
+/* ---------- 唯讀 / 編輯模式（會員詳情等頁面）---------- */
+/* 每個可編輯欄位同時放 .detail-value（唯讀）與 .detail-input（編輯），由外層 .editing 切換顯示 */
+.detail-fields-wrap .is-editable .detail-input { display: none; }
+.detail-fields-wrap.editing .is-editable .detail-value { display: none; }
+.detail-fields-wrap.editing .is-editable .detail-input { display: block; }
+.detail-fields-wrap.editing .is-editable .detail-input.phone-input-group { display: flex; gap: var(--space-2); align-items: center; }
+.phone-input-group { gap: var(--space-2); align-items: center; }
 
 /* ---------- Entity header (title + identity badges, e.g. member/site-owner detail pages) ---------- */
 .entity-header { display: flex; align-items: center; gap: var(--space-3); flex-wrap: wrap; }
@@ -604,7 +642,10 @@
 .settings-divider { width: 1px; align-self: stretch; background: var(--color-border); }
 
 /* ---------- Permission matrix (權限群組 新增/編輯) ---------- */
+.perm-panel-header { display: flex; align-items: center; justify-content: space-between; }
+.perm-panel-header .checkbox-field { font-weight: 600; color: var(--color-text-primary); }
 .perm-page { display: flex; align-items: flex-start; gap: var(--space-6); }
+.perm-panel { flex: 1; min-width: 0; }
 .perm-jump {
   width: 176px;
   flex-shrink: 0;
@@ -630,7 +671,7 @@
 }
 .perm-jump a:hover { background: var(--color-bg-hover); color: var(--color-text-primary); }
 
-.perm-matrix { flex: 1; min-width: 0; column-count: 2; column-gap: var(--space-5); }
+.perm-matrix { column-count: 2; column-gap: var(--space-5); }
 .perm-category {
   break-inside: avoid;
   margin-bottom: var(--space-5);
@@ -648,12 +689,16 @@
   100% { box-shadow: 0 0 0 0 transparent; background: var(--color-bg-card); }
 }
 .perm-category-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
   padding: var(--space-3) var(--space-4);
   background: var(--color-bg-subtle);
   font-size: var(--text-sm);
   font-weight: 700;
   color: var(--color-text-primary);
   border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
 }
 .perm-table-wrap { overflow-x: auto; }
 .perm-table { width: 100%; border-collapse: collapse; font-size: var(--text-xs); }
