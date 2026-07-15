@@ -29,6 +29,24 @@
 
       <div class="card">
         <div class="card-section">
+          <div class="filter-bar">
+            <div class="field"><label class="field-label">群組名稱</label><input class="input" type="text" placeholder="請輸入"></div>
+            <div class="field"><label class="field-label">站台</label>
+              <div class="select-wrap"><select class="select"><option>請選擇</option><option>金錢母</option><option>YZ</option></select></div>
+            </div>
+            <div class="field"><label class="field-label">角色</label>
+              <div class="select-wrap"><select class="select"><option>請選擇</option><option>總控子帳號</option><option>站長</option><option>站長子帳號</option></select></div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
           <div class="table-toolbar">
             <a class="btn btn-accent" href="permission-group-edit.html">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
@@ -42,12 +60,12 @@
             <table class="data-table">
               <thead><tr><th>群組名稱</th><th>站台</th><th>角色</th><th>成員數</th><th>建立時間</th><th class="col-actions">操作</th></tr></thead>
               <tbody>
-                <tr><td>預設權限群組(站長)</td><td>金錢母</td><td>站長</td><td>6</td><td>2025-10-01 09:00:00</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>CS</td><td>金錢母</td><td>站長子帳號</td><td>5</td><td>2025-11-17 16:50:12</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>財務</td><td>YZ</td><td>站長子帳號</td><td>3</td><td>2025-11-20 10:12:44</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>營運</td><td>金錢母</td><td>站長子帳號</td><td>4</td><td>2025-12-02 14:30:19</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>QA</td><td>YZ</td><td>站長</td><td>4</td><td>2025-11-17 16:45:43</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>AUTO</td><td>金錢母</td><td>總控子帳號</td><td>1</td><td>2025-11-17 16:55:45</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>預設權限群組(站長)</td><td>金錢母</td><td>站長</td><td><button type="button" class="btn-link" data-modal-target="modalGroupMembers">6</button></td><td>2025-10-01 09:00:00</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>CS</td><td>金錢母</td><td>站長子帳號</td><td><button type="button" class="btn-link" data-modal-target="modalGroupMembers">5</button></td><td>2025-11-17 16:50:12</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>財務</td><td>YZ</td><td>站長子帳號</td><td><button type="button" class="btn-link" data-modal-target="modalGroupMembers">3</button></td><td>2025-11-20 10:12:44</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>營運</td><td>金錢母</td><td>站長子帳號</td><td><button type="button" class="btn-link" data-modal-target="modalGroupMembers">4</button></td><td>2025-12-02 14:30:19</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>QA</td><td>YZ</td><td>站長</td><td><button type="button" class="btn-link" data-modal-target="modalGroupMembers">4</button></td><td>2025-11-17 16:45:43</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>AUTO</td><td>金錢母</td><td>總控子帳號</td><td><button type="button" class="btn-link" data-modal-target="modalGroupMembers">1</button></td><td>2025-11-17 16:55:45</td><td class="col-actions"><a class="btn-link" href="permission-group-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td></tr>
               </tbody>
             </table>
           </div>
@@ -55,6 +73,29 @@
         </div>
       </div>
     </main>
+  </div>
+</div>
+
+<!-- 成員數示意：先以單一彈窗展示群組成員清單，實際資料待串接 -->
+<div class="modal-overlay" id="modalGroupMembers">
+  <div class="modal">
+    <div class="modal-header"><h2>群組成員<span class="text-sm text-tertiary" style="font-weight:400;margin-left:var(--space-3);">預設權限群組(站長)</span></h2><button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="subtable-wrap">
+        <table class="subtable">
+          <thead><tr><th>帳號</th><th>名稱</th><th>上次登入時間</th></tr></thead>
+          <tbody>
+            <tr><td>jgm7</td><td>站長-金錢母</td><td>2026-07-15 09:12:03</td></tr>
+            <tr><td>jgm_cs01</td><td>客服-小陳</td><td>2026-07-14 21:40:57</td></tr>
+            <tr><td>jgm_fin01</td><td>財務-王小美</td><td>2026-07-13 17:05:22</td></tr>
+            <tr><td>jgm_op01</td><td>營運-陳大明</td><td>2026-07-15 08:30:11</td></tr>
+            <tr><td>jgm_qa01</td><td>QA-林小華</td><td>2026-07-10 14:52:38</td></tr>
+            <tr><td>jgm_auto</td><td>自動化測試專用</td><td>2026-07-12 03:00:00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>關閉</button></div>
   </div>
 </div>
 
