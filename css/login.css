@@ -8,9 +8,9 @@
   justify-content: center;
   position: relative;
   overflow: hidden;
-  background: radial-gradient(circle at 15% 15%, #6D5EF5 0%, transparent 45%),
-              radial-gradient(circle at 85% 85%, #8B5CF6 0%, transparent 50%),
-              linear-gradient(160deg, #4338CA 0%, #4F46E5 45%, #6D28D9 100%);
+  background: radial-gradient(circle at 15% 15%, rgba(109, 94, 245, 0.35) 0%, transparent 45%),
+              radial-gradient(circle at 85% 85%, rgba(139, 92, 246, 0.28) 0%, transparent 50%),
+              linear-gradient(160deg, #1E1B4B 0%, #2C2570 45%, #372B70 100%);
 }
 
 .login-shapes {

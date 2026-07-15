@@ -34,31 +34,50 @@
       <div class="card">
         <div class="card-section">
           <div class="filter-bar">
-            <div class="field"><label class="field-label">會員帳號</label><input class="input" type="text" placeholder="請輸入"></div>
-            <div class="field"><label class="field-label">暱稱</label><input class="input" type="text" placeholder="請輸入"></div>
-            <div class="field"><label class="field-label">所屬站別</label>
+            <div class="field"><label class="field-label"><span class="required">*</span>站台</label>
               <div class="select-wrap"><select class="select"><option>請選擇</option><option>金錢母</option><option>YZ 益兆</option><option>Gamma 站</option><option>Delta 站</option></select></div>
             </div>
-            <div class="field"><label class="field-label">會員等級</label>
-              <div class="select-wrap"><select class="select"><option>請選擇</option><option>VIP1</option><option>VIP2</option><option>VIP3</option><option>一般會員</option></select></div>
+            <div class="field"><label class="field-label">SID</label>
+              <div class="field-row"><input class="input" type="text" placeholder="請輸入"><button class="btn-icon-add" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
             </div>
-            <div class="field"><label class="field-label">幣別</label>
-              <div class="select-wrap"><select class="select"><option>請選擇</option><option>新臺幣</option><option>美元</option><option>越南盾</option></select></div>
+            <div class="field"><label class="field-label">帳號</label>
+              <div class="field-row"><input class="input" type="text" placeholder="請輸入"><button class="btn-icon-add" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
             </div>
-            <div class="field"><label class="field-label">手機號碼</label><input class="input" type="text" placeholder="請輸入"></div>
-            <div class="field"><label class="field-label">推薦人</label><input class="input" type="text" placeholder="請輸入"></div>
+            <div class="field"><label class="field-label">暱稱</label><input class="input" type="text" placeholder="請輸入"></div>
+            <div class="field"><label class="field-label">註冊方式</label>
+              <div class="select-wrap"><select class="select"><option>請選擇</option><option>會員帳號</option><option>Line</option></select></div>
+            </div>
             <div class="field"><label class="field-label">註冊時間</label><input class="input" type="text" placeholder="開始日期 - 結束日期"></div>
-            <div class="field"><label class="field-label">最後登入</label><input class="input" type="text" placeholder="開始日期 - 結束日期"></div>
             <div class="field"><label class="field-label">狀態</label>
               <div class="select-wrap"><select class="select"><option>請選擇</option><option>啟用</option><option>凍結</option><option>停權</option></select></div>
             </div>
-            <div class="field"><label class="field-label">風控標籤</label>
+            <div class="field"><label class="field-label">聯絡資訊</label>
+              <div class="select-wrap"><select class="select"><option>請選擇</option><option>手機號碼</option><option>Email</option></select></div>
+            </div>
+            <div class="field"><label class="field-label">&nbsp;</label><input class="input" type="text" placeholder="886-0912345678" disabled></div>
+            <div class="field"><label class="field-label">警告級別</label>
               <div class="select-wrap"><select class="select"><option>請選擇</option><option>正常</option><option>觀察中</option><option>高風險</option></select></div>
             </div>
+            <div class="field"><label class="field-label">註冊/登入IP</label><input class="input" type="text" placeholder="請輸入"></div>
+            <div class="field"><label class="field-label">金額</label>
+              <div class="select-wrap"><select class="select"><option>儲值金額總計</option><option>會員資金</option><option>贈送金額總計</option></select></div>
+            </div>
+            <div class="field"><label class="field-label">範圍</label>
+              <div class="select-wrap"><select class="select"><option>大於等於</option><option>小於等於</option><option>介於</option></select></div>
+            </div>
+            <div class="field"><label class="field-label">&nbsp;</label><input class="input" type="text" placeholder="請輸入金額"></div>
+            <div class="field"><label class="field-label">VIP等級</label>
+              <div class="select-wrap"><select class="select"><option>請選擇</option><option>VIP1</option><option>VIP2</option><option>VIP3</option></select></div>
+            </div>
+            <div class="field"><label class="field-label">未登天數</label>
+              <div class="select-wrap"><select class="select"><option>請選擇</option><option>1-3天</option><option>4-7天</option><option>8天以上</option></select></div>
+            </div>
+            <div class="field"><label class="field-label">最後登入時間</label><input class="input" type="text" placeholder="開始日期 - 結束日期"></div>
           </div>
           <div class="filter-actions">
             <button class="btn btn-primary">搜尋</button>
             <button class="btn btn-secondary">清除</button>
+            <label class="checkbox-field"><input class="checkbox" type="checkbox">資金調整</label>
             <span class="segmented" style="margin-left:auto;">模糊搜尋 <span class="switch"></span> 精準搜尋</span>
           </div>
         </div>
@@ -67,11 +86,19 @@
       <div class="card mt-4">
         <div class="card-section">
           <div class="table-toolbar">
-            <span class="text-sm text-tertiary">共 47 筆</span>
-            <span class="spacer"></span>
+            <div class="field-row" style="width:220px;">
+              <input class="input" type="text" placeholder="批量調整VIP等級">
+            </div>
             <button class="btn btn-secondary btn-sm">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-2.64-6.36M21 4v5h-5"/></svg>
+              會員數
+            </button>
+            <span class="text-sm text-tertiary">1,284</span>
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary">尚未選取任何項目</span>
+            <button class="btn btn-accent btn-sm">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M5 19h14"/></svg>
-              匯出報表
+              匯出
             </button>
           </div>
 
@@ -79,69 +106,1012 @@
             <table class="data-table">
               <thead>
                 <tr>
-                  <th>會員帳號</th><th>暱稱</th><th>所屬站別</th><th>等級</th><th>錢包餘額</th><th>幣別</th><th>手機號碼</th><th>推薦人</th><th>風控標籤</th><th>狀態</th><th>註冊時間</th><th>最後登入</th><th>操作</th>
+                  <th><input class="checkbox" type="checkbox"></th>
+                  <th>SID</th><th>帳號</th><th>暱稱</th><th>VIP等級</th><th>公會</th><th>會員資金</th><th>狀態</th>
+                  <th>註冊方式</th><th>綁定登入通道</th><th>遊戲平台開啟</th><th>未登天數</th><th>是否線上</th>
+                  <th>聯絡資訊</th><th>註冊時間/IP</th><th>最後登入時間</th><th>會員備註</th><th>操作</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td><span class="cell-copy">m10021836<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>阿翔</td><td>金錢母</td><td><span class="badge badge-info">VIP2</span></td><td>128,450</td><td>新臺幣</td><td>0912-***-345</td><td>jgm7</td>
-                  <td><span class="badge badge-neutral">正常</span></td><td><span class="badge badge-success">啟用</span></td><td>2026-04-02 14:12:08</td><td>2026-07-14 09:32:11</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">凍結</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252170016<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">seven01<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>seven測試01</td>
+                  <td><span class="badge badge-info">VIP2</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：13,873.28</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>5</td>
+                  <td>否</td>
+                  <td>886-935808537</td>
+                  <td><div class="cell-stack"><span>2026-06-20</span><span class="cell-sub">07:58:00</span><span class="cell-sub">61.219.39.199</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-10</span><span class="cell-sub">07:06:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-copy">m10021790<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>小美</td><td>YZ 益兆</td><td><span class="badge badge-info">VIP1</span></td><td>56,200</td><td>新臺幣</td><td>0955-***-812</td><td>YzAdmin</td>
-                  <td><span class="badge badge-warning">觀察中</span></td><td><span class="badge badge-success">啟用</span></td><td>2026-03-28 10:04:52</td><td>2026-07-13 22:47:36</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">凍結</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252170005<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">xion005<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>11</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-06-15</span><span class="cell-sub">12:19:00</span><span class="cell-sub">61.219.19.157</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-04</span><span class="cell-sub">04:26:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-copy">m10021688<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>Kevin88</td><td>Gamma 站</td><td><span class="badge badge-neutral">一般會員</span></td><td>3,120</td><td>美元</td><td>0933-***-221</td><td>GammaAdmin</td>
-                  <td><span class="badge badge-danger">高風險</span></td><td><span class="badge badge-danger">凍結</span></td><td>2026-03-15 09:41:27</td><td>2026-06-30 03:12:55</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">解凍</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169978<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">ayumitest6<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>5</td>
+                  <td>否</td>
+                  <td>886-917507864</td>
+                  <td><div class="cell-stack"><span>2026-06-16</span><span class="cell-sub">08:09:00</span><span class="cell-sub">61.219.50.104</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-10</span><span class="cell-sub">07:47:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-copy">m10021554<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>財神來</td><td>金錢母</td><td><span class="badge badge-info">VIP3</span></td><td>842,900</td><td>新臺幣</td><td>0968-***-560</td><td>jgm7</td>
-                  <td><span class="badge badge-neutral">正常</span></td><td><span class="badge badge-success">啟用</span></td><td>2026-02-20 16:33:09</td><td>2026-07-14 11:05:44</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">凍結</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169950<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">kiangiank111<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>12</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-06-11</span><span class="cell-sub">05:45:00</span><span class="cell-sub">61.219.78.69</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-02</span><span class="cell-sub">15:33:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-copy">m10021432<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>ThuyLinh</td><td>Delta 站</td><td><span class="badge badge-neutral">一般會員</span></td><td>1,780,000</td><td>越南盾</td><td>090-***-4471</td><td>DeltaAdmin</td>
-                  <td><span class="badge badge-neutral">正常</span></td><td><span class="badge badge-success">啟用</span></td><td>2026-02-11 08:22:15</td><td>2026-07-12 19:58:02</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">凍結</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169928<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">testannie1<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>Annie</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="badge badge-danger">停用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="badge badge-neutral">關閉</span></td>
+                  <td>2</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-06-07</span><span class="cell-sub">13:50:00</span><span class="cell-sub">61.219.64.154</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-12</span><span class="cell-sub">21:36:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-copy">m10021311<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>阿豪</td><td>金錢母示範站</td><td><span class="badge badge-neutral">一般會員</span></td><td>0</td><td>新臺幣</td><td>0987-***-903</td><td>GdemoAdmin</td>
-                  <td><span class="badge badge-warning">觀察中</span></td><td><span class="badge badge-danger">停權</span></td><td>2026-01-30 13:47:51</td><td>2026-05-02 07:16:39</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">解除停權</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169931<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">annie002<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>5</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-06-01</span><span class="cell-sub">01:11:00</span><span class="cell-sub">61.219.53.30</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-09</span><span class="cell-sub">20:50:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-copy">m10021208<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>小資女</td><td>YZ 益兆</td><td><span class="badge badge-info">VIP1</span></td><td>21,650</td><td>新臺幣</td><td>0922-***-118</td><td>YzAdmin</td>
-                  <td><span class="badge badge-neutral">正常</span></td><td><span class="badge badge-success">啟用</span></td><td>2026-01-18 19:05:33</td><td>2026-07-11 20:41:07</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">凍結</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169926<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">annie001<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP3</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：10,970.33</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>6</td>
+                  <td>否</td>
+                  <td>886-993926371</td>
+                  <td><div class="cell-stack"><span>2026-05-29</span><span class="cell-sub">13:28:00</span><span class="cell-sub">61.219.35.41</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-09</span><span class="cell-sub">04:26:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-copy">m10021077<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>MinhTuan</td><td>Delta 站</td><td><span class="badge badge-neutral">一般會員</span></td><td>430,500</td><td>越南盾</td><td>093-***-7720</td><td>DeltaAdmin</td>
-                  <td><span class="badge badge-neutral">正常</span></td><td><span class="badge badge-success">啟用</span></td><td>2025-12-29 11:52:44</td><td>2026-07-09 15:23:18</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">凍結</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169876<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">richard88<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>金錢母公會</td>
+                  <td><div class="cell-stack">儲值金額總計：13,818.16</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>15</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-05-22</span><span class="cell-sub">00:45:00</span><span class="cell-sub">61.219.17.63</span></div></td>
+                  <td><div class="cell-stack"><span>2026-06-29</span><span class="cell-sub">15:55:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-copy">m10020965<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>阿柏</td><td>金錢母</td><td><span class="badge badge-info">VIP2</span></td><td>96,300</td><td>新臺幣</td><td>0966-***-234</td><td>jgm7</td>
-                  <td><span class="badge badge-neutral">正常</span></td><td><span class="badge badge-success">啟用</span></td><td>2025-12-15 09:18:27</td><td>2026-07-14 08:07:52</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">凍結</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169944<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">kevin023<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>阿凱</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>4</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-05-23</span><span class="cell-sub">01:27:00</span><span class="cell-sub">61.219.64.248</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-10</span><span class="cell-sub">16:12:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
                 <tr>
-                  <td><span class="cell-copy">m10020843<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
-                  <td>RichardG</td><td>Gamma 站</td><td><span class="badge badge-info">VIP1</span></td><td>8,940</td><td>美元</td><td>0919-***-667</td><td>GammaAdmin</td>
-                  <td><span class="badge badge-neutral">正常</span></td><td><span class="badge badge-success">啟用</span></td><td>2025-11-30 17:29:03</td><td>2026-07-08 12:44:26</td>
-                  <td class="col-actions"><a class="btn-link" href="member-detail.html">詳情</a> · <button class="btn-link">凍結</button></td>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169845<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">wendy017<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>10</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-05-19</span><span class="cell-sub">02:56:00</span><span class="cell-sub">61.219.53.7</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-04</span><span class="cell-sub">16:46:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169846<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">jason099<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>Jason</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：1,897.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>15</td>
+                  <td>否</td>
+                  <td>886-999788677</td>
+                  <td><div class="cell-stack"><span>2026-05-13</span><span class="cell-sub">03:26:00</span><span class="cell-sub">61.219.26.187</span></div></td>
+                  <td><div class="cell-stack"><span>2026-06-29</span><span class="cell-sub">15:24:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169851<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">peter044<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="badge badge-neutral">關閉</span></td>
+                  <td>7</td>
+                  <td>否</td>
+                  <td>886-917270733</td>
+                  <td><div class="cell-stack"><span>2026-05-06</span><span class="cell-sub">13:19:00</span><span class="cell-sub">61.219.22.17</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-07</span><span class="cell-sub">10:39:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169776<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">linda071<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>琳達</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>9</td>
+                  <td>否</td>
+                  <td>886-920117988</td>
+                  <td><div class="cell-stack"><span>2026-05-04</span><span class="cell-sub">16:54:00</span><span class="cell-sub">61.219.16.168</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-06</span><span class="cell-sub">09:55:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169730<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">tommy038<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>YZ益兆公會</td>
+                  <td><div class="cell-stack">儲值金額總計：3,927.50</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>7</td>
+                  <td>否</td>
+                  <td>886-910289289</td>
+                  <td><div class="cell-stack"><span>2026-05-01</span><span class="cell-sub">01:01:00</span><span class="cell-sub">61.219.68.75</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-07</span><span class="cell-sub">11:14:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169736<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">sunny112<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>陽光女孩</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>8</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-04-24</span><span class="cell-sub">23:57:00</span><span class="cell-sub">61.219.16.151</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-06</span><span class="cell-sub">17:02:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169701<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">mark056<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：1,528.41</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>2</td>
+                  <td>否</td>
+                  <td>886-986460539</td>
+                  <td><div class="cell-stack"><span>2026-04-24</span><span class="cell-sub">15:22:00</span><span class="cell-sub">61.219.15.160</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-12</span><span class="cell-sub">20:18:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169744<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">daisy029<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>8</td>
+                  <td>否</td>
+                  <td>886-996637649</td>
+                  <td><div class="cell-stack"><span>2026-04-19</span><span class="cell-sub">19:40:00</span><span class="cell-sub">61.219.19.4</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-06</span><span class="cell-sub">14:24:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169863<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">ethan081<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>Ethan</td>
+                  <td><span class="badge badge-info">VIP2</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：3,590.74</div></td>
+                  <td><span class="badge badge-danger">停用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="badge badge-neutral">關閉</span></td>
+                  <td>13</td>
+                  <td>否</td>
+                  <td>886-931172421</td>
+                  <td><div class="cell-stack"><span>2026-04-14</span><span class="cell-sub">16:15:00</span><span class="cell-sub">61.219.48.158</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-01</span><span class="cell-sub">13:27:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169872<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">grace064<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>10</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-04-08</span><span class="cell-sub">16:51:00</span><span class="cell-sub">61.219.44.74</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-05</span><span class="cell-sub">03:15:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169769<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">oscar093<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP2</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：9,696.45</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>13</td>
+                  <td>否</td>
+                  <td>886-966851377</td>
+                  <td><div class="cell-stack"><span>2026-04-04</span><span class="cell-sub">01:58:00</span><span class="cell-sub">61.219.10.87</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-02</span><span class="cell-sub">05:20:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169776<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">ivy037<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>小艾</td>
+                  <td><span class="badge badge-info">VIP2</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：6,906.61</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>9</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-04-04</span><span class="cell-sub">16:58:00</span><span class="cell-sub">61.219.57.151</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-06</span><span class="cell-sub">05:33:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169806<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">bruce012<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP3</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：5,787.45</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>12</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-03-28</span><span class="cell-sub">06:38:00</span><span class="cell-sub">61.219.62.160</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-03</span><span class="cell-sub">05:01:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169532<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">cindy058<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>金錢母公會</td>
+                  <td><div class="cell-stack">儲值金額總計：2,856.28</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>3</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-03-22</span><span class="cell-sub">20:09:00</span><span class="cell-sub">61.219.41.70</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-11</span><span class="cell-sub">11:54:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169694<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">derek074<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>6</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-03-24</span><span class="cell-sub">02:59:00</span><span class="cell-sub">61.219.34.104</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-09</span><span class="cell-sub">01:05:00</span></div></td>
+                  <td>多次修改聯絡資訊</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169800<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">felix019<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>Felix</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>2</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-03-21</span><span class="cell-sub">01:49:00</span><span class="cell-sub">61.219.43.11</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-12</span><span class="cell-sub">14:33:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169691<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">gina083<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>12</td>
+                  <td>否</td>
+                  <td>886-968526649</td>
+                  <td><div class="cell-stack"><span>2026-03-16</span><span class="cell-sub">17:01:00</span><span class="cell-sub">61.219.78.177</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-02</span><span class="cell-sub">10:13:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169548<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">henry026<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP2</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：6,753.81</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="badge badge-neutral">關閉</span></td>
+                  <td>7</td>
+                  <td>否</td>
+                  <td>886-950308572</td>
+                  <td><div class="cell-stack"><span>2026-03-09</span><span class="cell-sub">00:18:00</span><span class="cell-sub">61.219.62.85</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-07</span><span class="cell-sub">11:42:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169584<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">iris047<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP2</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：6,596.47</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>7</td>
+                  <td>否</td>
+                  <td>886-983542887</td>
+                  <td><div class="cell-stack"><span>2026-03-03</span><span class="cell-sub">09:41:00</span><span class="cell-sub">61.219.46.55</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-07</span><span class="cell-sub">15:22:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169512<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">jerry061<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>傑瑞</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>YZ益兆公會</td>
+                  <td><div class="cell-stack">儲值金額總計：6,905.90</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>11</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-02-28</span><span class="cell-sub">07:42:00</span><span class="cell-sub">61.219.75.171</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-03</span><span class="cell-sub">14:39:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169755<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">karen034<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>11</td>
+                  <td>是</td>
+                  <td>886-973771720</td>
+                  <td><div class="cell-stack"><span>2026-02-25</span><span class="cell-sub">07:31:00</span><span class="cell-sub">61.219.63.228</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-03</span><span class="cell-sub">15:48:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169446<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">leo097<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>12</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-02-24</span><span class="cell-sub">20:46:00</span><span class="cell-sub">61.219.32.207</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-02</span><span class="cell-sub">17:31:00</span></div></td>
+                  <td>VIP 客戶，需優先服務</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169768<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">mandy052<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>14</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-02-18</span><span class="cell-sub">19:21:00</span><span class="cell-sub">61.219.74.111</span></div></td>
+                  <td><div class="cell-stack"><span>2026-06-30</span><span class="cell-sub">16:32:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169312<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">nick069<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP2</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：12,991.68</div></td>
+                  <td><span class="badge badge-danger">停用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="badge badge-neutral">關閉</span></td>
+                  <td>2</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-02-13</span><span class="cell-sub">13:45:00</span><span class="cell-sub">61.219.45.114</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-12</span><span class="cell-sub">11:42:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169653<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">olivia041<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>Olivia</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>8</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-02-12</span><span class="cell-sub">20:34:00</span><span class="cell-sub">61.219.52.140</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-06</span><span class="cell-sub">20:57:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169642<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">paul087<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>7</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-02-06</span><span class="cell-sub">09:38:00</span><span class="cell-sub">61.219.48.194</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-07</span><span class="cell-sub">20:26:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169351<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">queenie013<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>8</td>
+                  <td>否</td>
+                  <td>886-999774697</td>
+                  <td><div class="cell-stack"><span>2026-01-30</span><span class="cell-sub">21:14:00</span><span class="cell-sub">61.219.31.217</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-07</span><span class="cell-sub">05:21:00</span></div></td>
+                  <td>配合活動加碼贈送</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169440<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">ray072<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP3</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：6,213.29</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>8</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-02-01</span><span class="cell-sub">01:36:00</span><span class="cell-sub">61.219.51.56</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-06</span><span class="cell-sub">23:39:00</span></div></td>
+                  <td>曾有客訴紀錄，需留意</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169276<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">stella028<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>小星</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>金錢母公會</td>
+                  <td><div class="cell-stack">儲值金額總計：4,534.72</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>11</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-01-27</span><span class="cell-sub">22:46:00</span><span class="cell-sub">61.219.18.201</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-04</span><span class="cell-sub">08:12:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169712<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">tony095<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>6</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-01-22</span><span class="cell-sub">19:16:00</span><span class="cell-sub">61.219.42.198</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-09</span><span class="cell-sub">04:22:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169353<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">umi063<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="badge badge-neutral">關閉</span></td>
+                  <td>12</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-01-15</span><span class="cell-sub">12:02:00</span><span class="cell-sub">61.219.58.103</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-03</span><span class="cell-sub">03:56:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169336<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">vicky018<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>11</td>
+                  <td>否</td>
+                  <td>886-985958181</td>
+                  <td><div class="cell-stack"><span>2026-01-10</span><span class="cell-sub">08:38:00</span><span class="cell-sub">61.219.78.111</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-03</span><span class="cell-sub">22:56:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169360<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">wayne077<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：1,265.98</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>11</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2026-01-10</span><span class="cell-sub">20:49:00</span><span class="cell-sub">61.219.76.249</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-04</span><span class="cell-sub">01:21:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169176<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">xander036<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>10</td>
+                  <td>否</td>
+                  <td>886-921631697</td>
+                  <td><div class="cell-stack"><span>2026-01-05</span><span class="cell-sub">19:45:00</span><span class="cell-sub">61.219.69.147</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-04</span><span class="cell-sub">12:36:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169457<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">yuki091<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>雪子</td>
+                  <td><span class="badge badge-info">VIP3</span></td>
+                  <td>YZ益兆公會</td>
+                  <td><div class="cell-stack">儲值金額總計：12,838.82</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>4</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2025-12-30</span><span class="cell-sub">01:25:00</span><span class="cell-sub">61.219.11.134</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-11</span><span class="cell-sub">07:45:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169180<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">zoe024<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>11</td>
+                  <td>否</td>
+                  <td>886-949491631</td>
+                  <td><div class="cell-stack"><span>2025-12-29</span><span class="cell-sub">21:16:00</span><span class="cell-sub">61.219.41.80</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-03</span><span class="cell-sub">15:37:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169341<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">aaron067<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="badge badge-danger">停用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="badge badge-neutral">關閉</span></td>
+                  <td>12</td>
+                  <td>否</td>
+                  <td>886-940942292</td>
+                  <td><div class="cell-stack"><span>2025-12-26</span><span class="cell-sub">10:48:00</span><span class="cell-sub">61.219.50.32</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-02</span><span class="cell-sub">16:12:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169142<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">betty031<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP2</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：3,637.58</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>3</td>
+                  <td>否</td>
+                  <td>886-923492385</td>
+                  <td><div class="cell-stack"><span>2025-12-17</span><span class="cell-sub">03:42:00</span><span class="cell-sub">61.219.39.94</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-12</span><span class="cell-sub">01:00:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169123<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">carl085<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>5</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2025-12-16</span><span class="cell-sub">06:05:00</span><span class="cell-sub">61.219.11.148</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-09</span><span class="cell-sub">18:30:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169296<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">diana046<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>Diana</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：0.00</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>會員帳號</td>
+                  <td>會員帳號</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>3</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2025-12-10</span><span class="cell-sub">13:17:00</span><span class="cell-sub">61.219.16.40</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-11</span><span class="cell-sub">15:41:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="cell-copy">252169575<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">edwin059<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>-</td>
+                  <td><span class="badge badge-info">VIP1</span></td>
+                  <td>-</td>
+                  <td><div class="cell-stack">儲值金額總計：2,295.69</div></td>
+                  <td><span class="pill-btn-success">啟用</span></td>
+                  <td>Line</td>
+                  <td>Line</td>
+                  <td><span class="pill-btn-success">開啟</span></td>
+                  <td>10</td>
+                  <td>否</td>
+                  <td>-</td>
+                  <td><div class="cell-stack"><span>2025-12-08</span><span class="cell-sub">00:05:00</span><span class="cell-sub">61.219.64.80</span></div></td>
+                  <td><div class="cell-stack"><span>2026-07-04</span><span class="cell-sub">14:57:00</span></div></td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="member-detail.html">會員詳情</a> · <button class="btn-link">輸贏報表</button></td>
                 </tr>
               </tbody>
             </table>
@@ -151,7 +1121,7 @@
             <span class="page-btn">«</span><span class="page-btn">‹</span>
             <span class="page-btn active">1</span><span class="page-btn">2</span><span class="page-btn">3</span><span class="page-btn">4</span><span class="page-btn">5</span>
             <span class="page-btn">›</span><span class="page-btn">»</span>
-            <div class="select-wrap page-size-select"><select class="select"><option>10 筆/頁</option><option>20 筆/頁</option><option>50 筆/頁</option></select></div>
+            <div class="select-wrap page-size-select"><select class="select"><option>10 筆/頁</option><option>20 筆/頁</option><option selected>50 筆/頁</option></select></div>
           </div>
         </div>
       </div>

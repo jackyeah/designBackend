@@ -65,12 +65,12 @@
             <table class="data-table">
               <thead><tr><th>帳號</th><th>名稱</th><th>國家地區</th><th>幣別</th><th>狀態</th><th>創建時間</th><th>操作</th></tr></thead>
               <tbody>
-                <tr><td>jgm7</td><td>金錢母</td><td>台灣</td><td>新臺幣</td><td><span class="badge badge-success">啟用</span></td><td>2026-06-22 16:08:15</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
-                <tr><td>GdemoAdmin</td><td>金錢母示範站</td><td>台灣</td><td>新臺幣</td><td><span class="badge badge-success">啟用</span></td><td>2026-05-20 13:59:46</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
-                <tr><td>GammaAdmin</td><td>Gamma 站</td><td>菲律賓</td><td>美元</td><td><span class="badge badge-success">啟用</span></td><td>2026-05-20 13:51:55</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
-                <tr><td>YzAdmin</td><td>YZ 益兆</td><td>台灣</td><td>新臺幣</td><td><span class="badge badge-success">啟用</span></td><td>2026-03-18 10:27:38</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
-                <tr><td>QdemoAdmin</td><td>YZ示範站</td><td>台灣</td><td>新臺幣</td><td><span class="badge badge-danger">停用</span></td><td>2025-11-17 11:42:16</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
-                <tr><td>DeltaAdmin</td><td>Delta 站</td><td>越南</td><td>越南盾</td><td><span class="badge badge-success">啟用</span></td><td>2025-11-17 11:30:54</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
+                <tr><td>jgm7</td><td>金錢母</td><td>台灣</td><td>新臺幣</td><td><span class="badge badge-success">啟用</span></td><td>2026-06-22 16:08:15</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link" data-modal-target="modalResetPassword">重置密碼</button> · <a class="btn-link" href="site-owner-game-permissions.html">遊戲權限</a></td></tr>
+                <tr><td>GdemoAdmin</td><td>金錢母示範站</td><td>台灣</td><td>新臺幣</td><td><span class="badge badge-success">啟用</span></td><td>2026-05-20 13:59:46</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link" data-modal-target="modalResetPassword">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
+                <tr><td>GammaAdmin</td><td>Gamma 站</td><td>菲律賓</td><td>美元</td><td><span class="badge badge-success">啟用</span></td><td>2026-05-20 13:51:55</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link" data-modal-target="modalResetPassword">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
+                <tr><td>YzAdmin</td><td>YZ 益兆</td><td>台灣</td><td>新臺幣</td><td><span class="badge badge-success">啟用</span></td><td>2026-03-18 10:27:38</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link" data-modal-target="modalResetPassword">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
+                <tr><td>QdemoAdmin</td><td>YZ示範站</td><td>台灣</td><td>新臺幣</td><td><span class="badge badge-danger">停用</span></td><td>2025-11-17 11:42:16</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link" data-modal-target="modalResetPassword">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
+                <tr><td>DeltaAdmin</td><td>Delta 站</td><td>越南</td><td>越南盾</td><td><span class="badge badge-success">啟用</span></td><td>2025-11-17 11:30:54</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditOwner">編輯</button> · <button class="btn-link" data-modal-target="modalResetPassword">重置密碼</button> · <button class="btn-link">遊戲權限</button></td></tr>
               </tbody>
             </table>
           </div>
@@ -125,6 +125,20 @@
       </div>
     </div>
     <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>取消</button><button class="btn btn-primary">保存更改</button></div>
+  </div>
+</div>
+
+<!-- 重置密碼：跨頁面統一使用同一種彈窗模式 -->
+<div class="modal-overlay" id="modalResetPassword">
+  <div class="modal" style="max-width: 420px;">
+    <div class="modal-header"><h2>重置密碼</h2><button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-grid" style="grid-template-columns: 1fr;">
+        <div class="form-field"><label class="field-label"><span class="required">*</span>新密碼</label><input class="input" type="password" placeholder="請輸入"></div>
+        <div class="form-field"><label class="field-label"><span class="required">*</span>確認新密碼</label><input class="input" type="password" placeholder="請輸入"></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>取消</button><button class="btn btn-primary">送出</button></div>
   </div>
 </div>
 
