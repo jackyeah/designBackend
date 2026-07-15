@@ -25,61 +25,353 @@
     <main class="content">
       <div id="breadcrumb-mount"></div>
 
-      <div class="page-header"><h1>新增角色權限(總控)</h1></div>
+      <div class="page-header">
+        <h1>新增角色權限(總控)</h1>
+        <button class="btn btn-primary btn-sm">保存更改</button>
+      </div>
 
+      <!-- 總控用來設定「總控子帳號／站長／站長子帳號」這三種系統角色各自可使用的權限上限，
+           權限群組建立時僅能在所屬角色被允許的範圍內勾選 -->
       <div class="card">
         <div class="card-section">
-          <div class="table-toolbar">
-            <span class="text-sm text-tertiary">共 8 筆角色</span>
+          <div class="form-grid cols-3">
+            <div class="form-field"><label class="field-label"><span class="required">*</span>角色</label>
+              <div class="select-wrap"><select class="select"><option>總控子帳號</option><option>站長</option><option>站長子帳號</option></select></div>
+            </div>
           </div>
-          <div class="table-scroll">
-            <table class="data-table">
-              <thead><tr><th>角色名稱</th><th>說明</th><th>成員數</th><th>建立時間</th><th class="col-actions">操作</th></tr></thead>
-              <tbody>
-                <tr><td>AUTO</td><td>自動化測試專用權限</td><td>1</td><td>2025-11-17 16:55:45</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>DBA</td><td>資料庫維運人員</td><td>2</td><td>2025-11-17 16:53:16</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>UI/UX</td><td>介面設計人員，僅檢視權限</td><td>2</td><td>2025-11-17 16:51:54</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>CS</td><td>客服人員，會員與帳務查詢</td><td>5</td><td>2025-11-17 16:50:12</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>PM</td><td>專案管理，跨模組檢視</td><td>3</td><td>2025-11-17 16:48:53</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>企劃</td><td>活動與優惠企劃人員</td><td>2</td><td>2025-11-17 16:47:34</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>QA</td><td>測試人員，僅測試站權限</td><td>4</td><td>2025-11-17 16:45:43</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-                <tr><td>前端</td><td>前端工程師</td><td>3</td><td>2025-11-17 16:41:05</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
-              </tbody>
-            </table>
-          </div>
-          <!-- 資料未超過一頁，依規範不顯示分頁器 -->
+        </div>
+        <div class="card-section">
+          <label class="checkbox-field"><input class="checkbox" type="checkbox" id="permSelectAll">全選</label>
         </div>
       </div>
 
-      <!-- 權限矩陣欄位數多、非單一動作，依規範採全頁而非彈窗 -->
-      <div class="card mt-4">
-        <div class="card-section">
-          <div class="card-section-title">新增角色</div>
-          <div class="form-grid" style="margin-bottom: var(--space-5);">
-            <div class="form-field"><label class="field-label"><span class="required">*</span>角色名稱</label><input class="input" type="text" placeholder="請輸入"></div>
-            <div class="form-field"><label class="field-label"><span class="required">*</span>說明</label><input class="input" type="text" placeholder="請輸入"></div>
-          </div>
+      <div class="perm-page mt-4">
+        <aside class="perm-jump">
+          <div class="perm-jump-title">分類快速跳轉</div>
+          <a href="#cat-account">帳號管理</a>
+          <a href="#cat-vip">VIP等級</a>
+          <a href="#cat-guild">公會管理</a>
+          <a href="#cat-cash">現金系統</a>
+          <a href="#cat-announcement">公告訊息</a>
+          <a href="#cat-sms">短信管理</a>
+          <a href="#cat-report">報表</a>
+          <a href="#cat-promotion">優惠活動管理</a>
+          <a href="#cat-task">任務管理</a>
+          <a href="#cat-checkin">簽到管理</a>
+          <a href="#cat-blacklist">黑名單管理</a>
+          <a href="#cat-site">網站管理</a>
+          <a href="#cat-log">操作記錄</a>
+        </aside>
 
-          <div class="card-section-title">模組權限</div>
-          <div class="table-scroll">
-            <table class="data-table compact">
-              <thead><tr><th>模組</th><th>檢視</th><th>新增</th><th>編輯</th><th>刪除</th></tr></thead>
-              <tbody>
-                <tr><td>帳號管理</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td></tr>
-                <tr><td>VIP設置</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
-                <tr><td>公會管理</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
-                <tr><td>現金系統</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
-                <tr><td>公告訊息</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
-                <tr><td>報表</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
-                <tr><td>優惠活動管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
-                <tr><td>黑名單管理</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
-              </tbody>
-            </table>
-          </div>
+        <div class="perm-matrix">
 
-          <div class="mt-4" style="border-top:1px solid var(--color-border); padding-top: var(--space-4);">
-            <button class="btn btn-primary">保存更改</button>
-          </div>
+          <section class="perm-category" id="cat-account">
+            <div class="perm-category-title">帳號管理</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">新增</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">刪除</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">匯出</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">當頁匯出2000筆</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">當頁顯示2000筆</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">顯示聯絡資訊</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看-下層權限</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯-下層權限</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看-上層/平層建立的權限</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">站長子帳號</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">會員管理</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">會員註冊設定</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">權限群組</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">幣商設定</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-vip">
+            <div class="perm-category-title">VIP等級</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">匯出</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">VIP等級管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">VIP等級明細</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">層級設置</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-guild">
+            <div class="perm-category-title">公會管理</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">新增</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">刪除</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">匯出</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">公會設置</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">公會列表</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">公會金流</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-cash">
+            <div class="perm-category-title">現金系統</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">新增</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">拒絕</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">稽核</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">核發</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">解鎖</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">當頁顯示2000筆</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">刪除</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">匯出</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">資金調整</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">網銀入款</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">資金明細表</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">會員金流</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">支付設定</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">贈禮紀錄</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">點數比值/儲值設置</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">流水查詢</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-announcement">
+            <div class="perm-category-title">公告訊息</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">新增</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">刪除</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">公告管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">信件管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">新會員公告設定</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-sms">
+            <div class="perm-category-title">短信管理</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">顯示聯絡資訊</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">短信紀錄</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">短信設定</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-report">
+            <div class="perm-category-title">報表</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">當頁顯示2000筆</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">遊戲投注報表</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">會員IP列表</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">會員在線列表</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">營收報表</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">會員投注報表</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">資金報表</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">稽核報表</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">輸贏報表</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-promotion">
+            <div class="perm-category-title">優惠活動管理</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">新增</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">刪除</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">當頁顯示2000筆</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">顯示完整序號</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">優惠活動紀錄</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">優惠文案管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">兌換序號設置</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-task">
+            <div class="perm-category-title">任務管理</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">新增</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">刪除</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">任務設置</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">玩家任務紀錄</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-checkin">
+            <div class="perm-category-title">簽到管理</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">簽到設置</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">玩家簽到記錄</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">禮包購買/補簽記錄</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-blacklist">
+            <div class="perm-category-title">黑名單管理</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">新增</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">刪除</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">匯出</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">黑名單設定</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">黑名單列表</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">聊天室管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-site">
+            <div class="perm-category-title">網站管理</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">新增</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">編輯</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">刪除</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">更新遊戲清單</label></th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">批次更新遊戲狀態</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">站點設置</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">熱門遊戲管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">首頁廣告管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">文案管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                  <tr><td class="perm-col-module">遊戲設定v1</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">遊戲設定v2</td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                  <tr><td class="perm-col-module">排行榜管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td class="perm-na">–</td><td class="perm-na">–</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
+          <section class="perm-category" id="cat-log">
+            <div class="perm-category-title">操作記錄</div>
+            <div class="perm-table-wrap">
+              <table class="perm-table">
+                <thead>
+                  <tr>
+                    <th class="perm-col-module">子模組</th>
+                    <th><label class="perm-col-head"><input class="checkbox col-toggle" type="checkbox">查看</label></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr><td class="perm-col-module">操作記錄</td><td><input class="checkbox" type="checkbox"></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+
         </div>
       </div>
     </main>

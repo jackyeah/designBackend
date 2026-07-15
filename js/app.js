@@ -123,4 +123,61 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* ---------- Toast (transient feedback message) ---------- */
+  window.showToast = function (message) {
+    var toast = document.getElementById('appToast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.id = 'appToast';
+      toast.className = 'toast';
+      document.body.appendChild(toast);
+    }
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(function () { toast.classList.remove('show'); }, 2500);
+  };
+
+  /* ---------- Data table row selection: header checkbox <-> row checkboxes + selection hint ---------- */
+  document.querySelectorAll('.data-table').forEach(function (table) {
+    var headCb = table.querySelector('thead th:first-child input[type="checkbox"]');
+    var rowCbs = table.querySelectorAll('tbody td:first-child input[type="checkbox"]');
+    if (!headCb || !rowCbs.length) return;
+
+    var hint = document.getElementById('selectionHint');
+    function updateHint() {
+      if (!hint) return;
+      var checked = 0;
+      rowCbs.forEach(function (cb) { if (cb.checked) checked++; });
+      hint.textContent = checked > 0 ? ('已選擇 ' + checked + ' 筆') : '尚未選取任何項目';
+    }
+
+    headCb.addEventListener('change', function () {
+      rowCbs.forEach(function (cb) { cb.checked = headCb.checked; });
+      updateHint();
+    });
+    rowCbs.forEach(function (cb) {
+      cb.addEventListener('change', function () {
+        var allChecked = true;
+        rowCbs.forEach(function (c) { if (!c.checked) allChecked = false; });
+        headCb.checked = allChecked;
+        updateHint();
+      });
+    });
+  });
+
+  /* ---------- 會員清單：批量調整VIP等級 ---------- */
+  var bulkVipBtn = document.getElementById('bulkVipBtn');
+  if (bulkVipBtn) {
+    bulkVipBtn.addEventListener('click', function () {
+      var checkedCount = document.querySelectorAll('.data-table tbody td:first-child input[type="checkbox"]:checked').length;
+      if (checkedCount === 0) {
+        showToast('請至少選擇一位會員');
+        return;
+      }
+      var level = document.getElementById('bulkVipSelect').value;
+      showToast('已將 ' + checkedCount + ' 位會員調整為 ' + level);
+    });
+  }
+
 });

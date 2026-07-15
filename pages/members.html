@@ -82,8 +82,15 @@
       <div class="card mt-4">
         <div class="card-section">
           <div class="table-toolbar">
-            <div class="field-row" style="width:220px;">
-              <input class="input" type="text" placeholder="批量調整VIP等級">
+            <div class="bulk-action-group">
+              <span class="bulk-action-label">批量調整VIP等級</span>
+              <span class="bulk-action-arrow">→</span>
+              <div class="select-wrap" style="width:110px;">
+                <select class="select" id="bulkVipSelect">
+                  <option>VIP0</option><option>VIP1</option><option>VIP2</option><option>VIP3</option><option>VIP4</option><option>VIP5</option>
+                </select>
+              </div>
+              <button class="btn btn-primary btn-sm" id="bulkVipBtn" type="button">套用</button>
             </div>
             <div class="counter-btn">
               <button class="counter-btn-action" type="button">
@@ -93,7 +100,7 @@
               <span class="counter-btn-value">1,284</span>
             </div>
             <span class="spacer"></span>
-            <span class="text-sm text-tertiary">尚未選取任何項目</span>
+            <span class="text-sm text-tertiary" id="selectionHint">尚未選取任何項目</span>
             <button class="btn btn-accent btn-sm">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M5 19h14"/></svg>
               匯出
