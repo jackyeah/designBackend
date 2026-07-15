@@ -45,12 +45,17 @@
         <label class="field-label"><span class="required">*</span>密碼</label>
         <input class="input" type="password" value="password123" placeholder="請輸入密碼">
       </div>
-      <a class="btn btn-primary login-submit" href="pages/sub-accounts.html">送出</a>
+      <a class="btn btn-primary login-submit" href="pages/sub-accounts.html" id="loginSubmit">送出</a>
     </form>
 
     <div class="login-footer">版本 1.26.3</div>
   </div>
 </div>
 
+<script>
+  document.getElementById('loginSubmit').addEventListener('click', function () {
+    sessionStorage.removeItem('tabHistory');
+  });
+</script>
 </body>
 </html>

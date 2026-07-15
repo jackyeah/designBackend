@@ -55,11 +55,36 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  /* ---------- Tabs bar: close tab ---------- */
+  /* ---------- Tabs bar: close tab (persists to sessionStorage history) ---------- */
   document.querySelectorAll('.tab-close').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
+      e.preventDefault();
       e.stopPropagation();
-      btn.closest('.tab').remove();
+
+      var key = btn.getAttribute('data-tab-key');
+      var history = [];
+      try { history = JSON.parse(sessionStorage.getItem('tabHistory') || '[]'); } catch (err) { history = []; }
+
+      var closedIndex = -1;
+      for (var i = 0; i < history.length; i++) {
+        if (history[i].key === key) { closedIndex = i; break; }
+      }
+      if (closedIndex === -1) return;
+
+      var wasActive = window.CURRENT_TAB && window.CURRENT_TAB.key === key;
+      history.splice(closedIndex, 1);
+      sessionStorage.setItem('tabHistory', JSON.stringify(history));
+
+      if (wasActive) {
+        if (history.length === 0) {
+          window.location.href = 'sub-accounts.html';
+        } else {
+          var next = history[closedIndex] || history[closedIndex - 1];
+          window.location.href = next.href;
+        }
+      } else {
+        btn.closest('.tab').remove();
+      }
     });
   });
 

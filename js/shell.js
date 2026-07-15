@@ -1,7 +1,7 @@
 // ==========================================================================
 // 共用 Shell 產生器：側邊選單 / 頂部列 / 分頁籤列 / 麵包屑
 // 各頁面只需在 <aside id="sidebar" data-active="account" data-subactive="sub-accounts">
-// 並於載入前設定 window.PAGE_TABS / window.PAGE_BREADCRUMB
+// 並於載入前設定 window.CURRENT_TAB / window.PAGE_BREADCRUMB
 // ==========================================================================
 (function () {
 
@@ -152,18 +152,54 @@
       '</div>';
   }
 
+  var TAB_HISTORY_KEY = 'tabHistory';
+
+  function readTabHistory() {
+    try {
+      return JSON.parse(sessionStorage.getItem(TAB_HISTORY_KEY) || '[]');
+    } catch (e) {
+      return [];
+    }
+  }
+
+  function writeTabHistory(history) {
+    sessionStorage.setItem(TAB_HISTORY_KEY, JSON.stringify(history));
+  }
+
+  function tabsHtml(history, current) {
+    var html = '';
+    history.forEach(function (tab) {
+      var isActive = !!current && tab.key === current.key;
+      html += '<a class="tab' + (isActive ? ' active' : '') + '" href="' + (tab.href || '#') + '" data-tab-key="' + tab.key + '">' +
+        '<span class="tab-label">' + tab.label + '</span>' +
+        '<button type="button" class="tab-close" data-tab-key="' + tab.key + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
+        '</a>';
+    });
+    return html;
+  }
+
   function renderTabs() {
     var tabsbar = document.getElementById('tabsbar');
     if (!tabsbar) return;
-    var tabs = window.PAGE_TABS || [];
-    var html = '';
-    tabs.forEach(function (tab) {
-      html += '<a class="tab' + (tab.active ? ' active' : '') + '" href="' + (tab.href || '#') + '">' +
-        '<span class="tab-label">' + tab.label + '</span>' +
-        '<button type="button" class="tab-close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
-        '</a>';
-    });
-    tabsbar.innerHTML = html;
+    var current = window.CURRENT_TAB;
+    var history = readTabHistory();
+
+    if (current) {
+      var exists = history.some(function (t) { return t.key === current.key; });
+      if (!exists) {
+        history.push(current);
+      }
+    }
+
+    // Only ever show as many tabs as fit on one row (no wrap/scroll/truncation) —
+    // drop the oldest tabs first when the accumulated history overflows the row.
+    tabsbar.innerHTML = tabsHtml(history, current);
+    while (history.length > 1 && tabsbar.scrollWidth > tabsbar.clientWidth) {
+      history.shift();
+      tabsbar.innerHTML = tabsHtml(history, current);
+    }
+
+    writeTabHistory(history);
   }
 
   function renderBreadcrumb() {
