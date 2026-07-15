@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新增角色權限(總控) - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.PAGE_TABS = [
+    { label: '新增角色權限(總控)', href: 'role-permissions.html', active: true },
+    { label: '總控子帳號', href: 'sub-accounts.html' },
+    { label: '站長管理', href: 'site-owners.html' },
+    { label: '會員管理', href: 'members.html' }
+  ];
+  window.PAGE_BREADCRUMB = ['帳號管理', '新增角色權限(總控)'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="account" data-subactive="role-permissions"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>新增角色權限(總控)</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <span class="text-sm text-tertiary">共 8 筆角色</span>
+          </div>
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead><tr><th>角色名稱</th><th>說明</th><th>成員數</th><th>建立時間</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>AUTO</td><td>自動化測試專用權限</td><td>1</td><td>2025-11-17 16:55:45</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>DBA</td><td>資料庫維運人員</td><td>2</td><td>2025-11-17 16:53:16</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>UI/UX</td><td>介面設計人員，僅檢視權限</td><td>2</td><td>2025-11-17 16:51:54</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>CS</td><td>客服人員，會員與帳務查詢</td><td>5</td><td>2025-11-17 16:50:12</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>PM</td><td>專案管理，跨模組檢視</td><td>3</td><td>2025-11-17 16:48:53</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>企劃</td><td>活動與優惠企劃人員</td><td>2</td><td>2025-11-17 16:47:34</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>QA</td><td>測試人員，僅測試站權限</td><td>4</td><td>2025-11-17 16:45:43</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
+                <tr><td>前端</td><td>前端工程師</td><td>3</td><td>2025-11-17 16:41:05</td><td class="col-actions"><button class="btn-link">編輯</button> · <button class="btn-link danger">刪除</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- 資料未超過一頁，依規範不顯示分頁器 -->
+        </div>
+      </div>
+
+      <!-- 權限矩陣欄位數多、非單一動作，依規範採全頁而非彈窗 -->
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="card-section-title">新增角色</div>
+          <div class="form-grid" style="margin-bottom: var(--space-5);">
+            <div class="form-field"><label class="field-label"><span class="required">*</span>角色名稱</label><input class="input" type="text" placeholder="請輸入"></div>
+            <div class="form-field"><label class="field-label"><span class="required">*</span>說明</label><input class="input" type="text" placeholder="請輸入"></div>
+          </div>
+
+          <div class="card-section-title">模組權限</div>
+          <div class="table-scroll">
+            <table class="data-table compact">
+              <thead><tr><th>模組</th><th>檢視</th><th>新增</th><th>編輯</th><th>刪除</th></tr></thead>
+              <tbody>
+                <tr><td>帳號管理</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td></tr>
+                <tr><td>VIP設置</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                <tr><td>公會管理</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                <tr><td>現金系統</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                <tr><td>公告訊息</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                <tr><td>報表</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                <tr><td>優惠活動管理</td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+                <tr><td>黑名單管理</td><td><input class="checkbox" type="checkbox" checked></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td><td><input class="checkbox" type="checkbox"></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="mt-4" style="border-top:1px solid var(--color-border); padding-top: var(--space-4);">
+            <button class="btn btn-primary">保存更改</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

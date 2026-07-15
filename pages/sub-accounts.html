@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>總控子帳號 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.PAGE_TABS = [
+    { label: '新增角色權限(總控)', href: 'role-permissions.html' },
+    { label: '總控子帳號', href: 'sub-accounts.html', active: true },
+    { label: '站長管理', href: 'site-owners.html' },
+    { label: '會員管理', href: 'members.html' }
+  ];
+  window.PAGE_BREADCRUMB = ['帳號管理', '總控子帳號'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="account" data-subactive="sub-accounts"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header">
+        <h1>總控子帳號</h1>
+      </div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label">帳號</label>
+              <input class="input" type="text" placeholder="請輸入">
+            </div>
+            <div class="field">
+              <label class="field-label">名稱</label>
+              <input class="input" type="text" placeholder="請輸入">
+            </div>
+            <div class="field">
+              <label class="field-label">創建時間</label>
+              <input class="input" type="text" placeholder="開始日期 - 結束日期">
+            </div>
+            <div class="field">
+              <label class="field-label">狀態</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option>啟用</option>
+                <option>停用</option>
+              </select></div>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+            <span class="segmented" style="margin-left:auto;">
+              模糊搜尋 <span class="switch"></span> 精準搜尋
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <button class="btn btn-accent" data-modal-target="modalAddSubAccount">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              新增
+            </button>
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary">共 9 筆</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>帳號</th><th>名稱</th><th>站長代碼</th><th>狀態</th><th>權限</th><th>創建時間</th><th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Autotest000</td><td>Auto用</td><td>master</td><td><span class="badge badge-success">啟用</span></td><td>AUTO</td><td>2025-11-17 16:55:45</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditSubAccount">編輯</button> · <button class="btn-link">重置密碼</button></td></tr>
+                <tr><td>DBAtest000</td><td>DBA用</td><td>master</td><td><span class="badge badge-success">啟用</span></td><td>DBA</td><td>2025-11-17 16:53:16</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditSubAccount">編輯</button> · <button class="btn-link">重置密碼</button></td></tr>
+                <tr><td>UIUX000</td><td>UIUX用</td><td>master</td><td><span class="badge badge-success">啟用</span></td><td>UI/UX</td><td>2025-11-17 16:51:54</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditSubAccount">編輯</button> · <button class="btn-link">重置密碼</button></td></tr>
+                <tr><td>CStest000</td><td>CS用</td><td>master</td><td><span class="badge badge-success">啟用</span></td><td>CS</td><td>2025-11-17 16:50:12</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditSubAccount">編輯</button> · <button class="btn-link">重置密碼</button></td></tr>
+                <tr><td>PMtest000</td><td>PM用</td><td>master</td><td><span class="badge badge-success">啟用</span></td><td>PM</td><td>2025-11-17 16:48:53</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditSubAccount">編輯</button> · <button class="btn-link">重置密碼</button></td></tr>
+                <tr><td>Product000</td><td>企劃用</td><td>master</td><td><span class="badge badge-success">啟用</span></td><td>企劃</td><td>2025-11-17 16:47:34</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditSubAccount">編輯</button> · <button class="btn-link">重置密碼</button></td></tr>
+                <tr><td>QAtest000</td><td>master</td><td>master</td><td><span class="badge badge-danger">停用</span></td><td>QA</td><td>2025-11-17 16:45:43</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditSubAccount">編輯</button> · <button class="btn-link">重置密碼</button></td></tr>
+                <tr><td>Front000</td><td>前端用</td><td>master</td><td><span class="badge badge-success">啟用</span></td><td>前端</td><td>2025-11-17 16:41:05</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditSubAccount">編輯</button> · <button class="btn-link">重置密碼</button></td></tr>
+                <tr><td>Backend000</td><td>後端用</td><td>master</td><td><span class="badge badge-success">啟用</span></td><td>後端</td><td>2025-11-17 16:39:37</td><td class="col-actions"><button class="btn-link" data-modal-target="modalEditSubAccount">編輯</button> · <button class="btn-link">重置密碼</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 資料未超過一頁，依規範不顯示分頁器 -->
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- 新增 Modal（欄位少 → 依彈窗/跳頁規範走彈窗，與編輯統一） -->
+<div class="modal-overlay" id="modalAddSubAccount">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>新增總控子帳號</h2>
+      <button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>帳號</label>
+          <input class="input" type="text" placeholder="請輸入">
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>名稱</label>
+          <input class="input" type="text" placeholder="請輸入">
+        </div>
+        <div class="form-field">
+          <label class="field-label">站長代碼</label>
+          <input class="input" type="text" value="master" disabled>
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>狀態</label>
+          <div class="select-wrap"><select class="select"><option>啟用</option><option>停用</option></select></div>
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>權限群組</label>
+          <div class="select-wrap"><select class="select"><option>請選擇</option><option>AUTO</option><option>DBA</option><option>UI/UX</option></select></div>
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>密碼</label>
+          <input class="input" type="password" placeholder="請輸入">
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-primary">保存更改</button>
+    </div>
+  </div>
+</div>
+
+<!-- 編輯 Modal -->
+<div class="modal-overlay" id="modalEditSubAccount">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>編輯總控子帳號</h2>
+      <button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-grid">
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>帳號</label>
+          <input class="input" type="text" value="Autotest000" disabled>
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>名稱</label>
+          <input class="input" type="text" value="Auto用">
+        </div>
+        <div class="form-field">
+          <label class="field-label">站長代碼</label>
+          <input class="input" type="text" value="master" disabled>
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>狀態</label>
+          <div class="select-wrap"><select class="select"><option>啟用</option><option>停用</option></select></div>
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>權限群組</label>
+          <div class="select-wrap"><select class="select"><option>AUTO</option><option>DBA</option><option>UI/UX</option></select></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-primary">保存更改</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

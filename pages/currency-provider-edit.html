@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>編輯幣商 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.PAGE_TABS = [
+    { label: '幣商設定', href: 'currency-providers.html' },
+    { label: '編輯幣商 - MOPAY', href: 'currency-provider-edit.html', active: true }
+  ];
+  window.PAGE_BREADCRUMB = ['帳號管理', '幣商設定', '編輯幣商'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="account" data-subactive="currency-providers"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div class="breadcrumb-mount" id="breadcrumb-mount"></div>
+
+      <div class="page-header">
+        <h1>編輯幣商</h1>
+        <a class="btn btn-secondary btn-sm" href="currency-providers.html">返回列表</a>
+      </div>
+
+      <!-- 幣商資料 + SID 綁定管理合併於同一頁（跳頁模式）：
+           欄位數 > 8 且包含子資源列表，依規範採全頁而非彈窗，
+           取代原本另開一頁的「幣商會員UID清單」 -->
+      <div class="card">
+        <div class="card-section">
+          <div class="card-section-title">幣商基本資料</div>
+          <div class="form-grid">
+            <div class="form-field"><label class="field-label"><span class="required">*</span>幣商代碼</label><input class="input" type="text" value="MOPAY" disabled></div>
+            <div class="form-field"><label class="field-label"><span class="required">*</span>名稱</label><input class="input" type="text" value="速匯通"></div>
+            <div class="form-field"><label class="field-label"><span class="required">*</span>所屬站別</label><div class="select-wrap"><select class="select"><option>金錢母</option><option>YZ 益兆</option><option>Gamma 站</option></select></div></div>
+            <div class="form-field"><label class="field-label"><span class="required">*</span>幣別</label><div class="select-wrap"><select class="select"><option>新臺幣</option><option>美元</option></select></div></div>
+            <div class="form-field"><label class="field-label"><span class="required">*</span>聯絡窗口</label><input class="input" type="text" value="陳經理 0987-654-321"></div>
+            <div class="form-field"><label class="field-label"><span class="required">*</span>狀態</label><div class="select-wrap"><select class="select"><option>啟用</option><option>停用</option></select></div></div>
+            <div class="form-field span-2"><label class="field-label"><span class="required">*</span>API 金鑰</label><input class="input" type="text" value="sk_live_9f2c7d1b4a3e8091"></div>
+            <div class="form-field span-2"><label class="field-label"><span class="required">*</span>回調網址</label><input class="input" type="text" value="https://api.mopay.example.com/callback"></div>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <div class="subtable-wrap">
+            <div class="subtable-header">
+              <span class="text-sm" style="font-weight:600;">綁定 SID 清單（共 3 筆）</span>
+              <button class="btn btn-secondary btn-sm">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                新增 SID
+              </button>
+            </div>
+            <table class="subtable">
+              <thead><tr><th>SID</th><th>綁定站別</th><th>綁定時間</th><th>狀態</th><th>操作</th></tr></thead>
+              <tbody>
+                <tr><td>SID-8821094</td><td>金錢母</td><td>2026-05-10 11:22:47</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link danger">解除綁定</button></td></tr>
+                <tr><td>SID-8821187</td><td>金錢母示範站</td><td>2026-05-11 09:03:15</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link danger">解除綁定</button></td></tr>
+                <tr><td>SID-8821302</td><td>金錢母</td><td>2026-06-02 16:47:59</td><td><span class="badge badge-danger">停用</span></td><td class="col-actions"><button class="btn-link danger">解除綁定</button></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card-section flex gap-3">
+          <button class="btn btn-primary">保存更改</button>
+          <a class="btn btn-secondary" href="currency-providers.html">取消</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>
