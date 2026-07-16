@@ -19,6 +19,17 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Nested list: title-row expand/collapse (e.g. 文案管理 主標題/副標題) ---------- */
+  document.querySelectorAll('.title-row[data-target]').forEach(function (row) {
+    row.addEventListener('click', function (e) {
+      if (e.target.closest('.col-actions')) return;
+      var sub = document.getElementById(row.getAttribute('data-target'));
+      if (!sub) return;
+      row.classList.toggle('open');
+      sub.classList.toggle('open');
+    });
+  });
+
   /* ---------- Dropdown panels (notification / user menu) ---------- */
   var dropdownButtons = document.querySelectorAll('[data-dropdown-target]');
   dropdownButtons.forEach(function (btn) {

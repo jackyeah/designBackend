@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>文案管理 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'copywriting', label: '文案管理', href: 'copywriting.html' };
+  window.PAGE_BREADCRUMB = ['網站管理', '文案管理'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="site" data-subactive="copywriting"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>文案管理</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>金錢母</option>
+                <option>YZ 益兆</option>
+                <option>Gamma 站</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>文案頁面</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>幫助中心</option>
+                <option>關於我們</option>
+                <option>隱私權政策</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">名稱</label>
+              <input class="input" type="text" placeholder="主標題 / 副標題關鍵字">
+            </div>
+            <div class="field">
+              <label class="field-label">狀態</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option>啟用</option>
+                <option>停用</option>
+              </select></div>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <button class="btn btn-accent" data-modal-target="modalAddTitle">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              新增主標題
+            </button>
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary">共 2 筆主標題</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table nested-table">
+              <thead>
+                <tr>
+                  <th style="width:34%;">主標題</th><th>排序</th><th>更新時間</th><th>創建時間</th><th>狀態</th><th class="col-actions">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <tr class="title-row" data-target="sub-1">
+                  <td>
+                    <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                    <span class="title-row-name">YZ-使用指南</span>
+                  </td>
+                  <td>99</td>
+                  <td>2026-07-10 14:22:03</td>
+                  <td>2026-01-05 09:12:40</td>
+                  <td><span class="badge badge-success">啟用</span></td>
+                  <td class="col-actions">
+                    <button class="btn-link" data-modal-target="modalEditTitle">編輯</button> ·
+                    <a class="btn-link" href="copywriting-subtitle-add.html">新增副標題及內文</a> ·
+                    <button class="btn-link danger">刪除</button>
+                  </td>
+                </tr>
+                <tr class="subtitle-row" id="sub-1">
+                  <td colspan="6">
+                    <div class="subtitle-cell">
+                      <div class="subtitle-cell-toolbar"><span class="text-sm">副標題（共 1 筆）</span></div>
+                      <div class="subtable-wrap">
+                        <table class="subtable">
+                          <thead><tr><th>副標題</th><th>排序</th><th>更新時間</th><th>創建時間</th><th>狀態</th><th class="col-actions">操作</th></tr></thead>
+                          <tbody>
+                            <tr>
+                              <td>常見問題與解答</td>
+                              <td>1</td>
+                              <td>2026-07-10 14:22:03</td>
+                              <td>2026-01-05 09:15:11</td>
+                              <td><span class="badge badge-success">啟用</span></td>
+                              <td class="col-actions"><a class="btn-link" href="copywriting-subtitle-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+                <tr class="title-row" data-target="sub-2">
+                  <td>
+                    <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                    <span class="title-row-name">帳戶安全提醒</span>
+                  </td>
+                  <td>100</td>
+                  <td>2026-07-08 10:47:52</td>
+                  <td>2026-02-18 16:30:22</td>
+                  <td><span class="badge badge-success">啟用</span></td>
+                  <td class="col-actions">
+                    <button class="btn-link" data-modal-target="modalEditTitle">編輯</button> ·
+                    <a class="btn-link" href="copywriting-subtitle-add.html">新增副標題及內文</a> ·
+                    <button class="btn-link danger">刪除</button>
+                  </td>
+                </tr>
+                <tr class="subtitle-row" id="sub-2">
+                  <td colspan="6">
+                    <div class="subtitle-cell">
+                      <div class="subtitle-cell-toolbar"><span class="text-sm">副標題（共 2 筆）</span></div>
+                      <div class="subtable-wrap">
+                        <table class="subtable">
+                          <thead><tr><th>副標題</th><th>排序</th><th>更新時間</th><th>創建時間</th><th>狀態</th><th class="col-actions">操作</th></tr></thead>
+                          <tbody>
+                            <tr>
+                              <td>兩步驟驗證設定</td>
+                              <td>1</td>
+                              <td>2026-07-08 10:47:52</td>
+                              <td>2026-02-18 16:32:07</td>
+                              <td><span class="badge badge-success">啟用</span></td>
+                              <td class="col-actions"><a class="btn-link" href="copywriting-subtitle-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td>
+                            </tr>
+                            <tr>
+                              <td>異常登入通知</td>
+                              <td>2</td>
+                              <td>2026-06-30 09:02:14</td>
+                              <td>2026-02-18 16:33:45</td>
+                              <td><span class="badge badge-danger">停用</span></td>
+                              <td class="col-actions"><a class="btn-link" href="copywriting-subtitle-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 資料未超過一頁，依規範不顯示分頁器 -->
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- 新增 / 編輯主標題 Modal -->
+<div class="modal-overlay" id="modalAddTitle">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>新增主標題</h2>
+      <button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="context-trail mb-4">
+        <span class="context-trail-item"><span class="context-trail-label">站台</span><span class="context-trail-value">金錢母</span></span>
+        <span class="context-trail-sep">›</span>
+        <span class="context-trail-item"><span class="context-trail-label">文案頁面</span><span class="context-trail-value">幫助中心</span></span>
+      </div>
+      <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="form-field span-2">
+          <label class="field-label"><span class="required">*</span>主標題</label>
+          <input class="input" type="text" placeholder="請輸入主標題文字">
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>排序</label>
+          <input class="input" type="number" value="1">
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>狀態</label>
+          <div class="select-wrap"><select class="select"><option>啟用</option><option>停用</option></select></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-primary">保存更改</button>
+    </div>
+  </div>
+</div>
+
+<!-- 編輯主標題 Modal -->
+<div class="modal-overlay" id="modalEditTitle">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>編輯主標題</h2>
+      <button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="context-trail mb-4">
+        <span class="context-trail-item"><span class="context-trail-label">站台</span><span class="context-trail-value">金錢母</span></span>
+        <span class="context-trail-sep">›</span>
+        <span class="context-trail-item"><span class="context-trail-label">文案頁面</span><span class="context-trail-value">幫助中心</span></span>
+      </div>
+      <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+        <div class="form-field span-2">
+          <label class="field-label"><span class="required">*</span>主標題</label>
+          <input class="input" type="text" value="帳戶安全提醒">
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>排序</label>
+          <input class="input" type="number" value="100">
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>狀態</label>
+          <div class="select-wrap"><select class="select"><option selected>啟用</option><option>停用</option></select></div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-primary">保存更改</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>
