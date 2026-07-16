@@ -288,22 +288,42 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
 
-    /* 時分秒 stepper */
+    /* 時分秒 stepper：保留上下箭頭調整，同時開放直接輸入數字 */
     popover.querySelectorAll('.dr-time-block').forEach(function (block) {
       var role = block.getAttribute('data-role'); // start | end
       block.querySelectorAll('.dr-stepper').forEach(function (stepper) {
         var unit = stepper.getAttribute('data-unit'); // h | m | s
         var valEl = stepper.querySelector('.dr-stepper-val');
         var max = unit === 'h' ? 23 : 59;
+
         stepper.querySelectorAll('.dr-stepper-btn').forEach(function (btn) {
           btn.addEventListener('click', function () {
             var dir = btn.getAttribute('data-dir') === 'up' ? 1 : -1;
             var v = time[role][unit] + dir;
             if (v < 0) v = max; if (v > max) v = 0;
             time[role][unit] = v;
-            valEl.textContent = pad2(v);
+            valEl.value = pad2(v);
           });
         });
+
+        /* 只允許輸入數字，最多兩碼 */
+        valEl.addEventListener('input', function () {
+          valEl.value = valEl.value.replace(/\D/g, '').slice(0, 2);
+        });
+        /* 離開欄位或按 Enter 時，將輸入值鉗制在合法範圍並補零 */
+        function commitValue() {
+          var v = parseInt(valEl.value, 10);
+          if (isNaN(v)) v = time[role][unit];
+          if (v < 0) v = 0;
+          if (v > max) v = max;
+          time[role][unit] = v;
+          valEl.value = pad2(v);
+        }
+        valEl.addEventListener('blur', commitValue);
+        valEl.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter') { commitValue(); valEl.blur(); }
+        });
+        valEl.addEventListener('click', function (e) { e.stopPropagation(); });
       });
     });
 
@@ -353,7 +373,7 @@ document.addEventListener('DOMContentLoaded', function () {
           var role = block.getAttribute('data-role');
           block.querySelectorAll('.dr-stepper').forEach(function (stepper) {
             var unit = stepper.getAttribute('data-unit');
-            stepper.querySelector('.dr-stepper-val').textContent = pad2(time[role][unit]);
+            stepper.querySelector('.dr-stepper-val').value = pad2(time[role][unit]);
           });
         });
         viewMonth = new Date(start.getFullYear(), start.getMonth(), 1);
@@ -387,7 +407,7 @@ document.addEventListener('DOMContentLoaded', function () {
           var role = block.getAttribute('data-role');
           block.querySelectorAll('.dr-stepper').forEach(function (stepper) {
             var unit = stepper.getAttribute('data-unit');
-            stepper.querySelector('.dr-stepper-val').textContent = pad2(time[role][unit]);
+            stepper.querySelector('.dr-stepper-val').value = pad2(time[role][unit]);
           });
         });
         popover.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
