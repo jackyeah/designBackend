@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>編輯優惠文案 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'promotion-copy-edit', label: '編輯優惠文案', href: 'promotion-copy-edit.html' };
+  window.PAGE_BREADCRUMB = ['優惠活動管理', '優惠文案管理', '編輯'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="promotion" data-subactive="promotion-copy"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header">
+        <h1>編輯優惠文案</h1>
+        <a class="btn btn-secondary btn-sm" href="promotion-copy.html">返回列表</a>
+      </div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="card-section-title">基本資料</div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>YZ 益兆</option>
+                <option>金錢母</option>
+                <option>Gamma 站</option>
+              </select></div>
+            </div>
+            <div class="form-field">
+              <label class="field-label"><span class="required">*</span>活動標題</label>
+              <input class="input" type="text" value="YZ啟動計畫｜星際破關任務">
+            </div>
+            <div class="form-field span-2">
+              <label class="field-label">標題圖片</label>
+              <div class="upload-field">
+                <div class="upload-thumb"><img src="https://picsum.photos/seed/promo2/240/102" alt=""></div>
+                <div>
+                  <button class="btn btn-secondary btn-sm" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                    更換圖片
+                  </button>
+                  <div class="text-xs text-tertiary mt-2">只能上傳 .jpg / .jpeg / .png / .gif / .bmp 檔案，且不超過 8MB，建議寬度 981px、高度 420px</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <div class="card-section-title">功能設置</div>
+          <div class="form-grid">
+            <div class="form-field">
+              <label class="field-label">入口彈窗</label>
+              <div><span class="switch on"></span></div>
+            </div>
+            <div class="form-field span-2">
+              <label class="field-label">彈窗圖片</label>
+              <div class="upload-field">
+                <div class="upload-thumb square"><img src="https://picsum.photos/seed/promo2pop/144/144" alt=""></div>
+                <div>
+                  <button class="btn btn-secondary btn-sm" type="button">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                    更換圖片
+                  </button>
+                  <div class="text-xs text-tertiary mt-2">只能上傳 .jpg / .jpeg / .png / .gif / .bmp 檔案，且不超過 8MB，建議寬度 1029px、高度 1029px</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <div class="card-section-title">發佈設置</div>
+          <div class="form-grid" style="grid-template-columns: repeat(3, 1fr);">
+            <div class="form-field">
+              <label class="field-label">啟用狀態</label>
+              <div><span class="switch on"></span></div>
+            </div>
+            <div class="form-field">
+              <label class="field-label"><span class="required">*</span>發佈時間</label>
+              <div class="daterange-trigger">
+                <span class="daterange-text">2026-04-02 00:07:26</span>
+                <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="field-label">結束時間</label>
+              <div class="daterange-trigger">
+                <span class="daterange-text is-placeholder">結束日期</span>
+                <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-section">
+          <div class="card-section-title"><span class="required">*</span>內文</div>
+          <div class="editor-toolbar">
+            <button class="editor-btn" type="button" style="font-weight:700;">B</button>
+            <button class="editor-btn" type="button" style="font-style:italic;">I</button>
+            <button class="editor-btn" type="button" style="text-decoration:underline;">U</button>
+            <button class="editor-btn" type="button" style="text-decoration:line-through;">S</button>
+            <span class="editor-toolbar-sep"></span>
+            <button class="editor-btn" type="button">H1</button>
+            <button class="editor-btn" type="button">H2</button>
+            <span class="editor-toolbar-sep"></span>
+            <button class="editor-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+            </button>
+            <button class="editor-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4.93M14 11a5 5 0 0 0-7.07 0l-2.83 2.83a5 5 0 0 0 7.07 7.07L13 19.07"/></svg>
+            </button>
+            <button class="editor-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M3 8h5"/></svg>
+            </button>
+          </div>
+          <div class="editor-body" contenteditable="true" data-placeholder="請輸入內文">完成本週星際破關任務，即可獲得限定寶箱與能量獎勵，任務期間登入即享加成！</div>
+        </div>
+
+        <div class="card-section flex gap-3">
+          <button class="btn btn-primary">保存更改</button>
+          <a class="btn btn-secondary" href="promotion-copy.html">取消</a>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

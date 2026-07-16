@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>優惠文案管理 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'promotion-copy', label: '優惠文案管理', href: 'promotion-copy.html' };
+  window.PAGE_BREADCRUMB = ['優惠活動管理', '優惠文案管理'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="promotion" data-subactive="promotion-copy"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>優惠文案管理</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>YZ 益兆</option>
+                <option>金錢母</option>
+                <option>Gamma 站</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">活動標題</label>
+              <input class="input" type="text" placeholder="請輸入">
+            </div>
+            <div class="field">
+              <label class="field-label">狀態</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option>啟用</option>
+                <option>停用</option>
+              </select></div>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <button class="btn btn-danger-ghost btn-sm" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
+              批次刪除
+            </button>
+            <a class="btn btn-accent btn-sm" href="promotion-copy-add.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              新增
+            </a>
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary" id="selectionHint">尚未選取任何項目</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th><input class="checkbox" type="checkbox"></th>
+                  <th>標題圖片</th>
+                  <th style="width:26%;">活動標題</th>
+                  <th>站台代碼</th>
+                  <th>啟用狀態</th>
+                  <th>前台發佈狀態</th>
+                  <th>入口彈窗</th>
+                  <th>發佈時間</th>
+                  <th class="col-actions">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><img class="table-thumb" src="https://picsum.photos/seed/promo1/128/56" alt=""></td>
+                  <td>YZ新手啟航計畫｜100%能量補給</td>
+                  <td>yzmax</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-off">下架</span></td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td>2026-04-02 21:37:49</td>
+                  <td class="col-actions"><a class="btn-link" href="promotion-copy-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><img class="table-thumb" src="https://picsum.photos/seed/promo2/128/56" alt=""></td>
+                  <td>YZ啟動計畫｜星際破關任務</td>
+                  <td>yzmax</td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">上架</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td>2026-04-02 00:07:26</td>
+                  <td class="col-actions"><a class="btn-link" href="promotion-copy-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><img class="table-thumb" src="https://picsum.photos/seed/promo3/128/56" alt=""></td>
+                  <td>YZ益兆 浣熊救援計畫｜每日發財金</td>
+                  <td>yzmax</td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">上架</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td>2026-04-02 20:24:41</td>
+                  <td class="col-actions"><a class="btn-link" href="promotion-copy-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><img class="table-thumb" src="https://picsum.photos/seed/promo4/128/56" alt=""></td>
+                  <td>YZ宇宙｜星際公會戰爭系統</td>
+                  <td>yzmax</td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">上架</span></td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td>2026-04-02 20:22:52</td>
+                  <td class="col-actions"><a class="btn-link" href="promotion-copy-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><span class="table-thumb-empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></span></td>
+                  <td>YZ宇宙安全公告｜浣熊警察全面監控中</td>
+                  <td>yzmax</td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">上架</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td>2026-04-02 20:21:19</td>
+                  <td class="col-actions"><a class="btn-link" href="promotion-copy-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td><img class="table-thumb" src="https://picsum.photos/seed/promo6/128/56" alt=""></td>
+                  <td>YZ益兆 星際任務啟動計畫</td>
+                  <td>yzmax</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-off">下架</span></td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td>2026-04-02 20:19:49</td>
+                  <td class="col-actions"><a class="btn-link" href="promotion-copy-edit.html">編輯</a> · <button class="btn-link danger">刪除</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination">
+            <span class="page-btn">«</span><span class="page-btn">‹</span>
+            <span class="page-btn active">1</span><span class="page-btn">2</span><span class="page-btn">3</span>
+            <span class="page-btn">›</span><span class="page-btn">»</span>
+            <div class="select-wrap page-size-select"><select class="select"><option selected>10 筆/頁</option><option>20 筆/頁</option><option>50 筆/頁</option></select></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

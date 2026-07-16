@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>兌換明細 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'redeem-codes-detail', label: '兌換明細', href: 'redeem-codes-detail.html' };
+  window.PAGE_BREADCRUMB = ['優惠活動管理', '兌換序號設置', '兌換明細'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="promotion" data-subactive="redeem-codes"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header">
+        <h1>兌換明細</h1>
+        <a class="btn btn-secondary btn-sm" href="redeem-codes.html">返回列表</a>
+      </div>
+
+      <div class="context-trail prominent mb-4">
+        <span class="context-trail-item"><span class="context-trail-label">活動名稱</span><span class="context-trail-value">20260528大撒幣</span></span>
+        <span class="context-trail-sep">›</span>
+        <span class="context-trail-item"><span class="context-trail-label">序號</span><span class="context-trail-value">FQFQFQFQFQFQFQ</span></span>
+      </div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar" style="grid-template-columns: 1fr;">
+            <div class="field">
+              <label class="field-label">SID</label>
+              <div class="field-row"><input class="input" type="text" placeholder="請輸入SID"><button class="btn-icon-add" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <span class="text-sm text-tertiary">共 2 筆</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr><th>SID</th><th>領取時間</th></tr>
+              </thead>
+              <tbody>
+                <tr><td><span class="cell-copy">252169998<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td><td>2026-07-09 10:34:57</td></tr>
+                <tr><td><span class="cell-copy">252169943<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td><td>2026-06-22 14:31:26</td></tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 資料未超過一頁，依規範不顯示分頁器 -->
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

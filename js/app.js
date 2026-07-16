@@ -19,6 +19,27 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Stat filter strip: click a category card to filter the activity list below (e.g. 優惠活動記錄) ----------
+     每個分類對應一列 .title-row（活動）+ 其後的 .subtitle-row（該活動的會員明細，展開時才顯示） */
+  document.querySelectorAll('.stat-filter-strip[data-filter-target]').forEach(function (strip) {
+    var table = document.querySelector(strip.getAttribute('data-filter-target'));
+    if (!table) return;
+    var titleRows = table.querySelectorAll('tbody tr.title-row');
+    strip.querySelectorAll('.stat-filter-item').forEach(function (item) {
+      item.addEventListener('click', function () {
+        strip.querySelectorAll('.stat-filter-item').forEach(function (i) { i.classList.remove('active'); });
+        item.classList.add('active');
+        var type = item.getAttribute('data-type');
+        titleRows.forEach(function (row) {
+          var match = (type === 'all' || row.getAttribute('data-type') === type);
+          row.style.display = match ? '' : 'none';
+          var sub = document.getElementById(row.getAttribute('data-target'));
+          if (sub) sub.style.display = match ? '' : 'none';
+        });
+      });
+    });
+  });
+
   /* ---------- Nested list: title-row expand/collapse (e.g. 文案管理 主標題/副標題) ---------- */
   document.querySelectorAll('.title-row[data-target]').forEach(function (row) {
     row.addEventListener('click', function (e) {

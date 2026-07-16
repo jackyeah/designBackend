@@ -42,7 +42,11 @@
     { key: 'announcement', label: '公告訊息', icon: 'megaphone', href: '#' },
     { key: 'sms', label: '短信管理', icon: 'message', href: '#' },
     { key: 'report', label: '報表', icon: 'chart', href: '#' },
-    { key: 'promotion', label: '優惠活動管理', icon: 'gift', href: '#' },
+    { key: 'promotion', label: '優惠活動管理', icon: 'gift', submenu: [
+      { key: 'promotion-records', label: '優惠活動記錄', href: 'promotion-records.html' },
+      { key: 'promotion-copy', label: '優惠文案管理', href: 'promotion-copy.html' },
+      { key: 'redeem-codes', label: '兌換序號設置', href: 'redeem-codes.html' }
+    ]},
     { key: 'task', label: '任務管理', icon: 'task', href: '#' },
     { key: 'checkin', label: '簽到管理', icon: 'checkin', href: '#' },
     { key: 'blacklist', label: '黑名單管理', icon: 'blacklist', href: '#' },

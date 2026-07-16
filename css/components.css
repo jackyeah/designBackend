@@ -93,7 +93,8 @@
   font-weight: 600;
   color: var(--color-text-secondary);
 }
-.field-label .required { color: var(--color-danger); margin-right: 2px; }
+.field-label .required,
+.card-section-title .required { color: var(--color-danger); margin-right: 2px; }
 .field-row { display: flex; align-items: center; gap: var(--space-2); }
 .field-row .input { flex: 1; }
 
@@ -399,9 +400,12 @@
 }
 .data-table th.col-actions { background: var(--color-bg-subtle); z-index: 6; }
 .data-table td.col-actions { background: inherit; z-index: 1; }
-.data-table .cell-copy { display: inline-flex; align-items: center; gap: 6px; }
-.data-table .cell-copy svg { width: 13px; height: 13px; color: var(--color-text-tertiary); flex-shrink: 0; }
-.data-table .cell-copy svg:hover { color: var(--color-primary); }
+.data-table .cell-copy,
+.subtable .cell-copy { display: inline-flex; align-items: center; gap: 6px; }
+.data-table .cell-copy svg,
+.subtable .cell-copy svg { width: 13px; height: 13px; color: var(--color-text-tertiary); flex-shrink: 0; }
+.data-table .cell-copy svg:hover,
+.subtable .cell-copy svg:hover { color: var(--color-primary); }
 .data-table .cell-muted { color: var(--color-text-tertiary); }
 .data-table .cell-sub { font-size: var(--text-xs); color: var(--color-text-tertiary); margin-top: 2px; }
 
@@ -871,6 +875,16 @@
 .context-trail-sep { color: var(--color-text-tertiary); }
 .context-trail-current { color: var(--color-text-primary); font-weight: 700; }
 
+/* 強調版本：當 context-trail 是頁面當下操作對象的唯一標示（而非單純導覽麵包屑）時使用，
+   放大字級並加左側色條，讓它讀起來像標題而不是可忽略的路徑資訊 */
+.context-trail.prominent {
+  padding: var(--space-4);
+  border-left: 3px solid var(--color-primary);
+  font-size: var(--text-md);
+}
+.context-trail.prominent .context-trail-label { font-size: var(--text-sm); }
+.context-trail.prominent .context-trail-value { color: var(--color-text-primary); font-weight: 700; }
+
 /* ---------- Nested list: title-row (主標題) expand/collapse ---------- */
 .row-expand-btn {
   width: 22px; height: 22px;
@@ -887,12 +901,41 @@
 .title-row td:first-child { display: flex; align-items: center; gap: var(--space-2); }
 .title-row-name { font-weight: 600; }
 
+/* 展開時：標題列高亮 + 左側色條，作為與下方明細之間的視覺錨點。
+   相鄰活動輪流套用兩種色系（.accent-a / .accent-b，需同時標在 title-row 與其對應的 subtitle-row），
+   避免連續展開多組時顏色混在一起、分不清彼此邊界 */
+.title-row, .subtitle-row { --row-accent: var(--color-primary); --row-accent-light: var(--color-primary-light); --row-accent-border: var(--color-primary-border); }
+.title-row.accent-b, .subtitle-row.accent-b { --row-accent: var(--color-info); --row-accent-light: var(--color-info-light); --row-accent-border: var(--color-info-border); }
+.title-row.open { background: var(--row-accent-light); }
+.title-row.open .title-row-name { color: var(--row-accent); }
+.title-row.open td:first-child { box-shadow: inset 3px 0 0 var(--row-accent); }
+
 .subtitle-row { display: none; }
 .subtitle-row.open { display: table-row; }
-.subtitle-row > td { padding: 0; border-top: none; background: var(--color-bg-subtle); }
-.subtitle-cell { padding: var(--space-3) var(--space-4) var(--space-4) var(--space-8); }
+.subtitle-row > td {
+  padding: 0;
+  border-top: none;
+  background: var(--color-bg-subtle);
+  box-shadow: inset 3px 0 0 var(--row-accent), inset 0 -2px 0 var(--color-border-strong);
+}
+.subtitle-cell { padding: var(--space-3) var(--space-4) var(--space-5) var(--space-8); }
 .subtitle-cell-toolbar { display: flex; align-items: center; margin-bottom: var(--space-2); }
 .subtitle-cell-toolbar .text-sm { color: var(--color-text-tertiary); }
+
+/* 展開內容區塊自身的標題列：重申所屬活動名稱，避免捲動到很下面時失去脈絡 */
+.subtitle-cell-heading {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--row-accent, var(--color-primary));
+  margin-bottom: var(--space-3);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px dashed var(--row-accent-border, var(--color-primary-border));
+}
+.subtitle-cell-heading .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--row-accent, var(--color-primary)); flex-shrink: 0; }
+.subtitle-cell-heading .count { color: var(--color-text-tertiary); font-weight: 500; }
 
 /* ---------- Rich-text editor (static visual, 內文 body) ---------- */
 .editor-toolbar {
@@ -930,6 +973,64 @@
 .editor-body:focus { outline: none; box-shadow: inset 0 0 0 1px var(--color-primary-border); }
 .editor-body p { margin-bottom: var(--space-3); }
 .editor-body:empty:before { content: attr(data-placeholder); color: var(--color-text-tertiary); }
+
+/* ---------- Stat filter strip（統計 + 分類篩選合一，取代「統計卡片」與「可展開分組列」並存 ---------- */
+.stat-filter-strip { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+.stat-filter-item {
+  flex: 1;
+  min-width: 150px;
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: border-color .15s ease, background .15s ease;
+}
+.stat-filter-item:hover { border-color: var(--color-primary-border); }
+.stat-filter-item.active { background: var(--color-primary-light); border-color: var(--color-primary-border); }
+.stat-filter-item.is-total { background: var(--color-bg-subtle); }
+.stat-filter-item.is-total.active { background: var(--color-primary-light); }
+.stat-filter-item-label { font-size: var(--text-xs); color: var(--color-text-tertiary); margin-bottom: 4px; overflow-wrap: anywhere; }
+.stat-filter-item-value { font-size: var(--text-lg); font-weight: 700; color: var(--color-text-primary); }
+.stat-filter-item.active .stat-filter-item-value { color: var(--color-primary); }
+.stat-filter-item-sub { font-size: var(--text-xs); color: var(--color-text-tertiary); margin-top: 2px; }
+
+/* ---------- Table thumbnail (e.g. 優惠文案管理 標題圖片) ---------- */
+.table-thumb {
+  width: 64px; height: 28px;
+  object-fit: cover;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border);
+  display: block;
+}
+.table-thumb-empty {
+  width: 64px; height: 28px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: var(--radius-sm);
+  border: 1px dashed var(--color-border-strong);
+  background: var(--color-bg-subtle);
+  color: var(--color-text-tertiary);
+}
+.table-thumb-empty svg { width: 14px; height: 14px; }
+
+/* ---------- Image upload field (e.g. 優惠文案管理 標題圖片 / 彈窗圖片) ---------- */
+.upload-field { display: flex; align-items: center; gap: var(--space-3); }
+.upload-thumb {
+  width: 120px; height: 51px;
+  flex-shrink: 0;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-subtle);
+  overflow: hidden;
+}
+.upload-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.upload-thumb.square { width: 72px; height: 72px; }
+.upload-thumb.empty {
+  display: flex; align-items: center; justify-content: center;
+  border-style: dashed; border-color: var(--color-border-strong);
+  color: var(--color-text-tertiary);
+}
+.upload-thumb.empty svg { width: 20px; height: 20px; }
 
 /* ---------- Utility ---------- */
 .mt-2 { margin-top: var(--space-2); }
