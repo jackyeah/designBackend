@@ -43,7 +43,71 @@
             <div class="field"><label class="field-label">註冊方式</label>
               <div class="select-wrap"><select class="select"><option>請選擇</option><option>會員帳號</option><option>Line</option></select></div>
             </div>
-            <div class="field"><label class="field-label">註冊時間</label><input class="input" type="text" placeholder="開始日期 - 結束日期"></div>
+            <div class="field span-2">
+              <label class="field-label">註冊時間</label>
+              <div class="daterange-trigger" data-daterange-target="drRegister">
+                <span class="daterange-text is-placeholder">開始日期 - 結束日期</span>
+                <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+              <div class="daterange-popover" id="drRegister">
+                <div class="dr-presets">
+                  <button type="button" class="chip" data-preset="today">今天</button>
+                  <button type="button" class="chip" data-preset="7">最近7天</button>
+                  <button type="button" class="chip" data-preset="30">最近30天</button>
+                  <button type="button" class="chip" data-preset="month">本月</button>
+                  <button type="button" class="chip" data-preset="lastmonth">上月</button>
+                </div>
+                <div class="dr-summary">尚未選擇日期</div>
+                <div class="dr-calendars">
+                  <div class="dr-cal" data-cal="left">
+                    <div class="dr-cal-header">
+                      <button type="button" class="dr-nav" data-nav="prev-year">&laquo;</button>
+                      <button type="button" class="dr-nav" data-nav="prev-month">&lsaquo;</button>
+                      <span class="dr-cal-title"></span>
+                      <span class="dr-nav-spacer"></span>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                  <div class="dr-cal" data-cal="right">
+                    <div class="dr-cal-header">
+                      <span class="dr-nav-spacer"></span>
+                      <span class="dr-cal-title"></span>
+                      <button type="button" class="dr-nav" data-nav="next-month">&rsaquo;</button>
+                      <button type="button" class="dr-nav" data-nav="next-year">&raquo;</button>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                </div>
+                <div class="dr-time-row">
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">開始時間</span>
+                    <div class="dr-time-block" data-role="start">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">00</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">00</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">00</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">結束時間</span>
+                    <div class="dr-time-block" data-role="end">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">23</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">59</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">59</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dr-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-daterange-clear>清除</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-daterange-apply>確定</button>
+                </div>
+              </div>
+            </div>
             <div class="field"><label class="field-label">狀態</label>
               <div class="select-wrap"><select class="select"><option>請選擇</option><option>啟用</option><option>凍結</option><option>停權</option></select></div>
             </div>
@@ -68,7 +132,71 @@
             <div class="field"><label class="field-label">未登天數</label>
               <div class="select-wrap"><select class="select"><option>請選擇</option><option>1-3天</option><option>4-7天</option><option>8天以上</option></select></div>
             </div>
-            <div class="field"><label class="field-label">最後登入時間</label><input class="input" type="text" placeholder="開始日期 - 結束日期"></div>
+            <div class="field span-2">
+              <label class="field-label">最後登入時間</label>
+              <div class="daterange-trigger" data-daterange-target="drLastLogin">
+                <span class="daterange-text is-placeholder">開始日期 - 結束日期</span>
+                <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+              <div class="daterange-popover" id="drLastLogin">
+                <div class="dr-presets">
+                  <button type="button" class="chip" data-preset="today">今天</button>
+                  <button type="button" class="chip" data-preset="7">最近7天</button>
+                  <button type="button" class="chip" data-preset="30">最近30天</button>
+                  <button type="button" class="chip" data-preset="month">本月</button>
+                  <button type="button" class="chip" data-preset="lastmonth">上月</button>
+                </div>
+                <div class="dr-summary">尚未選擇日期</div>
+                <div class="dr-calendars">
+                  <div class="dr-cal" data-cal="left">
+                    <div class="dr-cal-header">
+                      <button type="button" class="dr-nav" data-nav="prev-year">&laquo;</button>
+                      <button type="button" class="dr-nav" data-nav="prev-month">&lsaquo;</button>
+                      <span class="dr-cal-title"></span>
+                      <span class="dr-nav-spacer"></span>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                  <div class="dr-cal" data-cal="right">
+                    <div class="dr-cal-header">
+                      <span class="dr-nav-spacer"></span>
+                      <span class="dr-cal-title"></span>
+                      <button type="button" class="dr-nav" data-nav="next-month">&rsaquo;</button>
+                      <button type="button" class="dr-nav" data-nav="next-year">&raquo;</button>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                </div>
+                <div class="dr-time-row">
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">開始時間</span>
+                    <div class="dr-time-block" data-role="start">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">00</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">00</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">00</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">結束時間</span>
+                    <div class="dr-time-block" data-role="end">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">23</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">59</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><span class="dr-stepper-val">59</span><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dr-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-daterange-clear>清除</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-daterange-apply>確定</button>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="filter-actions">
             <button class="btn btn-primary">搜尋</button>

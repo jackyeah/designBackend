@@ -203,6 +203,208 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  /* ---------- Date-range filter picker：雙月曆 + 時分秒，可重複用於任何「開始~結束」時間搜尋欄位 ---------- */
+  function pad2(n) { return n < 10 ? '0' + n : '' + n; }
+  function sameDay(a, b) { return a && b && a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
+  function stripTime(d) { return new Date(d.getFullYear(), d.getMonth(), d.getDate()); }
+
+  document.querySelectorAll('.daterange-trigger').forEach(function (trigger) {
+    var popover = document.getElementById(trigger.getAttribute('data-daterange-target'));
+    if (!popover) return;
+    var textEl = trigger.querySelector('.daterange-text');
+    var placeholder = textEl.textContent;
+    var summaryEl = popover.querySelector('.dr-summary');
+    var leftCal = popover.querySelector('.dr-cal[data-cal="left"]');
+    var rightCal = popover.querySelector('.dr-cal[data-cal="right"]');
+
+    var today = stripTime(new Date());
+    var viewMonth = new Date(today.getFullYear(), today.getMonth(), 1); // month shown by leftCal; rightCal = viewMonth+1
+    var selStart = null, selEnd = null; // Date (time-stripped)
+    var time = { start: { h: 0, m: 0, s: 0 }, end: { h: 23, m: 59, s: 59 } };
+
+    function renderCal(calEl, monthDate) {
+      var titleEl = calEl.querySelector('.dr-cal-title');
+      titleEl.textContent = monthDate.getFullYear() + ' 年 ' + (monthDate.getMonth() + 1) + ' 月';
+      var daysEl = calEl.querySelector('.dr-days');
+      daysEl.innerHTML = '';
+
+      var firstOfMonth = new Date(monthDate.getFullYear(), monthDate.getMonth(), 1);
+      var gridStart = new Date(firstOfMonth);
+      gridStart.setDate(gridStart.getDate() - firstOfMonth.getDay());
+
+      for (var i = 0; i < 42; i++) {
+        var d = new Date(gridStart.getFullYear(), gridStart.getMonth(), gridStart.getDate() + i);
+        var cell = document.createElement('span');
+        cell.className = 'dr-day';
+        cell.textContent = d.getDate();
+        if (d.getMonth() !== monthDate.getMonth()) cell.classList.add('is-outside');
+        if (sameDay(d, today)) cell.classList.add('is-today');
+        if (selStart && sameDay(d, selStart)) cell.classList.add('is-range-start');
+        if (selEnd && sameDay(d, selEnd)) cell.classList.add('is-range-end');
+        if (selStart && selEnd && d > selStart && d < selEnd) cell.classList.add('is-in-range');
+        cell.addEventListener('click', (function (day) {
+          return function () { pickDay(day); };
+        })(d));
+        daysEl.appendChild(cell);
+      }
+    }
+
+    function renderCals() {
+      renderCal(leftCal, viewMonth);
+      renderCal(rightCal, new Date(viewMonth.getFullYear(), viewMonth.getMonth() + 1, 1));
+    }
+
+    function renderSummary() {
+      if (!selStart) { summaryEl.textContent = '尚未選擇日期'; return; }
+      var s = fmtDate(selStart);
+      var e = selEnd ? fmtDate(selEnd) : '請選擇結束日期';
+      summaryEl.textContent = s + '  至  ' + e;
+    }
+
+    function fmtDate(d) { return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
+
+    function pickDay(d) {
+      d = stripTime(d);
+      if (!selStart || (selStart && selEnd)) {
+        selStart = d; selEnd = null;
+      } else {
+        if (d < selStart) { selEnd = selStart; selStart = d; }
+        else { selEnd = d; }
+      }
+      popover.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+      renderCals();
+      renderSummary();
+    }
+
+    /* 月曆導覽：上一年/上個月/下個月/下一年，兩個月曆一起跟著位移 */
+    popover.querySelectorAll('.dr-nav').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var nav = btn.getAttribute('data-nav');
+        if (nav === 'prev-year') viewMonth.setFullYear(viewMonth.getFullYear() - 1);
+        else if (nav === 'prev-month') viewMonth.setMonth(viewMonth.getMonth() - 1);
+        else if (nav === 'next-month') viewMonth.setMonth(viewMonth.getMonth() + 1);
+        else if (nav === 'next-year') viewMonth.setFullYear(viewMonth.getFullYear() + 1);
+        renderCals();
+      });
+    });
+
+    /* 時分秒 stepper */
+    popover.querySelectorAll('.dr-time-block').forEach(function (block) {
+      var role = block.getAttribute('data-role'); // start | end
+      block.querySelectorAll('.dr-stepper').forEach(function (stepper) {
+        var unit = stepper.getAttribute('data-unit'); // h | m | s
+        var valEl = stepper.querySelector('.dr-stepper-val');
+        var max = unit === 'h' ? 23 : 59;
+        stepper.querySelectorAll('.dr-stepper-btn').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            var dir = btn.getAttribute('data-dir') === 'up' ? 1 : -1;
+            var v = time[role][unit] + dir;
+            if (v < 0) v = max; if (v > max) v = 0;
+            time[role][unit] = v;
+            valEl.textContent = pad2(v);
+          });
+        });
+      });
+    });
+
+    function closePopover() {
+      popover.classList.remove('open');
+      trigger.classList.remove('active');
+    }
+    function openPopover() {
+      document.querySelectorAll('.daterange-popover.open').forEach(function (p) { if (p !== popover) p.classList.remove('open'); });
+      document.querySelectorAll('.daterange-trigger.active').forEach(function (t) { if (t !== trigger) t.classList.remove('active'); });
+      renderCals();
+      renderSummary();
+      popover.classList.remove('align-right');
+      popover.classList.add('open');
+      trigger.classList.add('active');
+      // 若彈窗會超出視窗右側，改為靠右對齊，避免被裁切
+      var rect = popover.getBoundingClientRect();
+      if (rect.right > window.innerWidth) popover.classList.add('align-right');
+    }
+
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (popover.classList.contains('open')) closePopover(); else openPopover();
+    });
+    popover.addEventListener('click', function (e) { e.stopPropagation(); });
+
+    /* 快捷區間：今天/最近7天/最近30天/本月/上月 → 同時帶入日期與時間欄位 */
+    popover.querySelectorAll('.chip').forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        popover.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+        chip.classList.add('active');
+
+        var t = stripTime(new Date());
+        var start = new Date(t), end = new Date(t);
+        var preset = chip.getAttribute('data-preset');
+        if (preset === '7') { start.setDate(start.getDate() - 6); }
+        else if (preset === '30') { start.setDate(start.getDate() - 29); }
+        else if (preset === 'month') { start = new Date(t.getFullYear(), t.getMonth(), 1); }
+        else if (preset === 'lastmonth') {
+          start = new Date(t.getFullYear(), t.getMonth() - 1, 1);
+          end = new Date(t.getFullYear(), t.getMonth(), 0);
+        }
+        selStart = start; selEnd = end;
+        time.start = { h: 0, m: 0, s: 0 };
+        time.end = { h: 23, m: 59, s: 59 };
+        popover.querySelectorAll('.dr-time-block').forEach(function (block) {
+          var role = block.getAttribute('data-role');
+          block.querySelectorAll('.dr-stepper').forEach(function (stepper) {
+            var unit = stepper.getAttribute('data-unit');
+            stepper.querySelector('.dr-stepper-val').textContent = pad2(time[role][unit]);
+          });
+        });
+        viewMonth = new Date(start.getFullYear(), start.getMonth(), 1);
+        renderCals();
+        renderSummary();
+      });
+    });
+
+    var applyBtn = popover.querySelector('[data-daterange-apply]');
+    if (applyBtn) {
+      applyBtn.addEventListener('click', function () {
+        if (selStart && selEnd) {
+          var startStr = fmtDate(selStart) + ' ' + pad2(time.start.h) + ':' + pad2(time.start.m) + ':' + pad2(time.start.s);
+          var endStr = fmtDate(selEnd) + ' ' + pad2(time.end.h) + ':' + pad2(time.end.m) + ':' + pad2(time.end.s);
+          var fullText = startStr + '  ~  ' + endStr;
+          textEl.textContent = fullText;
+          textEl.title = fullText; // 欄位過窄時可 hover 顯示完整區間
+          textEl.classList.remove('is-placeholder');
+        }
+        closePopover();
+      });
+    }
+
+    var clearBtn = popover.querySelector('[data-daterange-clear]');
+    if (clearBtn) {
+      clearBtn.addEventListener('click', function () {
+        selStart = null; selEnd = null;
+        time.start = { h: 0, m: 0, s: 0 };
+        time.end = { h: 23, m: 59, s: 59 };
+        popover.querySelectorAll('.dr-time-block').forEach(function (block) {
+          var role = block.getAttribute('data-role');
+          block.querySelectorAll('.dr-stepper').forEach(function (stepper) {
+            var unit = stepper.getAttribute('data-unit');
+            stepper.querySelector('.dr-stepper-val').textContent = pad2(time[role][unit]);
+          });
+        });
+        popover.querySelectorAll('.chip').forEach(function (c) { c.classList.remove('active'); });
+        viewMonth = new Date(today.getFullYear(), today.getMonth(), 1);
+        renderCals();
+        renderSummary();
+        textEl.textContent = placeholder;
+        textEl.removeAttribute('title');
+        textEl.classList.add('is-placeholder');
+      });
+    }
+  });
+  document.addEventListener('click', function () {
+    document.querySelectorAll('.daterange-popover.open').forEach(function (p) { p.classList.remove('open'); });
+    document.querySelectorAll('.daterange-trigger.active').forEach(function (t) { t.classList.remove('active'); });
+  });
+
   /* ---------- 會員清單：批量調整VIP等級 ---------- */
   var bulkVipBtn = document.getElementById('bulkVipBtn');
   if (bulkVipBtn) {
