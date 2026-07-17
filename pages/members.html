@@ -229,6 +229,36 @@
             </div>
             <span class="spacer"></span>
             <span class="text-sm text-tertiary" id="selectionHint">尚未選取任何項目</span>
+            <div class="col-toggle" data-col-toggle-target="membersTable">
+              <button type="button" class="btn btn-secondary btn-sm col-toggle-trigger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg>
+                欄位設定
+              </button>
+              <div class="col-toggle-menu">
+                <div class="col-toggle-menu-header">
+                  <span class="col-toggle-menu-title">顯示欄位</span>
+                  <button type="button" class="col-toggle-selectall">取消全選</button>
+                </div>
+                <div class="col-toggle-list">
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="sid">SID</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="account">帳號</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="nickname">暱稱</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="vip">VIP等級</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="guild">公會</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="balance">會員資金</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="status">狀態</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="regmethod">註冊方式</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="bindchannel">綁定登入通道</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="gameplatform">遊戲平台開啟</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="inactivedays">未登天數</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="online">是否線上</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="contact">聯絡資訊</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="regtime">註冊時間/IP</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="lastlogin">最後登入時間</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="note">會員備註</label>
+                </div>
+              </div>
+            </div>
             <button class="btn btn-accent btn-sm">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M5 19h14"/></svg>
               匯出
@@ -236,13 +266,13 @@
           </div>
 
           <div class="table-scroll">
-            <table class="data-table">
+            <table class="data-table" id="membersTable">
               <thead>
                 <tr>
                   <th><input class="checkbox" type="checkbox"></th>
-                  <th>SID</th><th>帳號</th><th>暱稱</th><th>VIP等級</th><th>公會</th><th>會員資金</th><th>狀態</th>
-                  <th>註冊方式</th><th>綁定登入通道</th><th>遊戲平台開啟</th><th>未登天數</th><th>是否線上</th>
-                  <th>聯絡資訊</th><th>註冊時間/IP</th><th>最後登入時間</th><th>會員備註</th><th class="col-actions">操作</th>
+                  <th data-col="sid">SID</th><th data-col="account">帳號</th><th data-col="nickname">暱稱</th><th data-col="vip">VIP等級</th><th data-col="guild">公會</th><th data-col="balance">會員資金</th><th data-col="status">狀態</th>
+                  <th data-col="regmethod">註冊方式</th><th data-col="bindchannel">綁定登入通道</th><th data-col="gameplatform">遊戲平台開啟</th><th data-col="inactivedays">未登天數</th><th data-col="online">是否線上</th>
+                  <th data-col="contact">聯絡資訊</th><th data-col="regtime">註冊時間/IP</th><th data-col="lastlogin">最後登入時間</th><th data-col="note">會員備註</th><th class="col-actions">操作</th>
                 </tr>
               </thead>
               <tbody>

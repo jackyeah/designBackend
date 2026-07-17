@@ -423,6 +423,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function renderSummary() {
       if (!selStart) { summaryEl.textContent = '尚未選擇日期'; return; }
+      if (popover.classList.contains('dr-single')) { summaryEl.textContent = fmtDate(selStart); return; }
       var s = fmtDate(selStart);
       var e = selEnd ? fmtDate(selEnd) : '請選擇結束日期';
       summaryEl.textContent = s + '  至  ' + e;
@@ -430,9 +431,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function fmtDate(d) { return d.getFullYear() + '-' + pad2(d.getMonth() + 1) + '-' + pad2(d.getDate()); }
 
+    /* 單一日期模式（例如任務設置的「無結束時間」開關開啟時）：每次點擊直接取代選取，不需要選兩次組成區間 */
     function pickDay(d) {
       d = stripTime(d);
-      if (!selStart || (selStart && selEnd)) {
+      if (popover.classList.contains('dr-single')) {
+        selStart = d; selEnd = d;
+      } else if (!selStart || (selStart && selEnd)) {
         selStart = d; selEnd = null;
       } else {
         if (d < selStart) { selEnd = selStart; selStart = d; }
@@ -552,7 +556,14 @@ document.addEventListener('DOMContentLoaded', function () {
     var applyBtn = popover.querySelector('[data-daterange-apply]');
     if (applyBtn) {
       applyBtn.addEventListener('click', function () {
-        if (selStart && selEnd) {
+        if (popover.classList.contains('dr-single')) {
+          if (selStart) {
+            var singleStr = fmtDate(selStart) + ' ' + pad2(time.start.h) + ':' + pad2(time.start.m) + ':' + pad2(time.start.s);
+            textEl.textContent = singleStr;
+            textEl.title = singleStr;
+            textEl.classList.remove('is-placeholder');
+          }
+        } else if (selStart && selEnd) {
           var startStr = fmtDate(selStart) + ' ' + pad2(time.start.h) + ':' + pad2(time.start.m) + ':' + pad2(time.start.s);
           var endStr = fmtDate(selEnd) + ' ' + pad2(time.end.h) + ':' + pad2(time.end.m) + ':' + pad2(time.end.s);
           var fullText = startStr + '  ~  ' + endStr;
@@ -605,5 +616,127 @@ document.addEventListener('DOMContentLoaded', function () {
       showToast('已將 ' + checkedCount + ' 位會員調整為 ' + level);
     });
   }
+
+  /* ---------- Searchable select (combo-select)：輸入文字篩選下拉選項（例如遊戲平台，選項會隨營運時間增加） ---------- */
+  document.querySelectorAll('.combo-select').forEach(function (wrap) {
+    var input = wrap.querySelector('.combo-select-input');
+    var menu = wrap.querySelector('.combo-select-menu');
+    var options = Array.from(menu.querySelectorAll('.combo-select-option'));
+    var lastValue = input.value;
+
+    function filterOptions(query) {
+      var q = query.trim().toLowerCase();
+      var anyVisible = false;
+      options.forEach(function (opt) {
+        var match = !q || opt.textContent.toLowerCase().indexOf(q) !== -1;
+        opt.classList.toggle('hidden', !match);
+        if (match) anyVisible = true;
+      });
+      var empty = menu.querySelector('.combo-select-empty');
+      if (!anyVisible) {
+        if (!empty) {
+          empty = document.createElement('div');
+          empty.className = 'combo-select-empty';
+          empty.textContent = '無符合選項';
+          menu.appendChild(empty);
+        }
+      } else if (empty) {
+        empty.remove();
+      }
+    }
+
+    function openMenu() {
+      document.querySelectorAll('.combo-select-menu.open').forEach(function (m) { if (m !== menu) m.classList.remove('open'); });
+      filterOptions(input.value === lastValue ? '' : input.value);
+      menu.classList.add('open');
+    }
+    function closeMenu() { menu.classList.remove('open'); }
+
+    input.addEventListener('focus', openMenu);
+    input.addEventListener('click', openMenu);
+    input.addEventListener('input', function () { filterOptions(input.value); menu.classList.add('open'); });
+
+    options.forEach(function (opt) {
+      opt.addEventListener('click', function () {
+        options.forEach(function (o) { o.classList.remove('is-selected'); });
+        opt.classList.add('is-selected');
+        input.value = opt.textContent;
+        lastValue = opt.textContent;
+        closeMenu();
+      });
+    });
+
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') {
+        input.value = lastValue;
+        closeMenu();
+        input.blur();
+      } else if (e.key === 'Enter') {
+        var visible = options.filter(function (o) { return !o.classList.contains('hidden'); });
+        if (visible.length === 1) visible[0].click();
+        e.preventDefault();
+      }
+    });
+
+    document.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) {
+        var matched = options.some(function (o) { return o.textContent === input.value; });
+        if (!matched) input.value = lastValue;
+        closeMenu();
+      }
+    });
+  });
+
+  /* ---------- 表格欄位顯示設定（col-toggle）：欄位數量較多的清單頁，讓操作者自選要顯示哪些欄位（類似 Excel 隱藏欄）---------- */
+  document.querySelectorAll('[data-col-toggle-target]').forEach(function (wrap) {
+    var table = document.getElementById(wrap.getAttribute('data-col-toggle-target'));
+    var trigger = wrap.querySelector('.col-toggle-trigger');
+    var selectAllBtn = wrap.querySelector('.col-toggle-selectall');
+    var checkboxes = wrap.querySelectorAll('.col-toggle-item input[type="checkbox"]');
+    if (!table || !trigger) return;
+    var headerRow = table.querySelector('thead tr');
+
+    function setColVisible(key, visible) {
+      var th = headerRow.querySelector('th[data-col="' + key + '"]');
+      if (!th) return;
+      var idx = Array.prototype.indexOf.call(headerRow.children, th);
+      th.classList.toggle('col-hidden', !visible);
+      table.querySelectorAll('tbody tr').forEach(function (tr) {
+        var cell = tr.children[idx];
+        if (cell) cell.classList.toggle('col-hidden', !visible);
+      });
+    }
+
+    function updateSelectAllLabel() {
+      var allChecked = Array.prototype.every.call(checkboxes, function (cb) { return cb.checked; });
+      if (selectAllBtn) selectAllBtn.textContent = allChecked ? '取消全選' : '全選';
+    }
+
+    checkboxes.forEach(function (cb) {
+      cb.addEventListener('change', function () {
+        setColVisible(cb.getAttribute('data-col'), cb.checked);
+        updateSelectAllLabel();
+      });
+    });
+
+    if (selectAllBtn) {
+      selectAllBtn.addEventListener('click', function () {
+        var willCheckAll = selectAllBtn.textContent === '全選';
+        checkboxes.forEach(function (cb) {
+          cb.checked = willCheckAll;
+          setColVisible(cb.getAttribute('data-col'), willCheckAll);
+        });
+        updateSelectAllLabel();
+      });
+    }
+
+    trigger.addEventListener('click', function (e) {
+      e.stopPropagation();
+      wrap.classList.toggle('open');
+    });
+    document.addEventListener('click', function (e) {
+      if (!wrap.contains(e.target)) wrap.classList.remove('open');
+    });
+  });
 
 });

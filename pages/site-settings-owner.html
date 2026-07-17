@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>站點設置 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'site-settings-owner', label: '站點設置', href: 'site-settings-owner.html' };
+  window.PAGE_BREADCRUMB = ['網站管理', '站點設置（站長視角）'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="site" data-subactive="site-settings-owner"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="section-tabs" data-tabs-group="siteSettings">
+            <span class="section-tab active" data-tab-target="panel-basic">站台資料</span>
+            <span class="section-tab" data-tab-target="panel-games">遊戲大類資料</span>
+            <span class="section-tab" data-tab-target="panel-sort">大類排序</span>
+            <span class="section-tab" data-tab-target="panel-appearance">外觀設置</span>
+            <span class="section-tab" data-tab-target="panel-cs">客服</span>
+            <span class="section-tab" data-tab-target="panel-reminder">溫馨提醒設定</span>
+            <span class="section-tab" data-tab-target="panel-vault">保險箱機制</span>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; margin-bottom: var(--space-4);">
+            <button class="btn btn-primary" id="siteSettingsSaveBtn" type="button">保存更改</button>
+          </div>
+
+          <!-- 站台資料 -->
+          <div class="tab-panel active" data-tabs-group="siteSettings" id="panel-basic">
+            <div class="form-grid">
+              <div class="form-field"><label class="field-label">站長帳號</label><input class="input" type="text" value="jgm7" disabled></div>
+              <div class="form-field"><label class="field-label">站台代碼</label><input class="input" type="text" value="jgm" disabled></div>
+              <div class="form-field"><label class="field-label"><span class="required">*</span>名稱</label><input class="input" type="text" value="金錢母"></div>
+              <div class="form-field"><label class="field-label"><span class="required">*</span>標題</label><input class="input" type="text" value="金錢母"></div>
+            </div>
+
+            <div class="form-grid mt-4" style="grid-template-columns: repeat(5, 1fr);">
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>預設語系</label>
+                <div class="select-wrap"><select class="select"><option selected>繁體中文</option></select></div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>前台手機號碼修改次數</label>
+                <div class="select-wrap"><select class="select">
+                  <option selected>不可修改</option>
+                  <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+                  <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+                </select></div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>保險箱/流水倍數</label>
+                <div class="select-wrap"><select class="select"><option selected>保險箱</option><option>流水倍數</option></select></div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>贈禮對象</label>
+                <div class="select-wrap"><select class="select"><option>僅限幣商帳號</option><option selected>一般玩家+幣商帳號</option></select></div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>收禮有效時間</label>
+                <div class="select-wrap"><select class="select">
+                  <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option>
+                  <option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option>
+                  <option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option>
+                  <option>19</option><option>20</option><option>21</option><option>22</option><option>23</option>
+                  <option selected>24</option>
+                </select></div>
+              </div>
+            </div>
+
+            <div class="card-section-title mt-4">網域設置</div>
+            <div class="table-toolbar">
+              <button class="btn btn-accent" type="button" data-modal-target="modalAddDomain">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                新增
+              </button>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table">
+                <thead><tr><th>網域</th><th>狀態</th><th class="col-actions">操作</th></tr></thead>
+                <tbody>
+                  <tr><td>https://jgmtw.cc</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                  <tr><td>https://jgmtw.club</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                  <tr><td>https://jgmtw.com</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                  <tr><td>https://jgmtw.com.tw</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                  <tr><td>https://jgmtw.live</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                  <tr><td>https://jgmtw.net</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                  <tr><td>https://jgmtw.online</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                  <tr><td>https://jgmtw.org</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                  <tr><td>https://jgmtw.tw</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                  <tr><td>https://jgmtw.vip</td><td><span class="badge badge-success">啟用</span></td><td class="col-actions"><button class="btn-link" type="button">編輯</button> · <button class="btn-link danger" type="button">刪除</button> · <button class="btn-link" type="button">停用</button></td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 遊戲大類資料 -->
+          <div class="tab-panel" data-tabs-group="siteSettings" id="panel-games">
+            <div class="table-scroll">
+              <table class="data-table nested-table">
+                <thead><tr><th style="width:22%;">遊戲平台</th><th style="width:12%;">遊戲狀態</th><th style="width:14%;">維護狀態</th><th style="width:14%;">更新人員</th><th style="width:16%;">更新時間</th><th class="col-actions">操作</th></tr></thead>
+                <tbody>
+
+                  <tr class="title-row open" data-target="game-atg">
+                    <td>
+                      <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                      <span class="title-row-name">ATG</span>
+                    </td>
+                    <td><span class="switch on"></span></td>
+                    <td><span class="badge badge-neutral">未設定</span></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="col-actions"><button class="btn-link" type="button" data-modal-target="modalMaintenance">維護設定</button></td>
+                  </tr>
+                  <tr class="subtitle-row open" id="game-atg">
+                    <td colspan="6">
+                      <div class="subtitle-cell">
+                        <div class="subtable-wrap">
+                          <table class="subtable">
+                            <thead><tr><th style="width:22%;">遊戲大類</th><th style="width:12%;">遊戲狀態</th><th style="width:14%;">維護狀態</th><th style="width:14%;">更新人員</th><th style="width:16%;">更新時間</th><th class="col-actions">操作</th></tr></thead>
+                            <tbody>
+                              <tr>
+                                <td>電子</td>
+                                <td><span class="switch on"></span></td>
+                                <td><span class="badge badge-neutral">未設定</span></td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="col-actions"><button class="btn-link" type="button" data-modal-target="modalMaintenance">維護設定</button></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="title-row accent-b" data-target="game-bng">
+                    <td>
+                      <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                      <span class="title-row-name">BNG</span>
+                    </td>
+                    <td><span class="switch on"></span></td>
+                    <td><span class="badge badge-neutral">未設定</span></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="col-actions"><button class="btn-link" type="button" data-modal-target="modalMaintenance">維護設定</button></td>
+                  </tr>
+                  <tr class="subtitle-row accent-b" id="game-bng">
+                    <td colspan="6">
+                      <div class="subtitle-cell">
+                        <div class="subtable-wrap">
+                          <table class="subtable">
+                            <thead><tr><th style="width:22%;">遊戲大類</th><th style="width:12%;">遊戲狀態</th><th style="width:14%;">維護狀態</th><th style="width:14%;">更新人員</th><th style="width:16%;">更新時間</th><th class="col-actions">操作</th></tr></thead>
+                            <tbody>
+                              <tr>
+                                <td>電子</td>
+                                <td><span class="switch on"></span></td>
+                                <td><span class="badge badge-neutral">未設定</span></td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="col-actions"><button class="btn-link" type="button" data-modal-target="modalMaintenance">維護設定</button></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="title-row" data-target="game-rk5">
+                    <td>
+                      <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                      <span class="title-row-name">RK5</span>
+                    </td>
+                    <td><span class="switch on"></span></td>
+                    <td><span class="badge badge-neutral">未設定</span></td>
+                    <td>-</td>
+                    <td>-</td>
+                    <td class="col-actions"><button class="btn-link" type="button" data-modal-target="modalMaintenance">維護設定</button></td>
+                  </tr>
+                  <tr class="subtitle-row" id="game-rk5">
+                    <td colspan="6">
+                      <div class="subtitle-cell">
+                        <div class="subtable-wrap">
+                          <table class="subtable">
+                            <thead><tr><th style="width:22%;">遊戲大類</th><th style="width:12%;">遊戲狀態</th><th style="width:14%;">維護狀態</th><th style="width:14%;">更新人員</th><th style="width:16%;">更新時間</th><th class="col-actions">操作</th></tr></thead>
+                            <tbody>
+                              <tr>
+                                <td>電子</td>
+                                <td><span class="switch on"></span></td>
+                                <td><span class="badge badge-neutral">未設定</span></td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="col-actions"><button class="btn-link" type="button" data-modal-target="modalMaintenance">維護設定</button></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                  <tr class="title-row accent-b" data-target="game-rsg">
+                    <td>
+                      <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
+                      <span class="title-row-name">RSG</span>
+                    </td>
+                    <td><span class="switch on"></span></td>
+                    <td><span class="badge badge-warning">維護中</span></td>
+                    <td>DeltaAdmin</td>
+                    <td>2026-07-10 09:00:00</td>
+                    <td class="col-actions"><button class="btn-link" type="button" data-modal-target="modalMaintenance">維護設定</button></td>
+                  </tr>
+                  <tr class="subtitle-row accent-b" id="game-rsg">
+                    <td colspan="6">
+                      <div class="subtitle-cell">
+                        <div class="subtable-wrap">
+                          <table class="subtable">
+                            <thead><tr><th style="width:22%;">遊戲大類</th><th style="width:12%;">遊戲狀態</th><th style="width:14%;">維護狀態</th><th style="width:14%;">更新人員</th><th style="width:16%;">更新時間</th><th class="col-actions">操作</th></tr></thead>
+                            <tbody>
+                              <tr>
+                                <td>電子</td>
+                                <td><span class="switch on"></span></td>
+                                <td><span class="badge badge-neutral">未設定</span></td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td class="col-actions"><button class="btn-link" type="button" data-modal-target="modalMaintenance">維護設定</button></td>
+                              </tr>
+                              <tr>
+                                <td>街機</td>
+                                <td><span class="switch on"></span></td>
+                                <td><span class="badge badge-warning">維護中</span></td>
+                                <td>DeltaAdmin</td>
+                                <td>2026-07-10 09:00:00</td>
+                                <td class="col-actions"><button class="btn-link" type="button" data-modal-target="modalMaintenance">維護設定</button></td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 大類排序 -->
+          <div class="tab-panel" data-tabs-group="siteSettings" id="panel-sort">
+            <div class="text-sm text-tertiary mb-4">提示：排序第一將為預設大類</div>
+            <div class="table-scroll">
+              <table class="data-table drag-reorder" data-save-btn="siteSettingsSaveBtn">
+                <thead><tr><th style="width:48px;"></th><th style="width:120px;">前台排序</th><th>遊戲大類</th></tr></thead>
+                <tbody>
+                  <tr><td><span class="drag-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></td><td class="order-num">1</td><td>電子</td></tr>
+                  <tr><td><span class="drag-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></td><td class="order-num">2</td><td>街機</td></tr>
+                  <tr><td><span class="drag-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></td><td class="order-num">4</td><td>捕魚</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 外觀設置 -->
+          <div class="tab-panel" data-tabs-group="siteSettings" id="panel-appearance">
+            <div class="text-xs text-tertiary mb-4">*點擊圖片可查看其他頁面</div>
+            <div class="template-grid count-1">
+              <label class="template-card selected">
+                <input type="radio" name="template" class="template-card-radio" checked>
+                <div class="template-card-thumb"><img src="../images/templete01.png" alt="經典版型"></div>
+                <div class="template-card-info">
+                  <div class="template-card-name">經典版型<span class="badge badge-success">使用中</span></div>
+                  <div class="template-card-desc">目前僅提供此版型，未來將開放更多前台樣式供選擇。</div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- 客服 -->
+          <div class="tab-panel" data-tabs-group="siteSettings" id="panel-cs">
+            <div class="table-toolbar">
+              <button class="btn btn-accent" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                新增
+              </button>
+            </div>
+            <div class="table-scroll">
+              <table class="data-table drag-reorder" style="table-layout:fixed;" data-save-btn="siteSettingsSaveBtn">
+                <thead><tr><th style="width:40px;"></th><th style="width:88px;">前台排序</th><th style="width:140px;">狀態</th><th style="width:140px;">名稱</th><th>網址</th><th style="width:220px;">QR Code</th><th class="col-actions" style="width:70px;">操作</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td><span class="drag-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></td>
+                    <td class="order-num">1</td>
+                    <td><div class="chip-select"><span class="chip-select-tag">客服網址<button type="button">×</button></span></div></td>
+                    <td><input class="input" type="text" value="LINE客服"></td>
+                    <td>
+                      <div class="url-input-group">
+                        <div class="select-wrap"><select class="select"><option selected>https://</option><option>http://</option></select></div>
+                        <input class="input" type="text" value="line.me/ti/p/@jgm7">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="upload-field">
+                        <div class="upload-thumb square empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                        <div>
+                          <button class="btn btn-secondary btn-sm" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                            選擇圖片
+                          </button>
+                          <div class="text-xs text-tertiary mt-2">只能上傳 .jpg / .jpeg / .png 檔案，且不超過 2MB</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="col-actions"><button class="btn-link danger" type="button">刪除</button></td>
+                  </tr>
+                  <tr>
+                    <td><span class="drag-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></td>
+                    <td class="order-num">2</td>
+                    <td><div class="chip-select"><span class="chip-select-tag">客服網址<button type="button">×</button></span></div></td>
+                    <td><input class="input" type="text" value="WhatsApp客服"></td>
+                    <td>
+                      <div class="url-input-group">
+                        <div class="select-wrap"><select class="select"><option selected>https://</option><option>http://</option></select></div>
+                        <input class="input" type="text" value="wa.me/886912345678">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="upload-field">
+                        <div class="upload-thumb square empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                        <div>
+                          <button class="btn btn-secondary btn-sm" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                            選擇圖片
+                          </button>
+                          <div class="text-xs text-tertiary mt-2">只能上傳 .jpg / .jpeg / .png 檔案，且不超過 2MB</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="col-actions"><button class="btn-link danger" type="button">刪除</button></td>
+                  </tr>
+                  <tr>
+                    <td><span class="drag-handle"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></span></td>
+                    <td class="order-num">3</td>
+                    <td><div class="chip-select"><span class="chip-select-tag">客服網址<button type="button">×</button></span></div></td>
+                    <td><input class="input" type="text" value="Telegram客服"></td>
+                    <td>
+                      <div class="url-input-group">
+                        <div class="select-wrap"><select class="select"><option selected>https://</option><option>http://</option></select></div>
+                        <input class="input" type="text" value="t.me/jgm7_cs">
+                      </div>
+                    </td>
+                    <td>
+                      <div class="upload-field">
+                        <div class="upload-thumb square empty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg></div>
+                        <div>
+                          <button class="btn btn-secondary btn-sm" type="button">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                            選擇圖片
+                          </button>
+                          <div class="text-xs text-tertiary mt-2">只能上傳 .jpg / .jpeg / .png 檔案，且不超過 2MB</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="col-actions"><button class="btn-link danger" type="button">刪除</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- 溫馨提醒設定 -->
+          <div class="tab-panel" data-tabs-group="siteSettings" id="panel-reminder">
+            <div class="form-grid">
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>頁面</label>
+                <div class="select-wrap"><select class="select">
+                  <option>請選擇</option>
+                  <option selected>登入頁</option>
+                  <option>註冊頁</option>
+                  <option>存款頁</option>
+                  <option>提款頁</option>
+                </select></div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>彈窗顯示</label>
+                <div class="radio-group">
+                  <label class="radio-field"><input type="radio" name="reminderPopup">否</label>
+                  <label class="radio-field"><input type="radio" name="reminderPopup" checked>是</label>
+                </div>
+              </div>
+              <div class="form-field span-2">
+                <label class="field-label">溫馨提醒</label>
+                <textarea class="textarea" rows="6">親愛的會員您好，為保障您的帳戶安全，請勿將帳號密碼提供給第三方，本站不會透過任何管道要求您提供密碼或簡訊驗證碼。</textarea>
+              </div>
+            </div>
+          </div>
+
+          <!-- 保險箱機制 -->
+          <div class="tab-panel" data-tabs-group="siteSettings" id="panel-vault">
+            <div class="form-grid">
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>保險箱機制</label>
+                <div class="radio-group">
+                  <label class="radio-field"><input type="radio" name="vaultMode">否</label>
+                  <label class="radio-field"><input type="radio" name="vaultMode" checked>是</label>
+                </div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>鎖定週期</label>
+                <div class="select-wrap"><select class="select">
+                  <option>1小時</option>
+                  <option>6小時</option>
+                  <option>12小時</option>
+                  <option selected>24小時</option>
+                  <option>48小時</option>
+                  <option>72小時</option>
+                </select></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- 新增網域 Modal -->
+<div class="modal-overlay" id="modalAddDomain">
+  <div class="modal" style="max-width: 480px;">
+    <div class="modal-header"><h2>新增網域</h2><button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-grid" style="grid-template-columns: 1fr;">
+        <div class="form-field"><label class="field-label"><span class="required">*</span>網域</label><input class="input" type="text" placeholder="https://example.com"></div>
+        <div class="form-field"><label class="field-label"><span class="required">*</span>狀態</label><div class="select-wrap"><select class="select"><option>啟用</option><option>停用</option></select></div></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>取消</button><button class="btn btn-primary" data-modal-close>保存更改</button></div>
+  </div>
+</div>
+
+<!-- 維護設定 Modal -->
+<div class="modal-overlay" id="modalMaintenance">
+  <div class="modal">
+    <div class="modal-header"><h2>維護設定</h2><button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-grid" style="grid-template-columns: 1fr;">
+        <div class="form-field">
+          <label class="field-label">遊戲狀態</label>
+          <span class="switch on"></span>
+        </div>
+        <div class="form-field">
+          <label class="field-label">例行維護</label>
+          <div class="maint-row">
+            <div class="select-wrap maint-weekday"><select class="select"><option>每天</option><option>週一</option><option>週二</option><option>週三</option><option>週四</option><option>週五</option><option>週六</option><option>週日</option></select></div>
+            <div class="select-wrap maint-time"><select class="select"><option>00:00</option><option selected>03:00</option><option>06:00</option></select></div>
+            <span class="maint-sep">至</span>
+            <div class="select-wrap maint-time"><select class="select"><option>00:00</option><option selected>05:00</option><option>06:00</option></select></div>
+          </div>
+        </div>
+        <div class="field">
+          <label class="field-label">臨時維護</label>
+          <div class="daterange-trigger" data-daterange-target="drMaintenance">
+            <span class="daterange-text is-placeholder">開始日期 - 結束日期</span>
+            <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          </div>
+          <div class="daterange-popover" id="drMaintenance">
+            <div class="dr-presets">
+              <button type="button" class="chip" data-preset="today">今天</button>
+              <button type="button" class="chip" data-preset="7">最近7天</button>
+              <button type="button" class="chip" data-preset="30">最近30天</button>
+              <button type="button" class="chip" data-preset="month">本月</button>
+              <button type="button" class="chip" data-preset="lastmonth">上月</button>
+            </div>
+            <div class="dr-summary">尚未選擇日期</div>
+            <div class="dr-calendars">
+              <div class="dr-cal" data-cal="left">
+                <div class="dr-cal-header">
+                  <button type="button" class="dr-nav" data-nav="prev-year">&laquo;</button>
+                  <button type="button" class="dr-nav" data-nav="prev-month">&lsaquo;</button>
+                  <span class="dr-cal-title"></span>
+                  <span class="dr-nav-spacer"></span>
+                </div>
+                <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                <div class="dr-days"></div>
+              </div>
+              <div class="dr-cal" data-cal="right">
+                <div class="dr-cal-header">
+                  <span class="dr-nav-spacer"></span>
+                  <span class="dr-cal-title"></span>
+                  <button type="button" class="dr-nav" data-nav="next-month">&rsaquo;</button>
+                  <button type="button" class="dr-nav" data-nav="next-year">&raquo;</button>
+                </div>
+                <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                <div class="dr-days"></div>
+              </div>
+            </div>
+            <div class="dr-time-row">
+              <div class="dr-time-group">
+                <span class="dr-time-label">開始時間</span>
+                <div class="dr-time-block" data-role="start">
+                  <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                  <span class="dr-colon">:</span>
+                  <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                  <span class="dr-colon">:</span>
+                  <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                </div>
+              </div>
+              <div class="dr-time-group">
+                <span class="dr-time-label">結束時間</span>
+                <div class="dr-time-block" data-role="end">
+                  <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="23"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                  <span class="dr-colon">:</span>
+                  <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                  <span class="dr-colon">:</span>
+                  <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                </div>
+              </div>
+            </div>
+            <div class="dr-footer">
+              <button type="button" class="btn btn-secondary btn-sm" data-daterange-clear>清除</button>
+              <button type="button" class="btn btn-primary btn-sm" data-daterange-apply>確定</button>
+            </div>
+          </div>
+        </div>
+        <div class="form-field">
+          <div class="maint-updated text-xs">最後更新：DeltaAdmin，2026-07-10 09:00:00</div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>取消</button><button class="btn btn-primary" data-modal-close>保存更改</button></div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  (function () {
+    var saveBtn = document.getElementById('siteSettingsSaveBtn');
+    var tabsEl = document.querySelector('.section-tabs[data-tabs-group="siteSettings"]');
+    var dragTable = document.querySelector('table.drag-reorder');
+    var reordered = false;
+    if (dragTable) {
+      dragTable.addEventListener('drop', function () { reordered = true; });
+    }
+    if (tabsEl && saveBtn) {
+      tabsEl.addEventListener('tabchange', function (e) {
+        saveBtn.disabled = (e.detail.target === 'panel-sort' && !reordered);
+      });
+    }
+  })();
+</script>
+</body>
+</html>

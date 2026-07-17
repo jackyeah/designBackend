@@ -399,6 +399,8 @@
 .breadcrumb svg { width: 14px; height: 14px; stroke: currentColor; }
 .breadcrumb-home { display: flex; }
 .breadcrumb-current { color: var(--color-text-primary); font-weight: 600; }
+.breadcrumb-link { color: var(--color-text-tertiary); }
+.breadcrumb-link:hover { color: var(--color-info); text-decoration: none; }
 .breadcrumb-sep { opacity: .6; }
 
 .page-header {

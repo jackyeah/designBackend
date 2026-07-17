@@ -47,11 +47,15 @@
       { key: 'promotion-copy', label: '優惠文案管理', href: 'promotion-copy.html' },
       { key: 'redeem-codes', label: '兌換序號設置', href: 'redeem-codes.html' }
     ]},
-    { key: 'task', label: '任務管理', icon: 'task', href: '#' },
+    { key: 'task', label: '任務管理', icon: 'task', submenu: [
+      { key: 'task-settings', label: '任務設置', href: 'task-settings.html' },
+      { key: 'task-records', label: '玩家任務記錄', href: 'task-records.html' }
+    ]},
     { key: 'checkin', label: '簽到管理', icon: 'checkin', href: '#' },
     { key: 'blacklist', label: '黑名單管理', icon: 'blacklist', href: '#' },
     { key: 'site', label: '網站管理', icon: 'site', submenu: [
-      { key: 'site-settings', label: '站點設置', href: 'site-settings.html' },
+      { key: 'site-settings', label: '站點設置（總控視角）', href: 'site-settings.html' },
+      { key: 'site-settings-owner', label: '站點設置（站長視角）', href: 'site-settings-owner.html' },
       { key: 'hot-games', label: '*熱門遊戲管理', href: '#' },
       { key: 'home-ads', label: '*首頁廣告管理', href: '#' },
       { key: 'gallery', label: '圖庫管理', href: 'gallery.html' },
@@ -215,16 +219,36 @@
     writeTabHistory(history);
   }
 
+  function breadcrumbPageLookup() {
+    var map = {};
+    NAV.forEach(function (item) {
+      if (item.href && item.href !== '#') map[item.label] = item.href;
+      if (item.submenu) {
+        item.submenu.forEach(function (sub) {
+          if (sub.href && sub.href !== '#') map[sub.label] = sub.href;
+        });
+      }
+    });
+    return map;
+  }
+
   function renderBreadcrumb() {
     var mount = document.getElementById('breadcrumb-mount');
     if (!mount) return;
     var trail = window.PAGE_BREADCRUMB || [];
+    var pageLookup = breadcrumbPageLookup();
     var html = '<div class="breadcrumb">';
     html += '<span class="breadcrumb-home"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11l8-7 8 7"/><path d="M6 9.5V20h12V9.5"/></svg></span>';
     trail.forEach(function (crumb, i) {
+      var isFirst = i === 0;
       var isLast = i === trail.length - 1;
       html += '<span class="breadcrumb-sep">›</span>';
-      html += '<span class="' + (isLast ? 'breadcrumb-current' : '') + '">' + crumb + '</span>';
+      // 首層（無主頁的一級選單）與末層（當前頁面）一律純文字；只有中間層、且對應到實際頁面時才可點擊
+      if (!isFirst && !isLast && pageLookup[crumb]) {
+        html += '<a class="breadcrumb-link" href="' + pageLookup[crumb] + '">' + crumb + '</a>';
+      } else {
+        html += '<span class="' + (isLast ? 'breadcrumb-current' : '') + '">' + crumb + '</span>';
+      }
     });
     html += '</div>';
     mount.innerHTML = html;

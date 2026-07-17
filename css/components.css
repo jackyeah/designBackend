@@ -153,6 +153,59 @@
   pointer-events: none;
 }
 
+/* ---------- Searchable select (combo-select)：可輸入文字篩選的下拉選單，用於選項數量會持續增加的欄位（例如遊戲平台） ---------- */
+.combo-select { position: relative; }
+.combo-select-input {
+  width: 100%;
+  height: 36px;
+  padding: 0 var(--space-8) 0 var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-card);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+.combo-select-input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary-light);
+}
+.combo-select-input:disabled { background: var(--color-bg-subtle); color: var(--color-text-secondary); cursor: not-allowed; }
+.combo-select::after {
+  content: "";
+  position: absolute;
+  right: 12px; top: 18px;
+  width: 8px; height: 8px;
+  border-right: 1.5px solid var(--color-text-tertiary);
+  border-bottom: 1.5px solid var(--color-text-tertiary);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.combo-select-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 4px); left: 0; right: 0;
+  z-index: 60;
+  max-height: 240px;
+  overflow-y: auto;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-2) 0;
+}
+.combo-select-menu.open { display: block; }
+.combo-select-option {
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+.combo-select-option:hover { background: var(--color-bg-hover); }
+.combo-select-option.is-selected { color: var(--color-primary); font-weight: 600; }
+.combo-select-empty { padding: var(--space-2) var(--space-3); font-size: var(--text-sm); color: var(--color-text-tertiary); }
+
 .icon-input-btn {
   width: 36px;
   height: 36px;
@@ -302,6 +355,12 @@
 
 .dr-footer { display: flex; justify-content: flex-end; gap: var(--space-2); }
 
+/* 單一日期模式（例如「無結束時間」開啟時，同一個 daterange-popover 切換成只選一個日期，不顯示快速區間/第二個月曆/結束時間） */
+.daterange-popover.dr-single { width: 300px; }
+.daterange-popover.dr-single .dr-presets,
+.daterange-popover.dr-single .dr-cal[data-cal="right"],
+.daterange-popover.dr-single .dr-time-group[data-role="end"] { display: none; }
+
 /* Segmented toggle (模糊/精準搜尋) */
 .segmented {
   display: inline-flex;
@@ -359,6 +418,46 @@
 }
 .table-toolbar .spacer { flex: 1; }
 .selection-hint { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+
+/* ---------- 欄位顯示設定（col-toggle）：欄位數量較多的清單頁，讓操作者自選要顯示哪些欄位，其餘暫時隱藏 ---------- */
+.col-toggle { position: relative; }
+.col-toggle-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  z-index: 55;
+  width: 220px;
+  max-height: 320px;
+  overflow-y: auto;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: var(--space-2) 0;
+}
+.col-toggle.open .col-toggle-menu { display: block; }
+.col-toggle-menu-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 var(--space-3) var(--space-2);
+  margin-bottom: 4px;
+  border-bottom: 1px solid var(--color-border);
+}
+.col-toggle-menu-title { font-size: var(--text-xs); color: var(--color-text-tertiary); font-weight: 600; }
+.col-toggle-selectall { font-size: var(--text-xs); color: var(--color-primary); background: none; border: none; padding: 0; cursor: pointer; font-weight: 600; }
+.col-toggle-selectall:hover { text-decoration: underline; }
+.col-toggle-list { padding: 4px 0; }
+.col-toggle-item {
+  display: flex; align-items: center; gap: var(--space-2);
+  padding: 6px var(--space-3);
+  font-size: var(--text-sm); color: var(--color-text-primary);
+  cursor: pointer;
+}
+.col-toggle-item:hover { background: var(--color-bg-hover); }
+.col-toggle-item input { accent-color: var(--color-primary); width: 15px; height: 15px; flex-shrink: 0; }
+
+/* 欄位隱藏：套用在對應的 <th>/<td> 上 */
+.col-hidden { display: none !important; }
 
 .table-scroll {
   overflow: auto;
@@ -503,6 +602,45 @@
 }
 .pill-btn-neutral:hover { background: var(--color-bg-hover); border-color: var(--color-primary); color: var(--color-primary); }
 .pill-btn-neutral svg { width: 12px; height: 12px; flex-shrink: 0; }
+
+.pill-btn-warning {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-pill);
+  background: var(--color-warning);
+  color: #fff;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+  border: none;
+  cursor: pointer;
+  gap: 5px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.12);
+  transition: background .12s ease, box-shadow .12s ease, transform .05s ease;
+}
+.pill-btn-warning:hover { background: var(--color-warning-hover); }
+.pill-btn-warning:active { transform: translateY(1px); box-shadow: none; }
+
+/* Single date/time picker trigger (visual only, distinct from .daterange-trigger which is for ranges) */
+.date-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 36px;
+  padding: 0 var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  cursor: pointer;
+}
+.date-input:hover { border-color: var(--color-primary); }
+.date-input.is-disabled { cursor: not-allowed; background: var(--color-bg-hover); color: var(--color-text-tertiary); }
+.date-input-icon { width: 16px; height: 16px; stroke: var(--color-text-tertiary); flex-shrink: 0; }
 
 /* Grouped counter (icon+label button fused with its value, e.g. 會員數 1,284) */
 .counter-btn {
@@ -756,6 +894,16 @@
 
 /* Compact table variant (denser padding for long detail-page histories) */
 .data-table.compact th, .data-table.compact td { padding: var(--space-2) var(--space-3); }
+
+/* ---------- Plain section heading (non-interactive grouping, e.g. merged form sections) ---------- */
+.section-label {
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+  padding-bottom: var(--space-2);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
 
 /* ---------- Detail page section tabs ---------- */
 .section-tabs { position: relative; display: flex; gap: var(--space-1); border-bottom: 1px solid var(--color-border); margin-bottom: var(--space-4); }
