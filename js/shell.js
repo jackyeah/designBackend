@@ -51,15 +51,14 @@
     { key: 'checkin', label: '簽到管理', icon: 'checkin', href: '#' },
     { key: 'blacklist', label: '黑名單管理', icon: 'blacklist', href: '#' },
     { key: 'site', label: '網站管理', icon: 'site', submenu: [
-      { key: 'site-settings', label: '站點設置', href: '#' },
-      { key: 'hot-games', label: '熱門遊戲管理', href: '#' },
-      { key: 'home-ads', label: '首頁廣告管理', href: '#' },
-      { key: 'gallery', label: '圖庫管理', href: '#' },
+      { key: 'site-settings', label: '站點設置', href: 'site-settings.html' },
+      { key: 'hot-games', label: '*熱門遊戲管理', href: '#' },
+      { key: 'home-ads', label: '*首頁廣告管理', href: '#' },
+      { key: 'gallery', label: '圖庫管理', href: 'gallery.html' },
       { key: 'copywriting', label: '文案管理', href: 'copywriting.html' },
-      { key: 'leaderboard', label: '排行榜管理', href: '#' },
-      { key: 'game-settings-v1', label: '遊戲設定V1', href: '#' },
-      { key: 'game-settings-v2', label: '遊戲設定V2', href: '#' },
-      { key: 'maintenance', label: '維護管理(總控)', href: '#' }
+      { key: 'leaderboard', label: '*排行榜管理', href: '#' },
+      { key: 'game-settings', label: '*遊戲設定', href: '#' },
+      { key: 'maintenance', label: '*維護管理(總控)', href: '#' }
     ]},
     { key: 'log', label: '操作記錄', icon: 'log', href: '#' }
   ];

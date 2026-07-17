@@ -43,11 +43,121 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ---------- Nested list: title-row expand/collapse (e.g. 文案管理 主標題/副標題) ---------- */
   document.querySelectorAll('.title-row[data-target]').forEach(function (row) {
     row.addEventListener('click', function (e) {
-      if (e.target.closest('.col-actions')) return;
+      if (e.target.closest('.col-actions, .switch, .select-wrap, input, button, a, .daterange-trigger')) return;
       var sub = document.getElementById(row.getAttribute('data-target'));
       if (!sub) return;
       row.classList.toggle('open');
       sub.classList.toggle('open');
+    });
+  });
+
+  /* ---------- Domain list expand/collapse (e.g. 站點設置 啟用網域) ---------- */
+  document.querySelectorAll('.domain-list-toggle').forEach(function (btn) {
+    var wrap = btn.closest('.domain-list');
+    if (!wrap) return;
+    var moreCount = btn.getAttribute('data-more-count');
+    var label = btn.querySelector('.domain-list-toggle-label');
+    btn.addEventListener('click', function () {
+      wrap.classList.toggle('expanded');
+      if (label) label.textContent = wrap.classList.contains('expanded') ? '收合' : ('顯示全部（還有 ' + moreCount + ' 筆）');
+    });
+  });
+
+  /* ---------- Section tabs: functional tab switching (e.g. 站點設置 編輯頁籤) ---------- */
+  document.querySelectorAll('.section-tabs[data-tabs-group]').forEach(function (tabsEl) {
+    var group = tabsEl.getAttribute('data-tabs-group');
+    var panels = document.querySelectorAll('.tab-panel[data-tabs-group="' + group + '"]');
+    tabsEl.querySelectorAll('.section-tab').forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        tabsEl.querySelectorAll('.section-tab').forEach(function (t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        var target = tab.getAttribute('data-tab-target');
+        panels.forEach(function (p) { p.classList.toggle('active', p.id === target); });
+        tabsEl.dispatchEvent(new CustomEvent('tabchange', { detail: { target: target } }));
+      });
+    });
+  });
+
+  /* ---------- Section tabs: animated hover indicator (sliding underline) ---------- */
+  document.querySelectorAll('.section-tabs').forEach(function (tabsEl) {
+    var tabs = Array.from(tabsEl.querySelectorAll('.section-tab'));
+    if (!tabs.length) return;
+    var indicator = document.createElement('span');
+    indicator.className = 'section-tab-indicator';
+    tabsEl.appendChild(indicator);
+
+    function moveTo(tab, isActive) {
+      indicator.style.left = tab.offsetLeft + 'px';
+      indicator.style.width = tab.offsetWidth + 'px';
+      indicator.classList.add('visible');
+      indicator.classList.toggle('on-active', !!isActive);
+    }
+    function resetToActive() {
+      var active = tabsEl.querySelector('.section-tab.active');
+      if (active) {
+        moveTo(active, true);
+      } else {
+        indicator.classList.remove('visible');
+      }
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('mouseenter', function () { moveTo(tab, tab.classList.contains('active')); });
+    });
+    tabsEl.addEventListener('mouseleave', resetToActive);
+    resetToActive();
+  });
+
+  /* ---------- Drag-to-reorder table (e.g. 站點設置 大類排序) ---------- */
+  document.querySelectorAll('table.drag-reorder').forEach(function (table) {
+    var tbody = table.querySelector('tbody');
+    if (!tbody) return;
+    var rows = Array.from(tbody.querySelectorAll('tr'));
+    var orderSlots = rows.map(function (tr) {
+      var cell = tr.querySelector('.order-num');
+      return cell ? cell.textContent.trim() : '';
+    });
+    var saveBtnId = table.getAttribute('data-save-btn');
+    var saveBtn = saveBtnId ? document.getElementById(saveBtnId) : null;
+    var dragEl = null;
+
+    function renumber() {
+      Array.from(tbody.querySelectorAll('tr')).forEach(function (row, i) {
+        var cell = row.querySelector('.order-num');
+        if (cell) cell.textContent = orderSlots[i] || '';
+      });
+    }
+
+    rows.forEach(function (tr) {
+      tr.setAttribute('draggable', 'true');
+      tr.addEventListener('dragstart', function () {
+        dragEl = tr;
+        tr.classList.add('dragging');
+      });
+      tr.addEventListener('dragend', function () {
+        tr.classList.remove('dragging');
+        tbody.querySelectorAll('tr.drag-over').forEach(function (r) { r.classList.remove('drag-over'); });
+      });
+      tr.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        tr.classList.add('drag-over');
+      });
+      tr.addEventListener('dragleave', function () {
+        tr.classList.remove('drag-over');
+      });
+      tr.addEventListener('drop', function (e) {
+        e.preventDefault();
+        tr.classList.remove('drag-over');
+        if (!dragEl || dragEl === tr) return;
+        var all = Array.from(tbody.children);
+        if (all.indexOf(dragEl) < all.indexOf(tr)) {
+          tr.after(dragEl);
+        } else {
+          tr.before(dragEl);
+        }
+        renumber();
+        if (saveBtn) saveBtn.disabled = false;
+      });
     });
   });
 
@@ -76,6 +186,31 @@ document.addEventListener('DOMContentLoaded', function () {
       if (modal) modal.classList.add('open');
     });
   });
+  /* ---------- 維護設定 modal：標題帶入所屬遊戲商／遊戲大類（如「維護設定 - ATG」或「維護設定 - ATG（電子）」） ---------- */
+  document.querySelectorAll('[data-modal-target="modalMaintenance"]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var titleEl = document.querySelector('#modalMaintenance .modal-header h2');
+      if (!titleEl) return;
+      var row = btn.closest('tr');
+      var inSubtable = btn.closest('table.subtable');
+      var suffix = '';
+      if (inSubtable) {
+        var categoryName = row.querySelector('td:first-child').textContent.trim();
+        var parentSubtitleRow = btn.closest('.subtitle-row');
+        var platformName = '';
+        if (parentSubtitleRow) {
+          var platformRow = document.querySelector('.title-row[data-target="' + parentSubtitleRow.id + '"]');
+          if (platformRow) platformName = platformRow.querySelector('.title-row-name').textContent.trim();
+        }
+        suffix = platformName + '（' + categoryName + '）';
+      } else {
+        var nameEl = row.querySelector('.title-row-name');
+        suffix = nameEl ? nameEl.textContent.trim() : '';
+      }
+      titleEl.textContent = suffix ? ('維護設定 - ' + suffix) : '維護設定';
+    });
+  });
+
   document.querySelectorAll('[data-modal-close]').forEach(function (btn) {
     btn.addEventListener('click', function () {
       btn.closest('.modal-overlay').classList.remove('open');

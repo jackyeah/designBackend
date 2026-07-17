@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>站點設置 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'site-settings', label: '站點設置', href: 'site-settings.html' };
+  window.PAGE_BREADCRUMB = ['網站管理', '站點設置'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="site" data-subactive="site-settings"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>站點設置</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar" style="grid-template-columns: 1fr 1fr 1fr 1fr;">
+            <div class="field">
+              <label class="field-label">站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option>Delta站長</option>
+                <option>Gamma站長</option>
+                <option>金錢母示範站</option>
+                <option>金錢母</option>
+                <option>YZ示範站</option>
+                <option>YZ 益兆</option>
+              </select></div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary">共 6 筆</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead><tr><th>站台代碼</th><th>名稱</th><th>國家地區</th><th>幣別</th><th>標題</th><th>預設語系</th><th>啟用網域</th><th class="col-actions">操作</th></tr></thead>
+              <tbody>
+                <tr>
+                  <td>Delta</td><td>Delta站長</td><td>TW</td><td>TWD</td><td>發現成都之心了</td><td>繁體中文</td>
+                  <td><div class="domain-list"><a href="#" target="_blank">https://delta.jgmdorayaki.com</a></div></td>
+                  <td class="col-actions"><a class="btn-link" href="site-settings-edit.html">編輯</a></td>
+                </tr>
+                <tr>
+                  <td>Gamma</td><td>Gamma站長</td><td>TW</td><td>TWD</td><td>珈瑪</td><td>繁體中文</td>
+                  <td><div class="domain-list"><a href="#" target="_blank">https://gamma.jgmdorayaki.com</a></div></td>
+                  <td class="col-actions"><a class="btn-link" href="site-settings-edit.html">編輯</a></td>
+                </tr>
+                <tr>
+                  <td>Gdemo</td><td>金錢母示範站</td><td>TW</td><td>TWD</td><td>Gdemo</td><td>繁體中文</td>
+                  <td><div class="domain-list"><a href="#" target="_blank">https://jgm.tw</a></div></td>
+                  <td class="col-actions"><a class="btn-link" href="site-settings-edit.html">編輯</a></td>
+                </tr>
+                <tr>
+                  <td>jgm</td><td>金錢母</td><td>TW</td><td>TWD</td><td>金錢母</td><td>繁體中文</td>
+                  <td>
+                    <div class="domain-list">
+                      <a href="#" target="_blank">https://jgmtw.cc</a>
+                      <div class="domain-list-more">
+                        <a href="#" target="_blank">https://jgmtw.club</a>
+                        <a href="#" target="_blank">https://jgmtw.com</a>
+                        <a href="#" target="_blank">https://jgmtw.com.tw</a>
+                        <a href="#" target="_blank">https://jgmtw.live</a>
+                        <a href="#" target="_blank">https://jgmtw.net</a>
+                        <a href="#" target="_blank">https://jgmtw.online</a>
+                        <a href="#" target="_blank">https://jgmtw.org</a>
+                        <a href="#" target="_blank">https://jgmtw.tw</a>
+                        <a href="#" target="_blank">https://jgmtw.vip</a>
+                      </div>
+                      <button class="domain-list-toggle" type="button" data-more-count="9">
+                        <span class="domain-list-toggle-label">顯示全部（還有 9 筆）</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="col-actions"><a class="btn-link" href="site-settings-edit.html">編輯</a></td>
+                </tr>
+                <tr>
+                  <td>Qdemo</td><td>YZ示範站</td><td>TW</td><td>TWD</td><td>Qdemo</td><td>繁體中文</td>
+                  <td><div class="domain-list"><a href="#" target="_blank">https://jgmtiger.com</a></div></td>
+                  <td class="col-actions"><a class="btn-link" href="site-settings-edit.html">編輯</a></td>
+                </tr>
+                <tr>
+                  <td>yzmax</td><td>YZ 益兆</td><td>TW</td><td>TWD</td><td>YZ益兆｜娛樂新時代 開啟你的幸運旅程</td><td>繁體中文</td>
+                  <td>
+                    <div class="domain-list">
+                      <a href="#" target="_blank">https://yzgame118.com</a>
+                      <div class="domain-list-more">
+                        <a href="#" target="_blank">https://yzgame128.com</a>
+                        <a href="#" target="_blank">https://yzgame138.com</a>
+                        <a href="#" target="_blank">https://yzgame158.com</a>
+                        <a href="#" target="_blank">https://yzgame168.com</a>
+                        <a href="#" target="_blank">https://yzgame178.com</a>
+                        <a href="#" target="_blank">https://yzgame188.com</a>
+                        <a href="#" target="_blank">https://yzgame198.com</a>
+                        <a href="#" target="_blank">https://yzgame999.com</a>
+                      </div>
+                      <button class="domain-list-toggle" type="button" data-more-count="8">
+                        <span class="domain-list-toggle-label">顯示全部（還有 8 筆）</span>
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+                      </button>
+                    </div>
+                  </td>
+                  <td class="col-actions"><a class="btn-link" href="site-settings-edit.html">編輯</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination">
+            <span class="page-btn">«</span><span class="page-btn">‹</span>
+            <span class="page-btn active">1</span>
+            <span class="page-btn">›</span><span class="page-btn">»</span>
+            <div class="select-wrap page-size-select"><select class="select"><option selected>50 筆/頁</option><option>100 筆/頁</option></select></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

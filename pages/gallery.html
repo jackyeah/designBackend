@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>圖庫管理 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'gallery', label: '圖庫管理', href: 'gallery.html' };
+  window.PAGE_BREADCRUMB = ['網站管理', '圖庫管理'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="site" data-subactive="gallery"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>圖庫管理</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>類別</label>
+              <div class="select-wrap"><select class="select" id="filterCategory">
+                <option>請選擇</option>
+                <option selected>遊戲</option>
+                <option>系統</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">大類</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>電子</option>
+                <option>街機</option>
+                <option>捕魚</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">遊戲平台</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇遊戲平台</option>
+                <option>ATG</option>
+                <option>BNG</option>
+                <option>RK5</option>
+                <option>RSG</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>語系</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>繁體中文</option>
+                <option>簡體中文</option>
+                <option>英文</option>
+              </select></div>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-primary" type="button">搜尋</button>
+            <button class="btn btn-secondary" type="button">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <button class="btn btn-accent" type="button" data-modal-target="modalAddGallery">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              新增
+            </button>
+          </div>
+
+          <div class="gallery-grid">
+            <div class="gallery-card">
+              <div class="gallery-card-title">遊戲新增測試</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/01.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-嘻哈金剛</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/02.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-龍王 2</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/03.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-皇家 7777</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/04.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-小熊王國</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/05.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-精靈射手</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/06.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-潑水節</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/07.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-鼠來寶</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/08.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-巫師商店黃金版</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/09.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-金色幸運草</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/10.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-太極</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/11.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+            <div class="gallery-card">
+              <div class="gallery-card-title">RSG-黃金之書</div>
+              <div class="gallery-card-thumb"><img src="../images/gameIcons/12.png" alt=""></div>
+              <div class="gallery-card-actions"><button class="btn btn-secondary btn-sm" type="button">編輯</button><button class="btn btn-danger-ghost btn-sm" type="button">刪除</button></div>
+            </div>
+          </div>
+
+          <div class="pagination">
+            <span class="page-btn">«</span><span class="page-btn">‹</span>
+            <span class="page-btn active">1</span><span class="page-btn">2</span><span class="page-btn">3</span><span class="page-btn">4</span><span class="page-btn">5</span>
+            <span class="page-btn">›</span><span class="page-btn">»</span>
+            <div class="select-wrap page-size-select"><select class="select"><option selected>12 筆/頁</option><option>24 筆/頁</option><option>48 筆/頁</option></select></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- 新增圖庫 Modal -->
+<div class="modal-overlay" id="modalAddGallery">
+  <div class="modal" style="max-width: 480px;">
+    <div class="modal-header"><h2>新增圖庫</h2><button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="modal-body">
+      <div class="form-grid" style="grid-template-columns: 1fr;">
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>類別</label>
+          <div class="select-wrap"><select class="select" id="modalGalleryCategory">
+            <option selected>遊戲</option>
+            <option>系統</option>
+          </select></div>
+        </div>
+        <div class="form-field" id="modalGalleryGameFields">
+          <label class="field-label"><span class="required">*</span>大類</label>
+          <div class="select-wrap"><select class="select">
+            <option selected>電子</option>
+            <option>街機</option>
+            <option>捕魚</option>
+          </select></div>
+        </div>
+        <div class="form-field" id="modalGalleryPlatformField">
+          <label class="field-label"><span class="required">*</span>遊戲平台</label>
+          <div class="select-wrap"><select class="select">
+            <option selected>請選擇遊戲平台</option>
+            <option>ATG</option>
+            <option>BNG</option>
+            <option>RK5</option>
+            <option>RSG</option>
+          </select></div>
+        </div>
+        <div class="form-field">
+          <label class="field-label"><span class="required">*</span>語系</label>
+          <div class="select-wrap"><select class="select">
+            <option selected>繁體中文</option>
+            <option>簡體中文</option>
+            <option>英文</option>
+          </select></div>
+        </div>
+        <div class="form-field">
+          <label class="field-label">新增</label>
+          <button class="btn btn-accent" type="button" style="width:100%; justify-content:center;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+            新增
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>取消</button><button class="btn btn-primary" data-modal-close>送出</button></div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  (function () {
+    var categorySelect = document.getElementById('modalGalleryCategory');
+    var gameFields = document.getElementById('modalGalleryGameFields');
+    var platformField = document.getElementById('modalGalleryPlatformField');
+    if (!categorySelect) return;
+    function syncFields() {
+      var isGame = categorySelect.value === '遊戲';
+      gameFields.classList.toggle('hidden', !isGame);
+      platformField.classList.toggle('hidden', !isGame);
+    }
+    categorySelect.addEventListener('change', syncFields);
+    syncFields();
+  })();
+</script>
+</body>
+</html>

@@ -580,7 +580,8 @@
 .page-btn:hover { background: var(--color-bg-hover); }
 .page-btn.active { background: var(--color-primary); color: #fff; font-weight: 600; }
 .page-btn svg { width: 14px; height: 14px; }
-.page-size-select { height: 32px; width: 76px; padding: 0 var(--space-2); }
+.page-size-select { width: 112px; }
+.page-size-select .select { height: 32px; }
 
 /* ---------- Modal ---------- */
 .modal-overlay {
@@ -757,9 +758,14 @@
 .data-table.compact th, .data-table.compact td { padding: var(--space-2) var(--space-3); }
 
 /* ---------- Detail page section tabs ---------- */
-.section-tabs { display: flex; gap: var(--space-1); border-bottom: 1px solid var(--color-border); margin-bottom: var(--space-4); }
-.section-tab { padding: var(--space-2) var(--space-4); font-size: var(--text-sm); font-weight: 600; color: var(--color-text-tertiary); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.section-tabs { position: relative; display: flex; gap: var(--space-1); border-bottom: 1px solid var(--color-border); margin-bottom: var(--space-4); }
+.section-tab { padding: var(--space-2) var(--space-4); font-size: var(--text-sm); font-weight: 600; color: var(--color-text-tertiary); border-bottom: 2px solid transparent; margin-bottom: -1px; cursor: pointer; user-select: none; transition: color .15s ease; }
+.section-tab:hover { color: var(--color-info); }
 .section-tab.active { color: var(--color-primary); border-bottom-color: var(--color-primary); }
+.section-tab.active:hover { color: var(--color-primary); }
+.section-tab-indicator { position: absolute; bottom: -1px; height: 2px; background: var(--color-info); border-radius: 1px; opacity: 0; transition: left .2s ease, width .2s ease, opacity .15s ease, background-color .15s ease; pointer-events: none; }
+.section-tab-indicator.visible { opacity: 1; }
+.section-tab-indicator.on-active { background: var(--color-primary); }
 
 /* ---------- Split layout (site list + settings panel, merged single-page pattern) ---------- */
 .split-layout { display: flex; align-items: flex-start; gap: var(--space-5); }
@@ -889,6 +895,8 @@
 .row-expand-btn {
   width: 22px; height: 22px;
   display: inline-flex; align-items: center; justify-content: center;
+  vertical-align: middle;
+  margin-right: var(--space-2);
   color: var(--color-text-tertiary);
   border-radius: var(--radius-sm);
   transition: transform .15s ease;
@@ -898,7 +906,10 @@
 .row-expand-btn:hover { background: var(--color-bg-hover); color: var(--color-text-primary); }
 .title-row.open .row-expand-btn { transform: rotate(90deg); }
 .title-row { cursor: pointer; }
-.title-row td:first-child { display: flex; align-items: center; gap: var(--space-2); }
+/* 注意：td 不可用 display:flex，否則會脫離表格列高計算，導致該欄高度與同列其他欄不一致
+   （尤其當同列有較高內容時，如維護設定欄），造成左側強調色線斷裂。改用 vertical-align 對齊即可。 */
+.title-row td:first-child { vertical-align: middle; }
+.title-row-name { vertical-align: middle; }
 .title-row-name { font-weight: 600; }
 
 /* 展開時：標題列高亮 + 左側色條，作為與下方明細之間的視覺錨點。
@@ -1031,6 +1042,173 @@
   color: var(--color-text-tertiary);
 }
 .upload-thumb.empty svg { width: 20px; height: 20px; }
+
+/* ---------- Chip select (e.g. 站點設置 客服 狀態欄，顯示可移除的標籤 + 下拉選單外觀) ---------- */
+.chip-select {
+  position: relative;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+  min-height: 36px;
+  padding: 4px var(--space-8) 4px 6px;
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-sm);
+  background: #fff;
+}
+.chip-select::after {
+  content: "";
+  position: absolute;
+  right: 12px; top: 50%;
+  width: 8px; height: 8px;
+  border-right: 1.5px solid var(--color-text-tertiary);
+  border-bottom: 1.5px solid var(--color-text-tertiary);
+  transform: translateY(-70%) rotate(45deg);
+  pointer-events: none;
+}
+.chip-select-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.chip-select-tag button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: .7;
+}
+.chip-select-tag button:hover { opacity: 1; }
+
+/* ---------- URL input group (e.g. 站點設置 客服 網址欄，通訊協定下拉 + 網域輸入合併呈現) ---------- */
+.url-input-group { display: flex; align-items: stretch; }
+.url-input-group .select-wrap { width: 96px; flex-shrink: 0; }
+.url-input-group .select {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-right: none;
+}
+.url-input-group .input {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.url-input-group .input:focus { position: relative; z-index: 1; }
+
+/* ---------- Domain list (e.g. 站點設置 啟用網域，多筆時收合以維持列高一致) ---------- */
+.domain-list { display: flex; flex-direction: column; gap: 2px; }
+.domain-list a { color: var(--color-text-secondary); }
+.domain-list a:hover { color: var(--color-primary); }
+.domain-list-more { display: none; flex-direction: column; gap: 2px; }
+.domain-list.expanded .domain-list-more { display: flex; }
+.domain-list-toggle {
+  display: inline-flex; align-items: center; gap: 4px;
+  align-self: flex-start;
+  margin-top: 2px;
+  background: none; border: none; padding: 0;
+  font-size: var(--text-xs); color: var(--color-primary); cursor: pointer;
+}
+.domain-list-toggle svg { width: 12px; height: 12px; transition: transform .15s ease; }
+.domain-list.expanded .domain-list-toggle svg { transform: rotate(180deg); }
+
+/* ---------- Button disabled state ---------- */
+.btn:disabled { opacity: .5; cursor: not-allowed; pointer-events: none; }
+
+/* ---------- Section tab panels (functional tab switching within a single page) ---------- */
+.tab-panel { display: none; }
+.tab-panel.active { display: block; }
+
+/* ---------- Maintenance settings cell (e.g. 站點設置 遊戲大類資料，例行/臨時維護) ---------- */
+.maint-cell { display: flex; flex-direction: column; gap: var(--space-3); min-width: 380px; }
+.maint-row { display: flex; align-items: center; gap: var(--space-2); }
+.maint-row-label { font-size: var(--text-xs); color: var(--color-text-tertiary); width: 52px; flex-shrink: 0; }
+.maint-weekday { width: 92px; flex-shrink: 0; }
+.maint-time { width: 96px; flex-shrink: 0; }
+.maint-sep { color: var(--color-text-tertiary); }
+.maint-updated { color: var(--color-text-tertiary); }
+
+/* 維護設定 modal 內含日期區間選擇器（與 members.html 等處共用同一元件），
+   彈窗需讓其下拉曆表不被 modal-body 的 overflow 裁切 */
+#modalMaintenance .modal-body { overflow: visible; }
+
+/* ---------- Drag-to-reorder table (e.g. 站點設置 大類排序) ---------- */
+.drag-handle { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; color: var(--color-text-tertiary); cursor: grab; }
+.drag-handle svg { width: 16px; height: 16px; }
+tr[draggable="true"] { cursor: grab; }
+tr.dragging { opacity: .4; }
+tr.drag-over { box-shadow: inset 0 2px 0 var(--color-primary); }
+
+/* ---------- Template picker (e.g. 站點設置 外觀設置) ---------- */
+.template-grid { display: flex; flex-wrap: wrap; gap: var(--space-4); }
+.template-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-3);
+  width: 200px;
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  text-align: center;
+}
+.template-card.selected { border-color: var(--color-primary); box-shadow: 0 0 0 3px var(--color-primary-light); }
+.template-card-radio { position: absolute; top: var(--space-3); left: var(--space-3); width: 18px; height: 18px; accent-color: var(--color-primary); margin: 0; }
+.template-card-thumb { width: 100%; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--color-border); background: var(--color-bg-subtle); }
+.template-card-thumb img { width: 100%; display: block; }
+.template-card-name { font-size: var(--text-sm); font-weight: 700; display: flex; align-items: center; gap: var(--space-2); }
+.template-card-desc { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+.template-grid.count-1 .template-card {
+  flex-direction: row;
+  align-items: flex-start;
+  text-align: left;
+  width: 100%;
+  max-width: 640px;
+  padding: var(--space-5);
+}
+.template-grid.count-1 .template-card-thumb { width: 150px; flex-shrink: 0; }
+.template-grid.count-1 .template-card-info { flex: 1; padding-top: var(--space-2); display: flex; flex-direction: column; gap: var(--space-2); }
+
+/* ---------- Gallery grid (e.g. 網站管理 > 圖庫管理) ---------- */
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+}
+.gallery-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-card);
+}
+.gallery-card-title { font-size: var(--text-sm); font-weight: 700; }
+.gallery-card-thumb {
+  aspect-ratio: 1 / 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-subtle);
+}
+.gallery-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.gallery-card-actions { display: flex; gap: var(--space-2); }
+.gallery-card-actions .btn { flex: 1; }
 
 /* ---------- Utility ---------- */
 .mt-2 { margin-top: var(--space-2); }
