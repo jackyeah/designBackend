@@ -1096,6 +1096,67 @@
 .subtitle-cell-heading .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--row-accent, var(--color-primary)); flex-shrink: 0; }
 .subtitle-cell-heading .count { color: var(--color-text-tertiary); font-weight: 500; }
 
+/* ---------- Slide master-detail：清單列點擊後整個面板向左滑出，帶出明細（含自身分頁），
+   取代「向下展開」在明細資料量大、或可能同時展開多組時越展越長、難以捲動的問題（例如 優惠活動記錄） ---------- */
+.slide-master-detail { position: relative; overflow: hidden; }
+.slide-track { display: flex; align-items: flex-start; width: 200%; transition: transform .28s ease; }
+.slide-master-detail.detail-active .slide-track { transform: translateX(-50%); }
+.slide-panel { width: 50%; flex-shrink: 0; min-width: 0; }
+.slide-panel-detail { padding-left: var(--space-6); border-left: 1px solid var(--color-border); }
+
+.slide-row { cursor: pointer; }
+.slide-row:hover { background: var(--color-bg-hover); }
+.slide-row td:first-child { vertical-align: middle; }
+.slide-row-name { font-weight: 600; vertical-align: middle; }
+.slide-row-arrow {
+  width: 22px; height: 22px;
+  display: inline-flex; align-items: center; justify-content: center;
+  vertical-align: middle;
+  margin-right: var(--space-2);
+  color: var(--color-text-tertiary);
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+.slide-row-arrow svg { width: 14px; height: 14px; }
+.slide-row:hover .slide-row-arrow { background: var(--color-bg-card); color: var(--color-primary); }
+
+.slide-detail-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding-bottom: var(--space-4);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+}
+.slide-detail-back {
+  display: inline-flex; align-items: center; gap: 4px;
+  height: 32px;
+  padding: 0 var(--space-3);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  background: var(--color-bg-card);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.slide-detail-back svg { width: 15px; height: 15px; }
+.slide-detail-back:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+.slide-detail-titlewrap { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.slide-detail-title { font-size: var(--text-md); font-weight: 700; color: var(--color-text-primary); }
+.slide-detail-sub { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+
+.slide-detail-meta { display: flex; gap: var(--space-6); margin-left: auto; flex-shrink: 0; }
+.slide-detail-meta-item { display: flex; flex-direction: column; gap: 2px; text-align: right; }
+.slide-detail-meta-label { font-size: var(--text-xs); color: var(--color-text-tertiary); }
+.slide-detail-meta-value { font-size: var(--text-sm); font-weight: 700; color: var(--color-text-primary); }
+.slide-detail-meta-value.accent { color: var(--color-success); }
+
+.slide-detail-set { display: none; }
+.slide-detail-set.active { display: block; }
+
 /* ---------- Rich-text editor (static visual, 內文 body) ---------- */
 .editor-toolbar {
   display: flex;

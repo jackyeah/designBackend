@@ -20,17 +20,17 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 
   /* ---------- Stat filter strip: click a category card to filter the activity list below (e.g. 優惠活動記錄) ----------
-     每個分類對應一列 .title-row（活動）+ 其後的 .subtitle-row（該活動的會員明細，展開時才顯示） */
+     每個分類對應一列 .title-row 或 .slide-row（活動），依 data-type 顯示/隱藏 */
   document.querySelectorAll('.stat-filter-strip[data-filter-target]').forEach(function (strip) {
     var table = document.querySelector(strip.getAttribute('data-filter-target'));
     if (!table) return;
-    var titleRows = table.querySelectorAll('tbody tr.title-row');
+    var rows = table.querySelectorAll('tbody tr.title-row, tbody tr.slide-row');
     strip.querySelectorAll('.stat-filter-item').forEach(function (item) {
       item.addEventListener('click', function () {
         strip.querySelectorAll('.stat-filter-item').forEach(function (i) { i.classList.remove('active'); });
         item.classList.add('active');
         var type = item.getAttribute('data-type');
-        titleRows.forEach(function (row) {
+        rows.forEach(function (row) {
           var match = (type === 'all' || row.getAttribute('data-type') === type);
           row.style.display = match ? '' : 'none';
           var sub = document.getElementById(row.getAttribute('data-target'));
@@ -49,6 +49,40 @@ document.addEventListener('DOMContentLoaded', function () {
       row.classList.toggle('open');
       sub.classList.toggle('open');
     });
+  });
+
+  /* ---------- Slide master-detail：清單列點擊 → 整個面板向左滑出帶出明細（含自身分頁），
+     取代「向下展開」在明細筆數多、或可能同時展開多組時越展越長的問題（例如 優惠活動記錄）。
+     可重複套用：清單列標 data-slide-target，對應 .slide-detail-set[data-detail-set]；
+     清單列上的 data-<field> 會同步套用到 .slide-detail-header 內 [data-slide-field="<field>"] 元素 ---------- */
+  document.querySelectorAll('.slide-master-detail').forEach(function (wrap) {
+    var rows = wrap.querySelectorAll('.slide-panel-list [data-slide-target]');
+    var detailSets = wrap.querySelectorAll('.slide-detail-set');
+    var header = wrap.querySelector('.slide-detail-header');
+    var backBtn = wrap.querySelector('[data-slide-back]');
+
+    rows.forEach(function (row) {
+      row.addEventListener('click', function () {
+        var target = row.getAttribute('data-slide-target');
+        detailSets.forEach(function (set) {
+          set.classList.toggle('active', set.getAttribute('data-detail-set') === target);
+        });
+        if (header) {
+          header.querySelectorAll('[data-slide-field]').forEach(function (el) {
+            var field = el.getAttribute('data-slide-field');
+            var val = row.getAttribute('data-' + field);
+            if (val !== null) el.textContent = val;
+          });
+        }
+        wrap.classList.add('detail-active');
+      });
+    });
+
+    if (backBtn) {
+      backBtn.addEventListener('click', function () {
+        wrap.classList.remove('detail-active');
+      });
+    }
   });
 
   /* ---------- Domain list expand/collapse (e.g. 站點設置 啟用網域) ---------- */

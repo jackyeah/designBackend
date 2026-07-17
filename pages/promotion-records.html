@@ -162,7 +162,8 @@
         </div>
       </div>
 
-      <!-- 第一層清單＝活動（依優惠類型分組），展開後才是領取該活動優惠的會員(SID)明細 -->
+      <!-- 清單＝活動（依優惠類型分組），點擊列後整個面板向左滑出，帶出該活動的會員明細（含自身分頁）；
+           取代「向下展開」在明細筆數多、且可能同時展開多組活動時越展越長、頁面難以捲動的問題 -->
       <div class="card mt-4">
         <div class="card-section">
           <div class="table-toolbar">
@@ -174,141 +175,148 @@
             </button>
           </div>
 
-          <div class="table-scroll">
-            <table class="data-table nested-table" id="promoActivityTable">
-              <thead>
-                <tr>
-                  <th style="width:28%;">優惠類型</th><th>活動標題</th><th>人數</th><th>優惠金額總計</th><th>建立時間</th>
-                </tr>
-              </thead>
-              <tbody>
+          <div class="slide-master-detail" id="promoSlideMD">
+            <div class="slide-track">
 
-                <tr class="title-row accent-a" data-type="bind-phone" data-target="act-bind-phone">
-                  <td>
-                    <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-                    <span class="title-row-name">任務獎勵-綁定手機號碼</span>
-                  </td>
-                  <td>-</td>
-                  <td>2</td>
-                  <td>36.00</td>
-                  <td>2026-04-02 09:12:07</td>
-                </tr>
-                <tr class="subtitle-row accent-a" id="act-bind-phone">
-                  <td colspan="5">
-                    <div class="subtitle-cell">
-                      <div class="subtitle-cell-heading"><span class="dot"></span>任務獎勵-綁定手機號碼 <span class="count">· 會員明細（共 2 筆）</span></div>
-                      <div class="subtable-wrap">
-                        <table class="subtable">
-                          <thead><tr><th>SID</th><th>VIP等級</th><th>優惠金額</th><th>派發時間</th><th>稽核人員/時間</th></tr></thead>
-                          <tbody>
-                            <tr><td>252169831</td><td>VIP1</td><td>18.00</td><td>2026-04-02 09:12:07</td><td>System 2026-04-02 09:12:07</td></tr>
-                            <tr><td>252169845</td><td>VIP0</td><td>18.00</td><td>2026-04-04 15:38:52</td><td>System 2026-04-04 15:38:52</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
+              <!-- 面板一：活動清單 -->
+              <div class="slide-panel slide-panel-list">
+                <div class="table-scroll">
+                  <table class="data-table" id="promoActivityTable">
+                    <thead>
+                      <tr>
+                        <th style="width:28%;">優惠類型</th><th>活動標題</th><th>人數</th><th>優惠金額總計</th><th>建立時間</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr class="slide-row" data-slide-target="act-bind-phone" data-type="bind-phone"
+                          data-title="任務獎勵-綁定手機號碼" data-count="2" data-total="36.00" data-created="2026-04-02 09:12:07">
+                        <td><span class="slide-row-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span><span class="slide-row-name">任務獎勵-綁定手機號碼</span></td>
+                        <td>-</td>
+                        <td>2</td>
+                        <td>36.00</td>
+                        <td>2026-04-02 09:12:07</td>
+                      </tr>
+                      <tr class="slide-row" data-slide-target="act-line-friend" data-type="line-friend"
+                          data-title="任務獎勵-加入官方LINE好友" data-count="10" data-total="180.00" data-created="2026-04-03 13:21:47">
+                        <td><span class="slide-row-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span><span class="slide-row-name">任務獎勵-加入官方LINE好友</span></td>
+                        <td>-</td>
+                        <td>10</td>
+                        <td>180.00</td>
+                        <td>2026-04-03 13:21:47</td>
+                      </tr>
+                      <tr class="slide-row" data-slide-target="act-share" data-type="share"
+                          data-title="任務獎勵-分享好友" data-count="2" data-total="36.00" data-created="2026-04-05 11:01:18">
+                        <td><span class="slide-row-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span><span class="slide-row-name">任務獎勵-分享好友</span></td>
+                        <td>-</td>
+                        <td>2</td>
+                        <td>36.00</td>
+                        <td>2026-04-05 11:01:18</td>
+                      </tr>
+                      <tr class="slide-row" data-slide-target="act-desktop" data-type="desktop"
+                          data-title="任務獎勵-加入手機桌面" data-count="1" data-total="18.00" data-created="2026-04-05 10:55:48">
+                        <td><span class="slide-row-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span><span class="slide-row-name">任務獎勵-加入手機桌面</span></td>
+                        <td>-</td>
+                        <td>1</td>
+                        <td>18.00</td>
+                        <td>2026-04-05 10:55:48</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+                <!-- 資料未超過一頁，依規範不顯示分頁器 -->
+              </div>
+
+              <!-- 面板二：會員明細（點擊左側列後依 data-slide-target 切換內容） -->
+              <div class="slide-panel slide-panel-detail">
+                <div class="slide-detail-header">
+                  <button type="button" class="slide-detail-back" data-slide-back>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                    返回列表
+                  </button>
+                  <div class="slide-detail-titlewrap">
+                    <span class="slide-detail-title" data-slide-field="title">任務獎勵-綁定手機號碼</span>
+                    <span class="slide-detail-sub">會員明細</span>
+                  </div>
+                  <div class="slide-detail-meta">
+                    <div class="slide-detail-meta-item">
+                      <span class="slide-detail-meta-label">人數</span>
+                      <span class="slide-detail-meta-value" data-slide-field="count">2</span>
                     </div>
-                  </td>
-                </tr>
-
-                <tr class="title-row accent-b" data-type="line-friend" data-target="act-line-friend">
-                  <td>
-                    <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-                    <span class="title-row-name">任務獎勵-加入官方LINE好友</span>
-                  </td>
-                  <td>-</td>
-                  <td>10</td>
-                  <td>180.00</td>
-                  <td>2026-04-03 13:21:47</td>
-                </tr>
-                <tr class="subtitle-row accent-b" id="act-line-friend">
-                  <td colspan="5">
-                    <div class="subtitle-cell">
-                      <div class="subtitle-cell-heading"><span class="dot"></span>任務獎勵-加入官方LINE好友 <span class="count">· 會員明細（共 10 筆）</span></div>
-                      <div class="subtable-wrap">
-                        <table class="subtable">
-                          <thead><tr><th>SID</th><th>VIP等級</th><th>優惠金額</th><th>派發時間</th><th>稽核人員/時間</th></tr></thead>
-                          <tbody>
-                            <tr><td>252169857</td><td>VIP1</td><td>18.00</td><td>2026-04-03 13:21:47</td><td>System 2026-04-03 13:21:47</td></tr>
-                            <tr><td>252169854</td><td>VIP1</td><td>18.00</td><td>2026-04-03 13:33:20</td><td>System 2026-04-03 13:33:20</td></tr>
-                            <tr><td>252169869</td><td>VIP1</td><td>18.00</td><td>2026-04-03 16:51:19</td><td>System 2026-04-03 16:51:19</td></tr>
-                            <tr><td>252169878</td><td>VIP2</td><td>18.00</td><td>2026-04-03 16:51:31</td><td>System 2026-04-03 16:51:31</td></tr>
-                            <tr><td>252169879</td><td>VIP1</td><td>18.00</td><td>2026-04-03 16:52:31</td><td>System 2026-04-03 16:52:31</td></tr>
-                            <tr><td>252169870</td><td>VIP1</td><td>18.00</td><td>2026-04-05 10:55:48</td><td>System 2026-04-05 10:55:48</td></tr>
-                            <tr><td>252169882</td><td>VIP1</td><td>18.00</td><td>2026-04-05 11:01:18</td><td>System 2026-04-05 11:01:18</td></tr>
-                            <tr><td>252169877</td><td>VIP1</td><td>18.00</td><td>2026-04-05 11:51:56</td><td>System 2026-04-05 11:51:56</td></tr>
-                            <tr><td>252169891</td><td>VIP0</td><td>18.00</td><td>2026-04-06 09:20:03</td><td>System 2026-04-06 09:20:03</td></tr>
-                            <tr><td>252169903</td><td>VIP1</td><td>18.00</td><td>2026-04-06 14:47:29</td><td>System 2026-04-06 14:47:29</td></tr>
-                          </tbody>
-                        </table>
-                        <div class="pagination">
-                          <span class="page-btn">«</span><span class="page-btn">‹</span>
-                          <span class="page-btn active">1</span><span class="page-btn">2</span>
-                          <span class="page-btn">›</span><span class="page-btn">»</span>
-                          <div class="select-wrap page-size-select"><select class="select"><option selected>10 筆/頁</option><option>20 筆/頁</option><option>50 筆/頁</option></select></div>
-                        </div>
-                      </div>
+                    <div class="slide-detail-meta-item">
+                      <span class="slide-detail-meta-label">優惠金額總計</span>
+                      <span class="slide-detail-meta-value accent" data-slide-field="total">36.00</span>
                     </div>
-                  </td>
-                </tr>
-
-                <tr class="title-row accent-a" data-type="share" data-target="act-share">
-                  <td>
-                    <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-                    <span class="title-row-name">任務獎勵-分享好友</span>
-                  </td>
-                  <td>-</td>
-                  <td>2</td>
-                  <td>36.00</td>
-                  <td>2026-04-05 11:01:18</td>
-                </tr>
-                <tr class="subtitle-row accent-a" id="act-share">
-                  <td colspan="5">
-                    <div class="subtitle-cell">
-                      <div class="subtitle-cell-heading"><span class="dot"></span>任務獎勵-分享好友 <span class="count">· 會員明細（共 2 筆）</span></div>
-                      <div class="subtable-wrap">
-                        <table class="subtable">
-                          <thead><tr><th>SID</th><th>VIP等級</th><th>優惠金額</th><th>派發時間</th><th>稽核人員/時間</th></tr></thead>
-                          <tbody>
-                            <tr><td>252169878</td><td>VIP2</td><td>18.00</td><td>2026-04-05 11:01:18</td><td>System 2026-04-05 11:01:18</td></tr>
-                            <tr><td>252169879</td><td>VIP1</td><td>18.00</td><td>2026-04-05 11:51:56</td><td>System 2026-04-05 11:51:56</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
+                    <div class="slide-detail-meta-item">
+                      <span class="slide-detail-meta-label">建立時間</span>
+                      <span class="slide-detail-meta-value" data-slide-field="created">2026-04-02 09:12:07</span>
                     </div>
-                  </td>
-                </tr>
+                  </div>
+                </div>
 
-                <tr class="title-row accent-b" data-type="desktop" data-target="act-desktop">
-                  <td>
-                    <span class="row-expand-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></span>
-                    <span class="title-row-name">任務獎勵-加入手機桌面</span>
-                  </td>
-                  <td>-</td>
-                  <td>1</td>
-                  <td>18.00</td>
-                  <td>2026-04-05 10:55:48</td>
-                </tr>
-                <tr class="subtitle-row accent-b" id="act-desktop">
-                  <td colspan="5">
-                    <div class="subtitle-cell">
-                      <div class="subtitle-cell-heading"><span class="dot"></span>任務獎勵-加入手機桌面 <span class="count">· 會員明細（共 1 筆）</span></div>
-                      <div class="subtable-wrap">
-                        <table class="subtable">
-                          <thead><tr><th>SID</th><th>VIP等級</th><th>優惠金額</th><th>派發時間</th><th>稽核人員/時間</th></tr></thead>
-                          <tbody>
-                            <tr><td>252169870</td><td>VIP1</td><td>18.00</td><td>2026-04-05 10:55:48</td><td>System 2026-04-05 10:55:48</td></tr>
-                          </tbody>
-                        </table>
-                      </div>
+                <div class="slide-detail-set active" data-detail-set="act-bind-phone">
+                  <div class="subtable-wrap">
+                    <table class="subtable">
+                      <thead><tr><th>SID</th><th>VIP等級</th><th>優惠金額</th><th>派發時間</th><th>稽核人員/時間</th></tr></thead>
+                      <tbody>
+                        <tr><td>252169831</td><td>VIP1</td><td>18.00</td><td>2026-04-02 09:12:07</td><td>System 2026-04-02 09:12:07</td></tr>
+                        <tr><td>252169845</td><td>VIP0</td><td>18.00</td><td>2026-04-04 15:38:52</td><td>System 2026-04-04 15:38:52</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="slide-detail-set" data-detail-set="act-line-friend">
+                  <div class="subtable-wrap">
+                    <table class="subtable">
+                      <thead><tr><th>SID</th><th>VIP等級</th><th>優惠金額</th><th>派發時間</th><th>稽核人員/時間</th></tr></thead>
+                      <tbody>
+                        <tr><td>252169857</td><td>VIP1</td><td>18.00</td><td>2026-04-03 13:21:47</td><td>System 2026-04-03 13:21:47</td></tr>
+                        <tr><td>252169854</td><td>VIP1</td><td>18.00</td><td>2026-04-03 13:33:20</td><td>System 2026-04-03 13:33:20</td></tr>
+                        <tr><td>252169869</td><td>VIP1</td><td>18.00</td><td>2026-04-03 16:51:19</td><td>System 2026-04-03 16:51:19</td></tr>
+                        <tr><td>252169878</td><td>VIP2</td><td>18.00</td><td>2026-04-03 16:51:31</td><td>System 2026-04-03 16:51:31</td></tr>
+                        <tr><td>252169879</td><td>VIP1</td><td>18.00</td><td>2026-04-03 16:52:31</td><td>System 2026-04-03 16:52:31</td></tr>
+                        <tr><td>252169870</td><td>VIP1</td><td>18.00</td><td>2026-04-05 10:55:48</td><td>System 2026-04-05 10:55:48</td></tr>
+                        <tr><td>252169882</td><td>VIP1</td><td>18.00</td><td>2026-04-05 11:01:18</td><td>System 2026-04-05 11:01:18</td></tr>
+                        <tr><td>252169877</td><td>VIP1</td><td>18.00</td><td>2026-04-05 11:51:56</td><td>System 2026-04-05 11:51:56</td></tr>
+                        <tr><td>252169891</td><td>VIP0</td><td>18.00</td><td>2026-04-06 09:20:03</td><td>System 2026-04-06 09:20:03</td></tr>
+                        <tr><td>252169903</td><td>VIP1</td><td>18.00</td><td>2026-04-06 14:47:29</td><td>System 2026-04-06 14:47:29</td></tr>
+                      </tbody>
+                    </table>
+                    <div class="pagination">
+                      <span class="page-btn">«</span><span class="page-btn">‹</span>
+                      <span class="page-btn active">1</span><span class="page-btn">2</span>
+                      <span class="page-btn">›</span><span class="page-btn">»</span>
+                      <div class="select-wrap page-size-select"><select class="select"><option selected>10 筆/頁</option><option>20 筆/頁</option><option>50 筆/頁</option></select></div>
                     </div>
-                  </td>
-                </tr>
+                  </div>
+                </div>
 
-              </tbody>
-            </table>
+                <div class="slide-detail-set" data-detail-set="act-share">
+                  <div class="subtable-wrap">
+                    <table class="subtable">
+                      <thead><tr><th>SID</th><th>VIP等級</th><th>優惠金額</th><th>派發時間</th><th>稽核人員/時間</th></tr></thead>
+                      <tbody>
+                        <tr><td>252169878</td><td>VIP2</td><td>18.00</td><td>2026-04-05 11:01:18</td><td>System 2026-04-05 11:01:18</td></tr>
+                        <tr><td>252169879</td><td>VIP1</td><td>18.00</td><td>2026-04-05 11:51:56</td><td>System 2026-04-05 11:51:56</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+                <div class="slide-detail-set" data-detail-set="act-desktop">
+                  <div class="subtable-wrap">
+                    <table class="subtable">
+                      <thead><tr><th>SID</th><th>VIP等級</th><th>優惠金額</th><th>派發時間</th><th>稽核人員/時間</th></tr></thead>
+                      <tbody>
+                        <tr><td>252169870</td><td>VIP1</td><td>18.00</td><td>2026-04-05 10:55:48</td><td>System 2026-04-05 10:55:48</td></tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
-
-          <!-- 資料未超過一頁，依規範不顯示分頁器 -->
         </div>
       </div>
     </main>
