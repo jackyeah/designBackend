@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公會會員名單 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'guild-members', label: '公會會員名單', href: 'guild-members.html' };
+  window.PAGE_BREADCRUMB = ['公會管理', '公會列表', '公會會員名單'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="guild" data-subactive="guild-list"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>公會會員名單<span class="text-sm text-tertiary" style="font-weight:400;margin-left:var(--space-3);">龍城戰隊</span></h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label">SID</label>
+              <div class="field-row"><input class="input" type="text" placeholder="請輸入"><button class="btn-icon-add" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <span class="text-sm text-secondary">公會：龍城戰隊</span>
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary">共 52 筆</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>SID</th>
+                  <th>會員帳號</th>
+                  <th>暱稱</th>
+                  <th>加入時間</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="cell-copy">252169763<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">de0ac277-guild01<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>龍城會長</td>
+                  <td>2026-07-10 09:12:33</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252170014<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">test10000<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>test2</td>
+                  <td>2026-07-11 08:03:12</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169999<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">richard88<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>阿豪</td>
+                  <td>2026-07-11 20:47:51</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169961<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">annie002<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>安妮</td>
+                  <td>2026-07-12 13:29:04</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169934<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">kiangiank111<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>阿強</td>
+                  <td>2026-07-13 09:55:38</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169927<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">ayumitest6<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>Ayumi</td>
+                  <td>2026-07-13 22:18:47</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169926<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">testannie1<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>安妮測試</td>
+                  <td>2026-07-14 15:02:19</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169919<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">xion005<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>小翔</td>
+                  <td>2026-07-15 07:41:56</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169916<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">seven01<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>七七</td>
+                  <td>2026-07-16 11:26:03</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169913<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="cell-copy">ayumitest6b<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>阿信</td>
+                  <td>2026-07-17 19:09:27</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination">
+            <span class="page-btn">«</span><span class="page-btn">‹</span>
+            <span class="page-btn active">1</span><span class="page-btn">2</span><span class="page-btn">3</span><span class="page-btn">4</span><span class="page-btn">5</span><span class="page-btn">6</span>
+            <span class="page-btn">›</span><span class="page-btn">»</span>
+            <div class="select-wrap page-size-select"><select class="select"><option selected>10 筆/頁</option><option>20 筆/頁</option><option>50 筆/頁</option></select></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

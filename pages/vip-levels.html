@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIP等級管理 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'vip-levels', label: 'VIP等級管理', href: 'vip-levels.html' };
+  window.PAGE_BREADCRUMB = ['VIP設置', 'VIP等級管理'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="vip" data-subactive="vip-levels"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>VIP等級管理</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select"><option>請選擇</option><option selected>YZ 益兆</option><option>金錢母</option><option>Gamma 站</option></select></div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom: var(--space-3);">
+            <div style="display:flex; align-items:center; gap: var(--space-3);">
+              <span class="text-sm text-secondary">狀態</span>
+              <button type="button" class="pill-btn-neutral" data-modal-target="modalVipStatus">停用<svg class="pill-btn-caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
+            </div>
+            <a class="btn btn-secondary btn-sm" href="vip-reward-settings.html">VIP 機制設定</a>
+          </div>
+          <p class="text-sm text-tertiary" style="line-height: 1.7;">VIP設定為累計制，累計起始時間為 2001-01-01 08:06:00（UTC+8）。晉級條件從累計起始時間才開始計算。</p>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <span class="text-sm text-tertiary">共 10 筆</span>
+            <span class="spacer"></span>
+            <div class="toolbar-actions-default">
+              <button class="btn btn-primary btn-sm" data-table-edit-trigger="vipLevelsTable">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                編輯各 VIP 等級數值
+              </button>
+            </div>
+            <div class="toolbar-actions-editing">
+              <button class="btn btn-secondary btn-sm" data-table-edit-cancel="vipLevelsTable">取消</button>
+              <button class="btn btn-primary btn-sm" data-table-edit-save="vipLevelsTable">保存更改</button>
+            </div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table" id="vipLevelsTable" style="table-layout:fixed; min-width:1180px;">
+              <thead>
+                <tr>
+                  <th rowspan="2" style="width:72px;">VIP等級</th>
+                  <th rowspan="2" style="width:64px;">圖示</th>
+                  <th rowspan="2" style="width:100px;">狀態</th>
+                  <th colspan="2" style="text-align:center;">晉級條件</th>
+                  <th rowspan="2" style="width:104px;">晉級禮金</th>
+                  <th rowspan="2" style="width:104px;">每月回饋</th>
+                  <th rowspan="2" style="width:104px;">每週回饋</th>
+                  <th rowspan="2" style="width:96px;">發財金</th>
+                  <th rowspan="2" style="width:96px;">補給金</th>
+                  <th rowspan="2" style="width:150px;">公會權限</th>
+                </tr>
+                <tr>
+                  <th style="width:130px;">總累積儲值值</th>
+                  <th style="width:130px;">總累積遊玩點數</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight:700;">VIP1</td>
+                  <td><div class="vip-tier-badge tier-bronze">VIP1</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-success">正常</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option selected>正常</option><option>晉級凍結</option></select></div>
+                  </td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag">創立</span>
+                      <span class="guild-perm-tag">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">加入</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;">VIP2</td>
+                  <td><div class="vip-tier-badge tier-bronze">VIP2</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-success">正常</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option selected>正常</option><option>晉級凍結</option></select></div>
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">2</span>
+                    <input class="input cell-edit" type="text" value="2">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag">創立</span>
+                      <span class="guild-perm-tag is-on">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>加入</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;">VIP3</td>
+                  <td><div class="vip-tier-badge tier-bronze">VIP3</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-success">正常</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option selected>正常</option><option>晉級凍結</option></select></div>
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">3</span>
+                    <input class="input cell-edit" type="text" value="3">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag">創立</span>
+                      <span class="guild-perm-tag is-on">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>加入</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;">VIP4</td>
+                  <td><div class="vip-tier-badge tier-bronze">VIP4</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-success">正常</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option selected>正常</option><option>晉級凍結</option></select></div>
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">4</span>
+                    <input class="input cell-edit" type="text" value="4">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag">創立</span>
+                      <span class="guild-perm-tag is-on">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>加入</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;">VIP5</td>
+                  <td><div class="vip-tier-badge tier-silver">VIP5</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-success">正常</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option selected>正常</option><option>晉級凍結</option></select></div>
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">5</span>
+                    <input class="input cell-edit" type="text" value="5">
+                  </td>
+                  <td>
+                    <span class="cell-view">38</span>
+                    <input class="input cell-edit" type="text" value="38">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">18</span>
+                    <input class="input cell-edit" type="text" value="18">
+                  </td>
+                  <td>
+                    <span class="cell-view">5</span>
+                    <input class="input cell-edit" type="text" value="5">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag">創立</span>
+                      <span class="guild-perm-tag is-on">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>加入</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;">VIP6</td>
+                  <td><div class="vip-tier-badge tier-silver">VIP6</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-success">正常</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option selected>正常</option><option>晉級凍結</option></select></div>
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">6</span>
+                    <input class="input cell-edit" type="text" value="6">
+                  </td>
+                  <td>
+                    <span class="cell-view">88</span>
+                    <input class="input cell-edit" type="text" value="88">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">38</span>
+                    <input class="input cell-edit" type="text" value="38">
+                  </td>
+                  <td>
+                    <span class="cell-view">5</span>
+                    <input class="input cell-edit" type="text" value="5">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag">創立</span>
+                      <span class="guild-perm-tag is-on">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>加入</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;">VIP7</td>
+                  <td><div class="vip-tier-badge tier-gold">VIP7</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-success">正常</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option selected>正常</option><option>晉級凍結</option></select></div>
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">7</span>
+                    <input class="input cell-edit" type="text" value="7">
+                  </td>
+                  <td>
+                    <span class="cell-view">388</span>
+                    <input class="input cell-edit" type="text" value="388">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">88</span>
+                    <input class="input cell-edit" type="text" value="88">
+                  </td>
+                  <td>
+                    <span class="cell-view">8</span>
+                    <input class="input cell-edit" type="text" value="8">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag">創立</span>
+                      <span class="guild-perm-tag is-on">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>加入</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;">VIP8</td>
+                  <td><div class="vip-tier-badge tier-gold">VIP8</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-success">正常</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option selected>正常</option><option>晉級凍結</option></select></div>
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">8</span>
+                    <input class="input cell-edit" type="text" value="8">
+                  </td>
+                  <td>
+                    <span class="cell-view">888</span>
+                    <input class="input cell-edit" type="text" value="888">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">128</span>
+                    <input class="input cell-edit" type="text" value="128">
+                  </td>
+                  <td>
+                    <span class="cell-view">8</span>
+                    <input class="input cell-edit" type="text" value="8">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag">創立</span>
+                      <span class="guild-perm-tag is-on">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>加入</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;">VIP9</td>
+                  <td><div class="vip-tier-badge tier-gold">VIP9</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-warning">晉級凍結</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option>正常</option><option selected>晉級凍結</option></select></div>
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">9</span>
+                    <input class="input cell-edit" type="text" value="9">
+                  </td>
+                  <td>
+                    <span class="cell-view">1888</span>
+                    <input class="input cell-edit" type="text" value="1888">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">288</span>
+                    <input class="input cell-edit" type="text" value="288">
+                  </td>
+                  <td>
+                    <span class="cell-view">8</span>
+                    <input class="input cell-edit" type="text" value="8">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag">創立</span>
+                      <span class="guild-perm-tag is-on">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox">創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>加入</label>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <td style="font-weight:700;">VIP10</td>
+                  <td><div class="vip-tier-badge tier-prestige">VIP10</div></td>
+                  <td>
+                    <span class="cell-view"><span class="badge badge-success">正常</span></span>
+                    <div class="select-wrap cell-edit"><select class="select"><option selected>正常</option><option>晉級凍結</option></select></div>
+                  </td>
+                  <td>
+                    <span class="cell-view">1,000,000</span>
+                    <input class="input cell-edit" type="text" value="1,000,000">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <span class="cell-view">0</span>
+                    <input class="input cell-edit" type="text" value="0">
+                  </td>
+                  <td>
+                    <div class="guild-perm-tags cell-view">
+                      <span class="guild-perm-tag is-on">創立</span>
+                      <span class="guild-perm-tag is-on">加入</span>
+                    </div>
+                    <div class="guild-perm-edit cell-edit">
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>創立</label>
+                      <label class="checkbox-field"><input class="checkbox" type="checkbox" checked>加入</label>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <!-- VIP 等級數固定、不會分頁，依規範不顯示分頁器 -->
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<!-- VIP 設置狀態 Modal -->
+<div class="modal-overlay" id="modalVipStatus">
+  <div class="modal" style="max-width: 460px;">
+    <div class="modal-header">
+      <h2>VIP設置狀態</h2>
+      <button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-field" style="margin-bottom: var(--space-4);">
+        <label class="field-label">VIP 功能狀態</label>
+        <div class="radio-group">
+          <label class="radio-field"><input type="radio" name="vipStatus">啟用</label>
+          <label class="radio-field"><input type="radio" name="vipStatus" checked>停用</label>
+        </div>
+      </div>
+      <div class="form-field">
+        <label class="field-label">累計起始時間</label>
+        <div class="date-input is-disabled">
+          <svg class="date-input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          <span>2001-01-01 08:06:00（UTC+8）</span>
+        </div>
+        <p class="text-xs text-tertiary mt-2">晉級條件從累計起始時間才開始計算，設定後不可更改。</p>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-primary" data-modal-close>儲存</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>會員列表 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'vip-tier-members', label: '會員列表', href: 'vip-tier-members.html' };
+  window.PAGE_BREADCRUMB = ['VIP設置', '層級設置', '會員列表'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="vip" data-subactive="vip-tier-settings"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>會員列表</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label">SID</label>
+              <div class="field-row"><input class="input" type="text" placeholder="請輸入"><button class="btn-icon-add" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <span class="text-sm text-secondary">等級名稱：VIP1</span>
+            <div class="select-wrap" style="width:140px;"><select class="select">
+              <option selected>VIP1</option>
+              <option>VIP2</option>
+              <option>VIP3</option>
+              <option>VIP4</option>
+              <option>VIP5</option>
+              <option>VIP6</option>
+              <option>VIP7</option>
+              <option>VIP8</option>
+              <option>VIP9</option>
+              <option>VIP10</option>
+            </select></div>
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary">共 10,064 筆</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>SID</th>
+                  <th>登入次數</th>
+                  <th>創建時間</th>
+                  <th class="col-actions">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="cell-copy">252170014<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>1</td>
+                  <td>2026-07-13 23:52:33</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252170014" data-from-level="VIP1">編輯</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169999<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>5</td>
+                  <td>2026-07-09 10:32:25</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252169999" data-from-level="VIP1">編輯</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169961<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>1</td>
+                  <td>2026-06-26 16:00:49</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252169961" data-from-level="VIP1">編輯</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169934<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>2</td>
+                  <td>2026-05-22 15:52:14</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252169934" data-from-level="VIP1">編輯</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169927<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>2</td>
+                  <td>2026-05-14 12:03:52</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252169927" data-from-level="VIP1">編輯</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169926<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>8</td>
+                  <td>2026-05-14 11:57:32</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252169926" data-from-level="VIP1">編輯</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169924<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>1</td>
+                  <td>2026-05-14 11:42:14</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252169924" data-from-level="VIP1">編輯</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169919<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>6</td>
+                  <td>2026-05-07 10:11:13</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252169919" data-from-level="VIP1">編輯</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169916<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>1</td>
+                  <td>2026-04-30 10:23:10</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252169916" data-from-level="VIP1">編輯</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169913<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>6</td>
+                  <td>2026-04-23 16:06:47</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalEditMemberLevel" data-sid="252169913" data-from-level="VIP1">編輯</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination">
+            <span class="page-btn">«</span><span class="page-btn">‹</span>
+            <span class="page-btn active">1</span><span class="page-btn">2</span><span class="page-btn">3</span>
+            <span class="page-btn">›</span><span class="page-btn">»</span>
+            <div class="select-wrap page-size-select"><select class="select"><option selected>10 筆/頁</option><option>20 筆/頁</option><option>50 筆/頁</option></select></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- 編輯會員等級 Modal -->
+<div class="modal-overlay" id="modalEditMemberLevel">
+  <div class="modal" style="max-width: 420px;">
+    <div class="modal-header">
+      <h2>編輯</h2>
+      <button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="form-field" style="margin-bottom: var(--space-4);">
+        <label class="field-label">SID</label>
+        <input class="input" type="text" id="editMemberSid" disabled>
+      </div>
+      <div class="form-field" style="margin-bottom: var(--space-4);">
+        <label class="field-label">來源等級</label>
+        <input class="input" type="text" id="editMemberFromLevel" disabled>
+      </div>
+      <div class="form-field">
+        <label class="field-label"><span class="required">*</span>目的等級</label>
+        <div class="select-wrap"><select class="select">
+          <option selected>請選擇</option>
+          <option>VIP1</option>
+          <option>VIP2</option>
+          <option>VIP3</option>
+          <option>VIP4</option>
+          <option>VIP5</option>
+          <option>VIP6</option>
+          <option>VIP7</option>
+          <option>VIP8</option>
+          <option>VIP9</option>
+          <option>VIP10</option>
+        </select></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-primary" data-modal-close>送出</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-modal-target="modalEditMemberLevel"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('editMemberSid').value = btn.getAttribute('data-sid');
+        document.getElementById('editMemberFromLevel').value = btn.getAttribute('data-from-level');
+      });
+    });
+  });
+</script>
+</body>
+</html>

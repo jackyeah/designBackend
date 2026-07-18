@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>回饋機制設定 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'vip-reward-settings', label: '回饋機制設定', href: 'vip-reward-settings.html' };
+  window.PAGE_BREADCRUMB = ['VIP設置', 'VIP等級管理', '回饋機制設定'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="vip" data-subactive="vip-levels"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div style="display:flex; justify-content:flex-end; gap: var(--space-3); margin-bottom: var(--space-5);">
+            <a class="btn btn-secondary" href="vip-levels.html">取消</a>
+            <button class="btn btn-primary" type="button">保存更改</button>
+          </div>
+
+          <div class="form-grid" style="margin-bottom: var(--space-6);">
+            <div class="form-field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>YZ 益兆</option>
+                <option>金錢母</option>
+                <option>Gamma 站</option>
+              </select></div>
+            </div>
+          </div>
+
+          <div class="section-label">晉級設定</div>
+          <div class="form-grid" style="margin-bottom: var(--space-6);">
+            <div class="form-field">
+              <label class="field-label"><span class="required">*</span>有效投注計算平台</label>
+              <div class="chip-select">
+                <span class="chip-select-tag">ATG<button type="button">×</button></span>
+                <span class="chip-select-tag">BNG<button type="button">×</button></span>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="field-label"><span class="required">*</span>功能狀態</label>
+              <div class="select-wrap"><select class="select">
+                <option>啟用</option>
+                <option selected>停用</option>
+              </select></div>
+            </div>
+            <div class="form-field">
+              <label class="field-label"><span class="required">*</span>晉級/保級週期</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>即時</option>
+                <option>每日</option>
+                <option>每週</option>
+                <option>每月</option>
+              </select></div>
+            </div>
+            <div class="form-field">
+              <label class="field-label"><span class="required">*</span>達成條件</label>
+              <div class="chip-select">
+                <span class="chip-select-tag">存款額<button type="button">×</button></span>
+                <span class="chip-select-tag">有效投注<button type="button">×</button></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-label">回饋機制設定</div>
+          <div class="settings-tile-grid">
+            <div class="settings-tile">
+              <div class="settings-tile-title">晉級禮金設定</div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>點數流水倍數</label>
+                <input class="input" type="text" value="3">
+              </div>
+              <div class="form-field">
+                <label class="field-label">流水限大類</label>
+                <div class="select-wrap"><select class="select">
+                  <option selected>請選擇</option>
+                  <option>電子</option>
+                  <option>街機</option>
+                  <option>捕魚</option>
+                </select></div>
+              </div>
+            </div>
+
+            <div class="settings-tile">
+              <div class="settings-tile-title">每月回饋設定</div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>點數流水倍數</label>
+                <input class="input" type="text" value="0">
+              </div>
+              <div class="form-field">
+                <label class="field-label">流水限大類</label>
+                <div class="select-wrap"><select class="select">
+                  <option selected>請選擇</option>
+                  <option>電子</option>
+                  <option>街機</option>
+                  <option>捕魚</option>
+                </select></div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>當月累計存款額/次</label>
+                <input class="input" type="text" value="0">
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>領取次數</label>
+                <input class="input" type="text" value="0">
+              </div>
+            </div>
+
+            <div class="settings-tile">
+              <div class="settings-tile-title">每週回饋設定</div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>點數流水倍數</label>
+                <input class="input" type="text" value="3">
+              </div>
+              <div class="form-field">
+                <label class="field-label">流水限大類</label>
+                <div class="select-wrap"><select class="select">
+                  <option selected>請選擇</option>
+                  <option>電子</option>
+                  <option>街機</option>
+                  <option>捕魚</option>
+                </select></div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>當週累計存款額/次</label>
+                <input class="input" type="text" value="1,000">
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>領取次數</label>
+                <input class="input" type="text" value="1">
+              </div>
+            </div>
+
+            <div class="settings-tile">
+              <div class="settings-tile-title">發財金設定</div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>點數流水倍數</label>
+                <input class="input" type="text" value="1">
+              </div>
+              <div class="form-field">
+                <label class="field-label">流水限大類</label>
+                <div class="select-wrap"><select class="select">
+                  <option selected>請選擇</option>
+                  <option>電子</option>
+                  <option>街機</option>
+                  <option>捕魚</option>
+                </select></div>
+              </div>
+            </div>
+
+            <div class="settings-tile">
+              <div class="settings-tile-title">補給金設定</div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>點數流水倍數</label>
+                <input class="input" type="text" value="0">
+              </div>
+              <div class="form-field">
+                <label class="field-label">流水限大類</label>
+                <div class="select-wrap"><select class="select">
+                  <option selected>請選擇</option>
+                  <option>電子</option>
+                  <option>街機</option>
+                  <option>捕魚</option>
+                </select></div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>餘額門檻</label>
+                <input class="input" type="text" value="0">
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>每日可領取次數</label>
+                <input class="input" type="text" value="0">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

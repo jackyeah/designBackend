@@ -36,8 +36,15 @@
       { key: 'permission-groups', label: '權限群組', href: 'permission-groups.html' },
       { key: 'currency-providers', label: '幣商設定', href: 'currency-providers.html' }
     ]},
-    { key: 'vip', label: 'VIP設置', icon: 'vip', href: '#' },
-    { key: 'guild', label: '公會管理', icon: 'guild', href: '#' },
+    { key: 'vip', label: 'VIP設置', icon: 'vip', submenu: [
+      { key: 'vip-levels', label: 'VIP等級管理', href: 'vip-levels.html' },
+      { key: 'vip-level-detail', label: 'VIP等級明細', href: 'vip-level-detail.html' },
+      { key: 'vip-tier-settings', label: '層級設置', href: 'vip-tier-settings.html' }
+    ]},
+    { key: 'guild', label: '公會管理', icon: 'guild', submenu: [
+      { key: 'guild-settings', label: '公會設置', href: 'guild-settings.html' },
+      { key: 'guild-list', label: '公會列表', href: 'guild-list.html' }
+    ]},
     { key: 'cash', label: '現金系統', icon: 'cash', href: '#' },
     { key: 'announcement', label: '公告訊息', icon: 'megaphone', href: '#' },
     { key: 'sms', label: '短信管理', icon: 'message', href: '#' },

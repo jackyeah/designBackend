@@ -419,6 +419,23 @@
 .table-toolbar .spacer { flex: 1; }
 .selection-hint { font-size: var(--text-xs); color: var(--color-text-tertiary); }
 
+/* ---------- Inline 表格編輯模式：清單頁「編輯」按鈕切換整張表格原地進入可編輯狀態，取代另開整頁/彈窗，
+   適用於欄位數多、但每列都只是簡單數值/狀態的清單（例如 VIP等級管理）。
+   .cell-view / .cell-edit 是每個儲存格內並存的兩種呈現（唯讀 badge/文字/tag ↔ 可編輯 input/select/checkbox），
+   由 <table>（而非個別儲存格）的 .is-editing class 統一切換顯示；工具列同步切換「編輯」↔「取消/保存更改」 ---------- */
+.toolbar-actions-default { display: flex; align-items: center; gap: var(--space-2); }
+.toolbar-actions-editing { display: none; align-items: center; gap: var(--space-2); }
+.table-toolbar.is-editing .toolbar-actions-default { display: none; }
+.table-toolbar.is-editing .toolbar-actions-editing { display: flex; }
+
+.data-table .cell-edit { display: none; }
+.data-table.is-editing .cell-view { display: none; }
+.data-table.is-editing .cell-edit { display: block; }
+.data-table.is-editing .guild-perm-edit.cell-edit { display: flex; }
+
+.guild-perm-edit { gap: var(--space-4); }
+.guild-perm-edit .checkbox-field { white-space: nowrap; cursor: pointer; }
+
 /* ---------- 欄位顯示設定（col-toggle）：欄位數量較多的清單頁，讓操作者自選要顯示哪些欄位，其餘暫時隱藏 ---------- */
 .col-toggle { position: relative; }
 .col-toggle-menu {
@@ -809,6 +826,31 @@
 }
 .game-perm-row + .game-perm-row { border-top: 1px solid var(--color-border); }
 
+/* ---------- Provider row list（例如 綁定等級支付，取代舊後台假設多間並列的表格/清單框排版——
+   目前只接入單一供應商時，一列一個供應商的清單樣式可以自然從 1 列擴充到多列，
+   不用像舊後台那樣為了想像中的「未來會有更多供應商」預先做多欄並列版面 ---------- */
+.provider-list {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+.provider-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-card);
+}
+.provider-row + .provider-row { border-top: 1px solid var(--color-border); }
+.provider-logo {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.provider-name { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); flex: 1; }
+
 /* ---------- Toast (transient feedback message, e.g. 未選取任何項目) ---------- */
 .toast {
   position: fixed;
@@ -854,6 +896,7 @@
 .detail-fields-wrap.editing .is-editable .detail-value { display: none; }
 .detail-fields-wrap.editing .is-editable .detail-input { display: block; }
 .detail-fields-wrap.editing .is-editable .detail-input.phone-input-group { display: flex; gap: var(--space-2); align-items: center; }
+.detail-fields-wrap.editing .is-editable .detail-input.radio-group { display: flex; }
 .phone-input-group { gap: var(--space-2); align-items: center; }
 
 /* ---------- Entity header (title + identity badges, e.g. member/site-owner detail pages) ---------- */
@@ -1096,6 +1139,37 @@
 .subtitle-cell-heading .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--row-accent, var(--color-primary)); flex-shrink: 0; }
 .subtitle-cell-heading .count { color: var(--color-text-tertiary); font-weight: 500; }
 
+/* ---------- 公會權限標籤（guild-perm-tag）：取代舊後台「2 個 checkbox + 各自完整標籤文字」直向堆疊的呈現方式，
+   改成同一儲存格內橫向並排的 2 個短標籤（灰=不可/彩色=可），一眼看出兩種權限是否開放，不佔垂直空間、不需捲動比對
+   （例如 VIP設置 > VIP等級管理 的「公會權限」欄，包含創立公會/加入公會兩個布林狀態） ---------- */
+.guild-perm-tags { display: flex; gap: 6px; }
+.guild-perm-tag {
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: 3px 9px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-hover);
+  color: var(--color-text-tertiary);
+  border: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+.guild-perm-tag.is-on { background: var(--color-success-light); color: var(--color-success); border-color: var(--color-success-border); }
+
+/* ---------- VIP 等級圖示（vip-tier-badge）：取代舊後台的等級勳章圖片，用色彩分組（銅/銀/金/尊爵）表示等級區間 ---------- */
+.vip-tier-badge {
+  width: 40px; height: 40px;
+  border-radius: var(--radius-md);
+  display: flex; align-items: center; justify-content: center;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.vip-tier-badge.tier-bronze { background: linear-gradient(135deg, #d99a5b, #9c6a34); }
+.vip-tier-badge.tier-silver { background: linear-gradient(135deg, #c3ccd6, #7c8794); }
+.vip-tier-badge.tier-gold { background: linear-gradient(135deg, #f6c85a, #cf9a23); }
+.vip-tier-badge.tier-prestige { background: linear-gradient(135deg, #8b5cf6, var(--color-primary)); }
+
 /* ---------- Slide master-detail：清單列點擊後整個面板向左滑出，帶出明細（含自身分頁），
    取代「向下展開」在明細資料量大、或可能同時展開多組時越展越長、難以捲動的問題（例如 優惠活動記錄） ---------- */
 .slide-master-detail { position: relative; overflow: hidden; }
@@ -1301,6 +1375,46 @@
   opacity: .7;
 }
 .chip-select-tag button:hover { opacity: 1; }
+
+/* ---------- Settings tile grid（例如 VIP回饋機制設定，多個獨立小分類設定並列呈現，
+   取代逐一頁籤切換——每個分類欄位本來就不多（2-4 欄），拆成頁籤只會讓畫面一次只看到一小塊、切換來切換去；
+   並列成小卡片可以一次看到全部分類、方便互相比較數值 ---------- */
+.settings-tile-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+  align-items: start;
+}
+.settings-tile {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-subtle);
+  padding: var(--space-4);
+}
+.settings-tile-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: var(--space-3);
+}
+.settings-tile .form-field + .form-field { margin-top: var(--space-3); }
+
+/* ---------- Level change（VIP等級明細，取代舊後台「原本等級」「VIP等級」兩個獨立欄位，
+   合併成單一欄位，用色彩箭頭直接表達晉級/降級方向，一眼看出變化而不用左右比對兩欄數字） ---------- */
+.level-change {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-weight: 600;
+}
+.level-change-arrow {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+.level-change.is-up .level-change-arrow { color: var(--color-success); }
+.level-change.is-down .level-change-arrow { color: var(--color-danger); }
+.level-change-from { color: var(--color-text-tertiary); font-weight: 400; }
 
 /* ---------- URL input group (e.g. 站點設置 客服 網址欄，通訊協定下拉 + 網域輸入合併呈現) ---------- */
 .url-input-group { display: flex; align-items: stretch; }

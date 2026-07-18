@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公會設置 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'guild-settings', label: '公會設置', href: 'guild-settings.html' };
+  window.PAGE_BREADCRUMB = ['公會管理', '公會設置'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="guild" data-subactive="guild-settings"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>公會設置</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option>YZ 益兆</option>
+                <option selected>金錢母</option>
+                <option>Gamma 站</option>
+              </select></div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 基本設置：唯讀 / 編輯模式切換範圍，詳見 js/app.js 的 detail-fields-wrap 區塊 -->
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="card-section-title">基本設置</div>
+
+          <div style="display:flex; justify-content:flex-end; margin-bottom: var(--space-4);">
+            <div id="viewActions">
+              <button class="btn btn-secondary btn-sm" type="button" id="editModeBtn">編輯</button>
+            </div>
+            <div class="hidden flex gap-3 items-center" id="editActions">
+              <button class="btn btn-secondary btn-sm" type="button" id="cancelEditBtn">取消</button>
+              <button class="btn btn-primary btn-sm" type="button" id="saveEditBtn">保存更改</button>
+            </div>
+          </div>
+
+          <div class="detail-fields-wrap" id="detailFieldsWrap">
+            <div class="form-grid">
+              <div class="form-field span-2 is-editable">
+                <label class="field-label"><span class="required">*</span>創立公會保證金</label>
+                <div class="detail-value">10 點</div>
+                <input class="input detail-input" type="text" value="10 點">
+              </div>
+              <div class="form-field is-editable">
+                <label class="field-label"><span class="required">*</span>公會金庫計算門檻-會員儲值</label>
+                <div class="detail-value">0 點</div>
+                <input class="input detail-input" type="text" value="0 點">
+                <p class="text-xs text-tertiary mt-2">設0為不設門檻。<br>會員必須儲值點數大於等於門檻，才可累積公會金幣。</p>
+              </div>
+              <div class="form-field is-editable">
+                <label class="field-label"><span class="required">*</span>公會金庫百分比-會員儲值</label>
+                <div class="detail-value">100 %</div>
+                <input class="input detail-input" type="text" value="100 %">
+                <p class="text-xs text-tertiary mt-2">公會金幣 = 會員儲值點數 x 百分比。</p>
+              </div>
+              <div class="form-field is-editable">
+                <label class="field-label"><span class="required">*</span>公會金庫計算門檻-會員投注</label>
+                <div class="detail-value">0 點</div>
+                <input class="input detail-input" type="text" value="0 點">
+                <p class="text-xs text-tertiary mt-2">設0為不設門檻。<br>會員必須投注點數大於等於門檻，才可累積公會金幣。</p>
+              </div>
+              <div class="form-field is-editable">
+                <label class="field-label"><span class="required">*</span>公會金庫百分比-會員投注</label>
+                <div class="detail-value">100 %</div>
+                <input class="input detail-input" type="text" value="100 %">
+                <p class="text-xs text-tertiary mt-2">公會金幣 = 會員投注 x 百分比。</p>
+              </div>
+              <div class="form-field span-2 is-editable">
+                <label class="field-label" style="display:flex; align-items:center; gap:4px;"><span class="required">*</span>公會金幣領取下限 <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="8" r="0.6" fill="currentColor" stroke="none"/></svg></label>
+                <div class="detail-value">1 點</div>
+                <input class="input detail-input" type="text" value="1 點">
+              </div>
+              <div class="form-field span-2 is-editable">
+                <label class="field-label" style="display:flex; align-items:center; gap:4px;"><span class="required">*</span>公會金幣領取凍結時間 <svg class="info-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 11v5" stroke-linecap="round"/><circle cx="12" cy="8" r="0.6" fill="currentColor" stroke="none"/></svg></label>
+                <div class="detail-value">1 天</div>
+                <input class="input detail-input" type="text" value="1 天">
+              </div>
+              <div class="form-field span-2 is-editable">
+                <label class="field-label">金幣退水是否進保險箱</label>
+                <div class="detail-value">否</div>
+                <div class="radio-group detail-input">
+                  <label class="radio-field"><input type="radio" name="guildRebateSafe" checked>否</label>
+                  <label class="radio-field"><input type="radio" name="guildRebateSafe">是</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 等級設置：Inline 表格編輯模式，沿用 vip-levels.html 既有的 data-table-edit-trigger 慣例 -->
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="card-section-title">等級設置</div>
+
+          <div class="table-toolbar">
+            <span class="spacer"></span>
+            <div class="toolbar-actions-default">
+              <button class="btn btn-secondary btn-sm" type="button" data-table-edit-trigger="guildTierTable">編輯</button>
+            </div>
+            <div class="toolbar-actions-editing">
+              <button class="btn btn-accent btn-sm" type="button">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                新增等級
+              </button>
+              <button class="btn btn-secondary btn-sm" type="button" data-table-edit-cancel="guildTierTable">取消</button>
+              <button class="btn btn-primary btn-sm" type="button" data-table-edit-save="guildTierTable">保存更改</button>
+            </div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table" id="guildTierTable" style="table-layout:fixed;">
+              <thead>
+                <tr>
+                  <th style="width:10%;">序號</th>
+                  <th style="width:24%;">公會等級</th>
+                  <th style="width:18%;">公會人數</th>
+                  <th>公會升級條件(公會金庫累積金幣)</th>
+                  <th style="width:10%;" class="col-actions">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>-</td>
+                  <td>
+                    <span class="cell-view">等級零</span>
+                    <input class="input cell-edit" type="text" value="等級零">
+                  </td>
+                  <td>
+                    <span class="cell-view">30 人</span>
+                    <input class="input cell-edit" type="text" value="30 人">
+                  </td>
+                  <td>
+                    <span class="cell-view">0 點</span>
+                    <input class="input cell-edit" type="text" value="0 點">
+                  </td>
+                  <td class="col-actions"></td>
+                </tr>
+                <tr>
+                  <td>1</td>
+                  <td>
+                    <span class="cell-view">等級1</span>
+                    <input class="input cell-edit" type="text" value="等級1">
+                  </td>
+                  <td>
+                    <span class="cell-view">40 人</span>
+                    <input class="input cell-edit" type="text" value="40 人">
+                  </td>
+                  <td>
+                    <span class="cell-view">500 點</span>
+                    <input class="input cell-edit" type="text" value="500 點">
+                  </td>
+                  <td class="col-actions"><button type="button" class="btn-link">刪除</button></td>
+                </tr>
+                <tr>
+                  <td>2</td>
+                  <td>
+                    <span class="cell-view">最高等</span>
+                    <input class="input cell-edit" type="text" value="最高等">
+                  </td>
+                  <td>
+                    <span class="cell-view">50 人</span>
+                    <input class="input cell-edit" type="text" value="50 人">
+                  </td>
+                  <td>
+                    <span class="cell-view">5000 點</span>
+                    <input class="input cell-edit" type="text" value="5000 點">
+                  </td>
+                  <td class="col-actions"><button type="button" class="btn-link">刪除</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

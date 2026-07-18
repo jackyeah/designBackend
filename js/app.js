@@ -85,6 +85,79 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   });
 
+  /* ---------- Inline 表格編輯模式：清單頁「編輯」按鈕切換整張表格原地進入可編輯狀態（例如 VIP等級管理）。
+     可重複套用：觸發鈕標 data-table-edit-trigger="<table id>"，工具列內對應的取消/保存鈕標
+     data-table-edit-cancel="<table id>" / data-table-edit-save="<table id>"。
+     表格內每個可編輯儲存格要有一對直接子元素：.cell-view（唯讀）+ .cell-edit（input/select-wrap/guild-perm-edit），
+     由 <table> 的 .is-editing class 統一切換顯示（CSS 負責），這裡只負責綁定按鈕行為 + 取消時還原輸入值 + 保存時把
+     編輯結果同步寫回 .cell-view，讓退出編輯模式後畫面呈現的是「保存後」的內容 ---------- */
+  var STATUS_BADGE_MAP = { '正常': 'badge-success', '停用': 'badge-neutral', '晉級凍結': 'badge-warning', '下架': 'badge-warning' };
+
+  document.querySelectorAll('[data-table-edit-trigger]').forEach(function (trigger) {
+    var tableId = trigger.getAttribute('data-table-edit-trigger');
+    var table = document.getElementById(tableId);
+    var toolbar = trigger.closest('.table-toolbar');
+    if (!table || !toolbar) { return; }
+
+    var cancelBtn = toolbar.querySelector('[data-table-edit-cancel="' + tableId + '"]');
+    var saveBtn = toolbar.querySelector('[data-table-edit-save="' + tableId + '"]');
+
+    function enterEdit() {
+      table.classList.add('is-editing');
+      toolbar.classList.add('is-editing');
+    }
+    function exitEdit() {
+      table.classList.remove('is-editing');
+      toolbar.classList.remove('is-editing');
+    }
+    function resetInputs() {
+      table.querySelectorAll('input.cell-edit[type="text"]').forEach(function (input) {
+        input.value = input.defaultValue;
+      });
+      table.querySelectorAll('.select-wrap.cell-edit select').forEach(function (select) {
+        Array.prototype.forEach.call(select.options, function (opt) {
+          opt.selected = opt.defaultSelected;
+        });
+      });
+      table.querySelectorAll('.guild-perm-edit.cell-edit input[type="checkbox"]').forEach(function (cb) {
+        cb.checked = cb.defaultChecked;
+      });
+    }
+    function applyChanges() {
+      table.querySelectorAll('tbody td').forEach(function (td) {
+        var view = td.querySelector(':scope > .cell-view');
+        if (!view) return;
+
+        var input = td.querySelector(':scope > input.cell-edit');
+        if (input) { view.textContent = input.value; return; }
+
+        var select = td.querySelector(':scope > .select-wrap.cell-edit select');
+        if (select) {
+          var text = select.options[select.selectedIndex].textContent;
+          var badge = view.querySelector('.badge');
+          if (badge) {
+            badge.textContent = text;
+            badge.className = 'badge ' + (STATUS_BADGE_MAP[text] || 'badge-neutral');
+          }
+          return;
+        }
+
+        var guildEdit = td.querySelector(':scope > .guild-perm-edit.cell-edit');
+        if (guildEdit) {
+          var tags = view.querySelectorAll('.guild-perm-tag');
+          var checks = guildEdit.querySelectorAll('input[type="checkbox"]');
+          tags.forEach(function (tag, i) {
+            if (checks[i]) tag.classList.toggle('is-on', checks[i].checked);
+          });
+        }
+      });
+    }
+
+    trigger.addEventListener('click', enterEdit);
+    if (cancelBtn) cancelBtn.addEventListener('click', function () { resetInputs(); exitEdit(); });
+    if (saveBtn) saveBtn.addEventListener('click', function () { applyChanges(); exitEdit(); });
+  });
+
   /* ---------- Domain list expand/collapse (e.g. 站點設置 啟用網域) ---------- */
   document.querySelectorAll('.domain-list-toggle').forEach(function (btn) {
     var wrap = btn.closest('.domain-list');
@@ -772,5 +845,4 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!wrap.contains(e.target)) wrap.classList.remove('open');
     });
   });
-
 });

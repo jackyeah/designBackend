@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VIP等級明細 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'vip-level-detail', label: 'VIP等級明細', href: 'vip-level-detail.html' };
+  window.PAGE_BREADCRUMB = ['VIP設置', 'VIP等級明細'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="vip" data-subactive="vip-level-detail"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>VIP等級明細</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>YZ 益兆</option>
+                <option>金錢母</option>
+                <option>Gamma 站</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">SID</label>
+              <div class="field-row"><input class="input" type="text" placeholder="請輸入"><button class="btn-icon-add" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+            </div>
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>更新時間</label>
+              <div class="daterange-trigger" data-daterange-target="drUpdateTime">
+                <span class="daterange-text">2026-07-18 00:00:00 - 2026-07-18 23:59:59</span>
+                <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+              <div class="daterange-popover" id="drUpdateTime">
+                <div class="dr-presets">
+                  <button type="button" class="chip active" data-preset="today">今天</button>
+                  <button type="button" class="chip" data-preset="7">最近7天</button>
+                  <button type="button" class="chip" data-preset="30">最近30天</button>
+                  <button type="button" class="chip" data-preset="month">本月</button>
+                  <button type="button" class="chip" data-preset="lastmonth">上月</button>
+                </div>
+                <div class="dr-summary"></div>
+                <div class="dr-calendars">
+                  <div class="dr-cal" data-cal="left">
+                    <div class="dr-cal-header">
+                      <button type="button" class="dr-nav" data-nav="prev-year">&laquo;</button>
+                      <button type="button" class="dr-nav" data-nav="prev-month">&lsaquo;</button>
+                      <span class="dr-cal-title"></span>
+                      <span class="dr-nav-spacer"></span>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                  <div class="dr-cal" data-cal="right">
+                    <div class="dr-cal-header">
+                      <span class="dr-nav-spacer"></span>
+                      <span class="dr-cal-title"></span>
+                      <button type="button" class="dr-nav" data-nav="next-month">&rsaquo;</button>
+                      <button type="button" class="dr-nav" data-nav="next-year">&raquo;</button>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                </div>
+                <div class="dr-time-row">
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">開始時間</span>
+                    <div class="dr-time-block" data-role="start">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span>:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span>:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">結束時間</span>
+                    <div class="dr-time-block" data-role="end">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="23"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span>:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span>:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dr-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-daterange-clear>清除</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-daterange-apply>套用</button>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">VIP等級</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇</option>
+                <option>VIP1</option>
+                <option>VIP2</option>
+                <option>VIP3</option>
+                <option>VIP4</option>
+                <option>VIP5</option>
+                <option>VIP6</option>
+                <option>VIP7</option>
+                <option>VIP8</option>
+                <option>VIP9</option>
+                <option>VIP10</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>晉級方式</label>
+              <div class="chip-select">
+                <span class="chip-select-tag">系統晉級<button type="button">×</button></span>
+                <span class="chip-select-tag">手動晉級<button type="button">×</button></span>
+                <span class="chip-select-tag">手動降級<button type="button">×</button></span>
+              </div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <span class="text-sm text-tertiary">共 7 筆</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>會員SID</th>
+                  <th>等級異動</th>
+                  <th>晉級方式</th>
+                  <th>更新時間</th>
+                  <th>更新人員</th>
+                  <th class="col-actions">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="cell-copy">252169937<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="level-change is-up"><span class="level-change-from">VIP4</span><svg class="level-change-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>VIP6</span></td>
+                  <td><span class="badge badge-success">手動晉級</span></td>
+                  <td>2026-06-24 17:15:58</td>
+                  <td>DeltaAdmin</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalVipLevelDetail" data-detail-sid="252169937" data-detail-from="VIP4" data-detail-to="VIP6" data-detail-updown="up" data-detail-way="手動晉級" data-detail-time="2026-06-24 17:15:58" data-detail-operator="DeltaAdmin">詳情</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169937<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="level-change is-up"><span class="level-change-from">VIP1</span><svg class="level-change-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>VIP4</span></td>
+                  <td><span class="badge badge-success">手動晉級</span></td>
+                  <td>2026-06-24 17:15:45</td>
+                  <td>DeltaAdmin</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalVipLevelDetail" data-detail-sid="252169937" data-detail-from="VIP1" data-detail-to="VIP4" data-detail-updown="up" data-detail-way="手動晉級" data-detail-time="2026-06-24 17:15:45" data-detail-operator="DeltaAdmin">詳情</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169925<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="level-change is-up"><span class="level-change-from">VIP5</span><svg class="level-change-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>VIP6</span></td>
+                  <td><span class="badge badge-success">手動晉級</span></td>
+                  <td>2026-06-24 17:15:28</td>
+                  <td>DeltaAdmin</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalVipLevelDetail" data-detail-sid="252169925" data-detail-from="VIP5" data-detail-to="VIP6" data-detail-updown="up" data-detail-way="手動晉級" data-detail-time="2026-06-24 17:15:28" data-detail-operator="DeltaAdmin">詳情</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169942<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="level-change is-down"><span class="level-change-from">VIP5</span><svg class="level-change-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>VIP4</span></td>
+                  <td><span class="badge badge-danger">手動降級</span></td>
+                  <td>2026-06-24 17:14:36</td>
+                  <td>DeltaAdmin</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalVipLevelDetail" data-detail-sid="252169942" data-detail-from="VIP5" data-detail-to="VIP4" data-detail-updown="down" data-detail-way="手動降級" data-detail-time="2026-06-24 17:14:36" data-detail-operator="DeltaAdmin">詳情</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169942<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="level-change is-up"><span class="level-change-from">VIP1</span><svg class="level-change-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>VIP5</span></td>
+                  <td><span class="badge badge-success">手動晉級</span></td>
+                  <td>2026-06-24 17:13:03</td>
+                  <td>DeltaAdmin</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalVipLevelDetail" data-detail-sid="252169942" data-detail-from="VIP1" data-detail-to="VIP5" data-detail-updown="up" data-detail-way="手動晉級" data-detail-time="2026-06-24 17:13:03" data-detail-operator="DeltaAdmin">詳情</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169944<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="level-change is-up"><span class="level-change-from">VIP1</span><svg class="level-change-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>VIP3</span></td>
+                  <td><span class="badge badge-success">手動晉級</span></td>
+                  <td>2026-06-24 16:25:08</td>
+                  <td>DeltaAdmin</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalVipLevelDetail" data-detail-sid="252169944" data-detail-from="VIP1" data-detail-to="VIP3" data-detail-updown="up" data-detail-way="手動晉級" data-detail-time="2026-06-24 16:25:08" data-detail-operator="DeltaAdmin">詳情</button></td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169943<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="level-change is-up"><span class="level-change-from">VIP1</span><svg class="level-change-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>VIP3</span></td>
+                  <td><span class="badge badge-info">系統晉級</span></td>
+                  <td>2026-06-22 14:18:45</td>
+                  <td>-</td>
+                  <td class="col-actions"><button type="button" class="btn-link" data-modal-target="modalVipLevelDetail" data-detail-sid="252169943" data-detail-from="VIP1" data-detail-to="VIP3" data-detail-updown="up" data-detail-way="系統晉級" data-detail-time="2026-06-22 14:18:45" data-detail-operator="-">詳情</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- VIP等級變更詳情 Modal -->
+<div class="modal-overlay" id="modalVipLevelDetail">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>VIP等級變更詳情<span class="text-sm text-tertiary" id="vipDetailSidMeta" style="font-weight:400;margin-left:var(--space-3);">會員：252169937</span></h2>
+      <button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-grid">
+        <div class="detail-item">
+          <span class="detail-label">等級異動</span>
+          <span class="detail-value">
+            <span class="level-change is-up" id="vipDetailLevelChange">
+              <span class="level-change-from" id="vipDetailFrom">VIP4</span>
+              <svg class="level-change-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              <span id="vipDetailTo">VIP6</span>
+            </span>
+          </span>
+        </div>
+        <div class="detail-item"><span class="detail-label">晉級方式</span><span class="detail-value" id="vipDetailWay">手動晉級</span></div>
+        <div class="detail-item"><span class="detail-label">更新時間</span><span class="detail-value" id="vipDetailTime">2026-06-24 17:15:58</span></div>
+        <div class="detail-item"><span class="detail-label">更新人員</span><span class="detail-value" id="vipDetailOperator">DeltaAdmin</span></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>關閉</button></div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-modal-target="modalVipLevelDetail"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('vipDetailSidMeta').textContent = '會員：' + btn.getAttribute('data-detail-sid');
+        document.getElementById('vipDetailFrom').textContent = btn.getAttribute('data-detail-from');
+        document.getElementById('vipDetailTo').textContent = btn.getAttribute('data-detail-to');
+        document.getElementById('vipDetailWay').textContent = btn.getAttribute('data-detail-way');
+        document.getElementById('vipDetailTime').textContent = btn.getAttribute('data-detail-time');
+        document.getElementById('vipDetailOperator').textContent = btn.getAttribute('data-detail-operator');
+        var changeEl = document.getElementById('vipDetailLevelChange');
+        var updown = btn.getAttribute('data-detail-updown');
+        changeEl.classList.remove('is-up', 'is-down');
+        changeEl.classList.add(updown === 'down' ? 'is-down' : 'is-up');
+      });
+    });
+  });
+</script>
+</body>
+</html>

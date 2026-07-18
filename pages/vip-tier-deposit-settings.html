@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>出入款設定 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'vip-tier-deposit-settings', label: '出入款設定', href: 'vip-tier-deposit-settings.html' };
+  window.PAGE_BREADCRUMB = ['VIP設置', '層級設置', '出入款設定'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="vip" data-subactive="vip-tier-settings"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>出入款設定<span class="text-sm text-tertiary" style="font-weight:400;margin-left:var(--space-3);">VIP1</span></h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="section-tabs" data-tabs-group="vipDeposit">
+            <span class="section-tab active" data-tab-target="panel-thirdparty">三方</span>
+            <span class="section-tab" data-tab-target="panel-gift">贈送+禮金</span>
+          </div>
+
+          <div style="display:flex; justify-content:flex-end; margin-bottom: var(--space-4);">
+            <button class="btn btn-primary" type="button">送出</button>
+          </div>
+
+          <!-- 三方 -->
+          <div class="tab-panel active" data-tabs-group="vipDeposit" id="panel-thirdparty">
+            <div class="form-grid">
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>存款上限</label>
+                <input class="input" type="text" value="1000000">
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>存款下限</label>
+                <input class="input" type="text" value="1">
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>優惠發送門檻</label>
+                <input class="input" type="text" value="0">
+                <p class="text-xs text-tertiary mt-2">入款金額大於等於門檻才會發送優惠。</p>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>優惠百分比</label>
+                <input class="input" type="text" value="0">
+                <p class="text-xs text-tertiary mt-2">優惠金額 = 入款金額 x 優惠百分比。不送優惠請將優惠百分比設為0。</p>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>優惠上限</label>
+                <input class="input" type="text" value="0">
+                <p class="text-xs text-tertiary mt-2">0為沒有上限</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 贈送+禮金 -->
+          <div class="tab-panel" data-tabs-group="vipDeposit" id="panel-gift">
+            <div class="form-field" style="margin-bottom: var(--space-5);">
+              <label class="field-label">贈送功能</label>
+              <div class="radio-group">
+                <label class="radio-field"><input type="radio" name="giftFeature">關閉</label>
+                <label class="radio-field"><input type="radio" name="giftFeature" checked>開啟</label>
+              </div>
+            </div>
+            <div class="form-grid">
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>單日贈送點數上限</label>
+                <input class="input" type="text" value="0">
+                <p class="text-xs text-tertiary mt-2">0為沒有上限</p>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>單筆贈送點數上限</label>
+                <input class="input" type="text" value="0">
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>單筆贈送點數下限</label>
+                <input class="input" type="text" value="0">
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>會員單日可贈送次數上限</label>
+                <input class="input" type="text" value="0">
+                <p class="text-xs text-tertiary mt-2">0為沒有上限，每日 00:00:00 贈送次數將會重置</p>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>手續費百分比</label>
+                <input class="input" type="text" value="0">
+                <p class="text-xs text-tertiary mt-2">手續費 = 贈送點數 x 手續費百分比</p>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>手續費上限</label>
+                <input class="input" type="text" value="0">
+                <p class="text-xs text-tertiary mt-2">0為沒有上限，不收手續費請將手續費百分比設為0</p>
+              </div>
+              <div class="form-field span-2">
+                <label class="field-label">免手續費模式</label>
+                <div class="radio-group">
+                  <label class="radio-field"><input type="radio" name="feeFreeMode" checked>免手續費(重置時間)</label>
+                  <label class="radio-field"><input type="radio" name="feeFreeMode">免手續費(時區時間)</label>
+                </div>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>免手續費重置時間</label>
+                <input class="input" type="text" value="1">
+                <p class="text-xs text-tertiary mt-2">最小區間 1小時</p>
+              </div>
+              <div class="form-field">
+                <label class="field-label"><span class="required">*</span>免手續費次數</label>
+                <input class="input" type="text" value="0">
+                <p class="text-xs text-tertiary mt-2">在重置時間/時間區間內手續費免費次數，若輸入0為每次都收取手續費</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

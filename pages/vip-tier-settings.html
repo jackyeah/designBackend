@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>層級設置 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'vip-tier-settings', label: '層級設置', href: 'vip-tier-settings.html' };
+  window.PAGE_BREADCRUMB = ['VIP設置', '層級設置'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="vip" data-subactive="vip-tier-settings"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>層級設置</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>YZ 益兆</option>
+                <option>金錢母</option>
+                <option>Gamma 站</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">VIP等級</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇</option>
+                <option>VIP1</option>
+                <option>VIP2</option>
+                <option>VIP3</option>
+                <option>VIP4</option>
+                <option>VIP5</option>
+                <option>VIP6</option>
+                <option>VIP7</option>
+                <option>VIP8</option>
+                <option>VIP9</option>
+                <option>VIP10</option>
+              </select></div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <span class="text-sm text-tertiary">共 10 筆</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table" style="table-layout:fixed;">
+              <thead>
+                <tr>
+                  <th style="width:14%;">等級名稱</th>
+                  <th style="width:14%;">會員人數</th>
+                  <th style="width:16%;">更新人員</th>
+                  <th style="width:20%;">更新時間</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>VIP1</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP1">10064</a></td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-06-25 15:13:05</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP1">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP1">出入款設定</a></td>
+                </tr>
+                <tr>
+                  <td>VIP2</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP2">3</a></td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-07-07 17:22:24</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP2">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP2">出入款設定</a></td>
+                </tr>
+                <tr>
+                  <td>VIP3</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP3">11</a></td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-07-07 17:22:31</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP3">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP3">出入款設定</a></td>
+                </tr>
+                <tr>
+                  <td>VIP4</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP4">1</a></td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-07-07 17:22:43</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP4">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP4">出入款設定</a></td>
+                </tr>
+                <tr>
+                  <td>VIP5</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP5">6</a></td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-07-07 17:22:13</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP5">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP5">出入款設定</a></td>
+                </tr>
+                <tr>
+                  <td>VIP6</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP6">2</a></td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-07-07 17:23:25</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP6">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP6">出入款設定</a></td>
+                </tr>
+                <tr>
+                  <td>VIP7</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP7">0</a></td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-07-07 17:23:41</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP7">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP7">出入款設定</a></td>
+                </tr>
+                <tr>
+                  <td>VIP8</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP8">1</a></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP8">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP8">出入款設定</a></td>
+                </tr>
+                <tr>
+                  <td>VIP9</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP9">0</a></td>
+                  <td>-</td>
+                  <td>-</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP9">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP9">出入款設定</a></td>
+                </tr>
+                <tr>
+                  <td>VIP10</td>
+                  <td><a class="btn-link" href="vip-tier-members.html?level=VIP10">2</a></td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-03-04 11:32:56</td>
+                  <td><button type="button" class="btn-link" data-modal-target="modalBindPayment" data-tier="VIP10">綁定等級支付</button> · <a class="btn-link" href="vip-tier-deposit-settings.html?level=VIP10">出入款設定</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- 綁定等級支付 Modal -->
+<div class="modal-overlay" id="modalBindPayment">
+  <div class="modal" style="max-width: 480px;">
+    <div class="modal-header">
+      <h2>綁定等級支付<span class="text-sm text-tertiary" id="bindPaymentTierMeta" style="font-weight:400;margin-left:var(--space-3);">VIP1</span></h2>
+      <button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <p class="text-sm text-secondary" style="line-height: 1.7; margin-bottom: var(--space-4);">設定此等級可使用的第三方支付管道，關閉後會員將無法透過該管道儲值。</p>
+      <div class="provider-list">
+        <div class="provider-row">
+          <img class="provider-logo" src="../images/mycard.jpeg" alt="MyCard">
+          <span class="provider-name">MyCard</span>
+          <span class="switch on"></span>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-primary" data-modal-close>儲存</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-modal-target="modalBindPayment"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('bindPaymentTierMeta').textContent = btn.getAttribute('data-tier');
+      });
+    });
+  });
+</script>
+</body>
+</html>
