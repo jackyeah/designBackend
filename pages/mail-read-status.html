@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>讀取狀態 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'mail-read-status', label: '讀取狀態', href: 'mail-read-status.html' };
+  window.PAGE_BREADCRUMB = ['公告訊息', '信件管理', '讀取狀態'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="announcement" data-subactive="mail-management"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>讀取狀態<span class="text-sm text-tertiary" id="mailMeta" style="font-weight:400;margin-left:var(--space-3);">-</span></h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div style="display:flex; justify-content:flex-end; margin-bottom: var(--space-5);">
+            <a class="btn btn-secondary" href="mail-management.html">返回</a>
+          </div>
+
+          <div class="section-label">訊息設置</div>
+          <div class="form-grid">
+            <div class="form-field"><label class="field-label">建立者</label>
+              <div class="detail-value" id="mailCreator">-</div>
+            </div>
+            <div class="form-field"><label class="field-label">建立時間</label>
+              <div class="detail-value" id="mailCreated">-</div>
+            </div>
+            <div class="form-field span-2"><label class="field-label">標題</label>
+              <div class="detail-value" id="mailTitle">-</div>
+            </div>
+            <div class="form-field span-2"><label class="field-label">內文</label>
+              <div class="detail-value" id="mailContent" style="white-space:pre-wrap;">-</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="section-label" style="margin-bottom:0;">訊息狀態</div>
+          <div class="stat-strip" style="margin-top:var(--space-3);">
+            <div class="stat-item"><span class="stat-label">收件人數</span><span class="stat-value" id="statCount">-</span></div>
+            <div class="stat-item"><span class="stat-label">未讀</span><span class="stat-value accent-danger" id="statUnread">-</span></div>
+            <div class="stat-item"><span class="stat-label">已讀</span><span class="stat-value accent-success" id="statRead">-</span></div>
+          </div>
+
+          <div class="filter-bar" style="margin-top:var(--space-5);">
+            <div class="field">
+              <label class="field-label">SID</label>
+              <div class="field-row"><input class="input" type="text" placeholder="請輸入"><button class="btn-icon-add" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg></button></div>
+            </div>
+            <div class="field">
+              <label class="field-label">狀態</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇</option>
+                <option>已讀</option>
+                <option>未讀</option>
+              </select></div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+
+          <div class="table-scroll" style="margin-top:var(--space-5);">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>SID</th>
+                  <th>狀態</th>
+                  <th>已讀時間</th>
+                </tr>
+              </thead>
+              <tbody id="statusTbody">
+                <tr>
+                  <td><span class="cell-copy">252169763<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="badge badge-success">已讀</span></td>
+                  <td>2026-04-23 12:03:41</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169764<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="badge badge-neutral">未讀</span></td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169765<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="badge badge-neutral">未讀</span></td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169766<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="badge badge-success">已讀</span></td>
+                  <td>2026-04-23 15:47:02</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169767<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="badge badge-neutral">未讀</span></td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169768<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="badge badge-neutral">未讀</span></td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169769<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="badge badge-neutral">未讀</span></td>
+                  <td>-</td>
+                </tr>
+                <tr>
+                  <td><span class="cell-copy">252169770<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td><span class="badge badge-neutral">未讀</span></td>
+                  <td>-</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination" id="statusPagination">
+            <span class="page-btn">«</span><span class="page-btn">‹</span>
+            <span class="page-btn active">1</span><span class="page-btn">2</span><span class="page-btn">3</span><span class="page-btn">4</span><span class="page-btn">5</span>
+            <span class="page-btn">›</span><span class="page-btn">»</span>
+            <div class="select-wrap page-size-select"><select class="select"><option>10 筆/頁</option><option selected>20 筆/頁</option><option>50 筆/頁</option></select></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  (function () {
+    var params = new URLSearchParams(window.location.search);
+    var title = params.get('title') || '-';
+    document.getElementById('mailMeta').textContent = title;
+    document.getElementById('mailTitle').textContent = title;
+    document.getElementById('mailCreator').textContent = params.get('creator') || '-';
+    document.getElementById('mailCreated').textContent = params.get('created') || '-';
+    document.getElementById('mailContent').textContent = params.get('content') || '-';
+    document.getElementById('statCount').textContent = params.get('count') || '-';
+    document.getElementById('statUnread').textContent = params.get('unread') || '-';
+    document.getElementById('statRead').textContent = params.get('read') || '-';
+
+    var count = parseInt(params.get('count') || '0', 10);
+    var rows = document.querySelectorAll('#statusTbody tr');
+    if (count > 0 && count < rows.length) {
+      for (var i = count; i < rows.length; i++) { rows[i].style.display = 'none'; }
+    }
+    if (count > 0 && count <= rows.length) {
+      document.getElementById('statusPagination').style.display = 'none';
+    }
+  })();
+</script>
+</body>
+</html>

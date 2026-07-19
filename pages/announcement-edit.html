@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>編輯公告 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'announcement-edit', label: '編輯公告', href: 'announcement-edit.html' };
+  window.PAGE_BREADCRUMB = ['公告訊息', '公告管理', '編輯'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="announcement" data-subactive="announcement-management"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header">
+        <h1>編輯公告<span class="text-sm text-tertiary" style="font-weight:400;margin-left:var(--space-3);">YZ啟動計畫｜星際破關任務開放公告</span></h1>
+        <div style="display:flex; gap: var(--space-3);">
+          <a class="btn btn-secondary btn-sm" href="announcement-management.html">返回列表</a>
+          <div id="viewActions">
+            <button class="btn btn-secondary btn-sm" type="button" id="editModeBtn">編輯</button>
+          </div>
+          <div class="hidden flex gap-3 items-center" id="editActions">
+            <button class="btn btn-secondary btn-sm" type="button" id="cancelEditBtn">取消</button>
+            <button class="btn btn-primary btn-sm" type="button" id="saveEditBtn">保存更改</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="detail-fields-wrap" id="detailFieldsWrap">
+
+          <div class="card-section">
+            <div class="card-section-title">基本資料</div>
+            <div class="form-grid" style="grid-template-columns: repeat(3, 1fr);">
+              <div class="form-field is-editable">
+                <label class="field-label"><span class="required">*</span>站台</label>
+                <div class="detail-value">YZ 益兆</div>
+                <div class="select-wrap detail-input"><select class="select">
+                  <option>請選擇</option>
+                  <option selected>YZ 益兆</option>
+                  <option>金錢母</option>
+                  <option>Gamma 站</option>
+                </select></div>
+              </div>
+              <div class="form-field is-editable">
+                <label class="field-label"><span class="required">*</span>排序</label>
+                <div class="detail-value">2</div>
+                <input class="input detail-input" type="text" value="2">
+              </div>
+              <div class="form-field is-editable">
+                <label class="field-label">置頂</label>
+                <div class="detail-value">否</div>
+                <div class="select-wrap detail-input"><select class="select">
+                  <option selected>否</option>
+                  <option>是</option>
+                </select></div>
+              </div>
+              <div class="form-field span-3 is-editable">
+                <label class="field-label"><span class="required">*</span>公告標題</label>
+                <div class="detail-value">YZ啟動計畫｜星際破關任務開放公告</div>
+                <input class="input detail-input" type="text" value="YZ啟動計畫｜星際破關任務開放公告">
+              </div>
+            </div>
+          </div>
+
+          <div class="card-section">
+            <div class="card-section-title">功能設置</div>
+            <div class="form-grid" style="grid-template-columns: repeat(3, 1fr);">
+              <div class="form-field is-editable">
+                <label class="field-label">入口彈窗</label>
+                <div class="detail-value">是</div>
+                <div class="select-wrap detail-input"><select class="select">
+                  <option>否</option>
+                  <option selected>是</option>
+                </select></div>
+              </div>
+              <div class="form-field is-editable">
+                <label class="field-label">跑馬燈</label>
+                <div class="detail-value">否</div>
+                <div class="select-wrap detail-input"><select class="select">
+                  <option selected>否</option>
+                  <option>是</option>
+                </select></div>
+              </div>
+              <div class="form-field is-editable">
+                <label class="field-label">啟用狀態</label>
+                <div class="detail-value">是</div>
+                <div class="select-wrap detail-input"><select class="select">
+                  <option>否</option>
+                  <option selected>是</option>
+                </select></div>
+              </div>
+              <div class="form-field span-3">
+                <label class="field-label">彈窗圖片</label>
+                <div class="upload-field">
+                  <div class="upload-thumb square"><img src="https://picsum.photos/seed/promo2popup/128/128" alt=""></div>
+                  <div>
+                    <button class="btn btn-secondary btn-sm" type="button">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+                      選擇圖片
+                    </button>
+                    <div class="text-xs text-tertiary mt-2">只能上傳 .jpg / .jpeg / .png / .gif / .bmp 檔案，且不超過 8MB，建議寬度 1029px、高度 1029px</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-section">
+            <div class="card-section-title">發佈設置</div>
+            <div class="form-grid" style="grid-template-columns: repeat(2, 1fr);">
+              <div class="form-field is-editable">
+                <label class="field-label"><span class="required">*</span>發布時間</label>
+                <div class="detail-value">2026-04-02 00:07:26</div>
+                <div class="field detail-input">
+                  <div class="daterange-trigger" data-daterange-target="drAnnouncementPublish" id="announcementPublishTrigger">
+                    <span class="daterange-text">2026-04-02 00:07:26</span>
+                    <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                  </div>
+                  <div class="daterange-popover dr-single" id="drAnnouncementPublish">
+                    <div class="dr-presets">
+                      <button type="button" class="chip" data-preset="today">今天</button>
+                      <button type="button" class="chip" data-preset="7">最近7天</button>
+                      <button type="button" class="chip" data-preset="30">最近30天</button>
+                      <button type="button" class="chip" data-preset="month">本月</button>
+                      <button type="button" class="chip" data-preset="lastmonth">上月</button>
+                    </div>
+                    <div class="dr-summary"></div>
+                    <div class="dr-calendars">
+                      <div class="dr-cal" data-cal="left">
+                        <div class="dr-cal-header">
+                          <button type="button" class="dr-nav" data-nav="prev-year">&laquo;</button>
+                          <button type="button" class="dr-nav" data-nav="prev-month">&lsaquo;</button>
+                          <span class="dr-cal-title"></span>
+                          <span class="dr-nav-spacer"></span>
+                        </div>
+                        <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                        <div class="dr-days"></div>
+                      </div>
+                      <div class="dr-cal" data-cal="right">
+                        <div class="dr-cal-header">
+                          <span class="dr-nav-spacer"></span>
+                          <span class="dr-cal-title"></span>
+                          <button type="button" class="dr-nav" data-nav="next-month">&rsaquo;</button>
+                          <button type="button" class="dr-nav" data-nav="next-year">&raquo;</button>
+                        </div>
+                        <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                        <div class="dr-days"></div>
+                      </div>
+                    </div>
+                    <div class="dr-time-row">
+                      <div class="dr-time-group" data-role="start">
+                        <span class="dr-time-label">時間</span>
+                        <div class="dr-time-block" data-role="start">
+                          <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                          <span>:</span>
+                          <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="07"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                          <span>:</span>
+                          <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="26"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                        </div>
+                      </div>
+                      <div class="dr-time-group" data-role="end">
+                        <span class="dr-time-label">結束時間</span>
+                        <div class="dr-time-block" data-role="end">
+                          <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="23"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                          <span>:</span>
+                          <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                          <span>:</span>
+                          <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dr-footer">
+                      <button type="button" class="btn btn-secondary btn-sm" data-daterange-clear>清除</button>
+                      <button type="button" class="btn btn-primary btn-sm" data-daterange-apply>套用</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-field is-editable">
+                <label class="field-label">結束時間</label>
+                <div class="detail-value">2026-05-02 00:00:00</div>
+                <div class="field detail-input">
+                  <div class="daterange-trigger" data-daterange-target="drAnnouncementEnd" id="announcementEndTrigger">
+                    <span class="daterange-text">2026-05-02 00:00:00</span>
+                    <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+                  </div>
+                  <div class="daterange-popover dr-single" id="drAnnouncementEnd">
+                    <div class="dr-presets">
+                      <button type="button" class="chip" data-preset="today">今天</button>
+                      <button type="button" class="chip" data-preset="7">最近7天</button>
+                      <button type="button" class="chip" data-preset="30">最近30天</button>
+                      <button type="button" class="chip" data-preset="month">本月</button>
+                      <button type="button" class="chip" data-preset="lastmonth">上月</button>
+                    </div>
+                    <div class="dr-summary"></div>
+                    <div class="dr-calendars">
+                      <div class="dr-cal" data-cal="left">
+                        <div class="dr-cal-header">
+                          <button type="button" class="dr-nav" data-nav="prev-year">&laquo;</button>
+                          <button type="button" class="dr-nav" data-nav="prev-month">&lsaquo;</button>
+                          <span class="dr-cal-title"></span>
+                          <span class="dr-nav-spacer"></span>
+                        </div>
+                        <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                        <div class="dr-days"></div>
+                      </div>
+                      <div class="dr-cal" data-cal="right">
+                        <div class="dr-cal-header">
+                          <span class="dr-nav-spacer"></span>
+                          <span class="dr-cal-title"></span>
+                          <button type="button" class="dr-nav" data-nav="next-month">&rsaquo;</button>
+                          <button type="button" class="dr-nav" data-nav="next-year">&raquo;</button>
+                        </div>
+                        <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                        <div class="dr-days"></div>
+                      </div>
+                    </div>
+                    <div class="dr-time-row">
+                      <div class="dr-time-group" data-role="start">
+                        <span class="dr-time-label">時間</span>
+                        <div class="dr-time-block" data-role="start">
+                          <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                          <span>:</span>
+                          <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                          <span>:</span>
+                          <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                        </div>
+                      </div>
+                      <div class="dr-time-group" data-role="end">
+                        <span class="dr-time-label">結束時間</span>
+                        <div class="dr-time-block" data-role="end">
+                          <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="23"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                          <span>:</span>
+                          <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                          <span>:</span>
+                          <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="dr-footer">
+                      <button type="button" class="btn btn-secondary btn-sm" data-daterange-clear>清除</button>
+                      <button type="button" class="btn btn-primary btn-sm" data-daterange-apply>套用</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-section is-editable">
+            <div class="card-section-title"><span class="required">*</span>內文</div>
+            <div class="detail-value" style="line-height:1.8;">
+              YZ啟動計畫正式開放星際破關任務！完成指定關卡即可獲得限定獎勵，活動期間內每日皆可挑戰，把握機會一起衝上排行榜頂端。
+            </div>
+            <div class="detail-input">
+              <div class="editor-toolbar">
+                <button class="editor-btn" type="button" style="font-weight:700;">B</button>
+                <button class="editor-btn" type="button" style="font-style:italic;">I</button>
+                <button class="editor-btn" type="button" style="text-decoration:underline;">U</button>
+                <button class="editor-btn" type="button" style="text-decoration:line-through;">S</button>
+                <span class="editor-toolbar-sep"></span>
+                <button class="editor-btn" type="button">H1</button>
+                <button class="editor-btn" type="button">H2</button>
+                <span class="editor-toolbar-sep"></span>
+                <button class="editor-btn" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>
+                </button>
+                <button class="editor-btn" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4.93M14 11a5 5 0 0 0-7.07 0l-2.83 2.83a5 5 0 0 0 7.07 7.07L13 19.07"/></svg>
+                </button>
+                <button class="editor-btn" type="button">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v18M3 8h5"/></svg>
+                </button>
+              </div>
+              <div class="editor-body" contenteditable="true" data-placeholder="請輸入內文">YZ啟動計畫正式開放星際破關任務！完成指定關卡即可獲得限定獎勵，活動期間內每日皆可挑戰，把握機會一起衝上排行榜頂端。</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

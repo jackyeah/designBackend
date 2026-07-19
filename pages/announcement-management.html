@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>公告管理 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'announcement-management', label: '公告管理', href: 'announcement-management.html' };
+  window.PAGE_BREADCRUMB = ['公告訊息', '公告管理'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="announcement" data-subactive="announcement-management"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>公告管理</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>YZ 益兆</option>
+                <option>金錢母</option>
+                <option>Gamma 站</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">公告標題</label>
+              <input class="input" type="text" placeholder="請輸入">
+            </div>
+            <div class="field">
+              <label class="field-label">狀態</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option>啟用</option>
+                <option>停用</option>
+              </select></div>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <button class="btn btn-danger-ghost btn-sm" type="button" data-batch-delete-trigger="modalDeleteBatch">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
+              批次刪除
+            </button>
+            <a class="btn btn-accent btn-sm" href="announcement-add.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              新增
+            </a>
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary" id="selectionHint">尚未選取任何項目</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table" style="table-layout:fixed;">
+              <thead>
+                <tr>
+                  <th style="width:44px;"><input class="checkbox" type="checkbox"></th>
+                  <th class="col-pinned-left" style="width:220px;">活動標題</th>
+                  <th style="width:90px;">入口彈窗</th>
+                  <th style="width:90px;">跑馬燈</th>
+                  <th style="width:90px;">啟用狀態</th>
+                  <th style="width:100px;">前台發布狀態</th>
+                  <th style="width:70px;">排序</th>
+                  <th style="width:70px;">置頂</th>
+                  <th style="width:100px;">更新人員</th>
+                  <th style="width:150px;">建立時間</th>
+                  <th style="width:150px;">發布時間</th>
+                  <th style="width:150px;">結束時間</th>
+                  <th class="col-actions" style="width:110px;">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td class="col-pinned-left">YZ新手啟航計畫｜100%能量補給公告</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">上架</span></td>
+                  <td>1</td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td>Alice</td>
+                  <td>2026-04-01 09:12:33</td>
+                  <td>2026-04-02 21:37:49</td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="announcement-edit.html">編輯</a> · <button class="btn-link danger" data-modal-target="modalDeleteSingle" data-delete-title="YZ新手啟航計畫｜100%能量補給公告" data-delete-meta="建立時間：2026-04-01 09:12:33　·　更新人員：Alice">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td class="col-pinned-left">YZ啟動計畫｜星際破關任務開放公告</td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">上架</span></td>
+                  <td>2</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td>Bruce</td>
+                  <td>2026-03-28 14:02:10</td>
+                  <td>2026-04-02 00:07:26</td>
+                  <td>2026-05-02 00:00:00</td>
+                  <td class="col-actions"><a class="btn-link" href="announcement-edit.html">編輯</a> · <button class="btn-link danger" data-modal-target="modalDeleteSingle" data-delete-title="YZ啟動計畫｜星際破關任務開放公告" data-delete-meta="建立時間：2026-03-28 14:02:10　·　更新人員：Bruce">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td class="col-pinned-left">YZ益兆 浣熊救援計畫｜每日發財金公告</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-off">下架</span></td>
+                  <td>3</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td>Alice</td>
+                  <td>2026-03-20 11:45:52</td>
+                  <td>2026-04-02 20:24:41</td>
+                  <td>2026-04-20 23:59:59</td>
+                  <td class="col-actions"><a class="btn-link" href="announcement-edit.html">編輯</a> · <button class="btn-link danger" data-modal-target="modalDeleteSingle" data-delete-title="YZ益兆 浣熊救援計畫｜每日發財金公告" data-delete-meta="建立時間：2026-03-20 11:45:52　·　更新人員：Alice">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td class="col-pinned-left">YZ宇宙｜星際公會戰爭系統上線公告</td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">上架</span></td>
+                  <td>4</td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td>Cindy</td>
+                  <td>2026-03-15 08:30:00</td>
+                  <td>2026-04-02 20:22:52</td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="announcement-edit.html">編輯</a> · <button class="btn-link danger" data-modal-target="modalDeleteSingle" data-delete-title="YZ宇宙｜星際公會戰爭系統上線公告" data-delete-meta="建立時間：2026-03-15 08:30:00　·　更新人員：Cindy">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td class="col-pinned-left">YZ宇宙安全公告｜浣熊警察全面監控中</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-off">下架</span></td>
+                  <td>5</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td>Bruce</td>
+                  <td>2026-03-10 17:20:44</td>
+                  <td>2026-04-02 20:21:19</td>
+                  <td>2026-04-15 23:59:59</td>
+                  <td class="col-actions"><a class="btn-link" href="announcement-edit.html">編輯</a> · <button class="btn-link danger" data-modal-target="modalDeleteSingle" data-delete-title="YZ宇宙安全公告｜浣熊警察全面監控中" data-delete-meta="建立時間：2026-03-10 17:20:44　·　更新人員：Bruce">刪除</button></td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td class="col-pinned-left">YZ益兆 星際任務啟動計畫公告</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">是</span></td>
+                  <td><span class="status-toggle-btn is-on">上架</span></td>
+                  <td>6</td>
+                  <td><span class="status-toggle-btn is-off">否</span></td>
+                  <td>Cindy</td>
+                  <td>2026-03-05 10:00:00</td>
+                  <td>2026-04-02 20:19:49</td>
+                  <td>-</td>
+                  <td class="col-actions"><a class="btn-link" href="announcement-edit.html">編輯</a> · <button class="btn-link danger" data-modal-target="modalDeleteSingle" data-delete-title="YZ益兆 星際任務啟動計畫公告" data-delete-meta="建立時間：2026-03-05 10:00:00　·　更新人員：Cindy">刪除</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination">
+            <span class="page-btn">«</span><span class="page-btn">‹</span>
+            <span class="page-btn active">1</span>
+            <span class="page-btn">›</span><span class="page-btn">»</span>
+            <div class="select-wrap page-size-select"><select class="select"><option selected>10 筆/頁</option><option>20 筆/頁</option><option>50 筆/頁</option></select></div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalDeleteSingle">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header">
+      <h3>確認是否刪除資料？</h3>
+      <button class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-sm text-secondary">刪除後將無法復原，請確認欲刪除的公告資料：</p>
+      <div class="delete-preview">
+        <div class="delete-preview-title" data-delete-title-slot>-</div>
+        <div class="delete-preview-meta" data-delete-meta-slot></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-danger" data-modal-close data-delete-confirm>刪除</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalDeleteBatch">
+  <div class="modal" style="max-width:460px;">
+    <div class="modal-header">
+      <h3>確認是否刪除資料？</h3>
+      <button class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-sm text-secondary">刪除後將無法復原，即將刪除以下 <span data-delete-count-slot>0</span> 筆公告資料：</p>
+      <div class="delete-preview-list" data-delete-list-slot></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-danger" data-modal-close data-delete-confirm>刪除</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

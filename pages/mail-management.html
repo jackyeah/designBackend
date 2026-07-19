@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>信件管理 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'mail-management', label: '信件管理', href: 'mail-management.html' };
+  window.PAGE_BREADCRUMB = ['公告訊息', '信件管理'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="announcement" data-subactive="mail-management"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>信件管理</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>Delta站長</option>
+                <option>YZ 益兆</option>
+                <option>金錢母</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>創建時間</label>
+              <div class="daterange-trigger" data-daterange-target="drMailTime">
+                <span class="daterange-text">2026-04-01 00:00:00 - 2026-04-30 23:59:59</span>
+                <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+              <div class="daterange-popover" id="drMailTime">
+                <div class="dr-presets">
+                  <button type="button" class="chip" data-preset="today">今天</button>
+                  <button type="button" class="chip" data-preset="7">最近7天</button>
+                  <button type="button" class="chip" data-preset="30">最近30天</button>
+                  <button type="button" class="chip" data-preset="month">本月</button>
+                  <button type="button" class="chip" data-preset="lastmonth">上月</button>
+                </div>
+                <div class="dr-summary"></div>
+                <div class="dr-calendars">
+                  <div class="dr-cal" data-cal="left">
+                    <div class="dr-cal-header">
+                      <button type="button" class="dr-nav" data-nav="prev-year">&laquo;</button>
+                      <button type="button" class="dr-nav" data-nav="prev-month">&lsaquo;</button>
+                      <span class="dr-cal-title"></span>
+                      <span class="dr-nav-spacer"></span>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                  <div class="dr-cal" data-cal="right">
+                    <div class="dr-cal-header">
+                      <span class="dr-nav-spacer"></span>
+                      <span class="dr-cal-title"></span>
+                      <button type="button" class="dr-nav" data-nav="next-month">&rsaquo;</button>
+                      <button type="button" class="dr-nav" data-nav="next-year">&raquo;</button>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                </div>
+                <div class="dr-time-row">
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">開始時間</span>
+                    <div class="dr-time-block" data-role="start">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">結束時間</span>
+                    <div class="dr-time-block" data-role="end">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="23"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dr-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-daterange-clear>清除</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-daterange-apply>套用</button>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">SID</label>
+              <input class="input" type="text" placeholder="請輸入">
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="table-toolbar">
+            <button class="btn btn-danger-ghost btn-sm" type="button" data-batch-delete-trigger="modalDeleteBatch">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2m3 0-1 14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2L4 6"/></svg>
+              批次刪除
+            </button>
+            <a class="btn btn-accent btn-sm" href="#">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              新增
+            </a>
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary" id="selectionHint">尚未選取任何項目</span>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th style="width:44px;"><input class="checkbox" type="checkbox"></th>
+                  <th>標題</th>
+                  <th>會員人數</th>
+                  <th>狀態</th>
+                  <th>更新人員</th>
+                  <th>創建時間</th>
+                  <th class="col-actions">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>我們是EDF</td>
+                  <td>1</td>
+                  <td>未讀：0封｜已讀：1封</td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-04-30 11:06:36</td>
+                  <td class="col-actions">
+                    <a class="btn-link" href="mail-read-status.html?title=%E6%88%91%E5%80%91%E6%98%AFEDF&creator=DeltaAdmin&created=2026-04-30%2011%3A06%3A36&content=%E6%AC%A2%E8%BF%8E%E5%8A%A0%E5%85%A5%20EDF%EF%BC%8C%E4%B8%80%E8%B5%B7%E5%89%B5%E9%80%A0%E7%B2%BE%E5%BD%A9%E6%88%B0%E5%A0%B4%EF%BC%81&count=1&unread=0&read=1">讀取狀態</a> ·
+                    <button class="btn-link danger" data-modal-target="modalDeleteSingle" data-delete-title="我們是EDF" data-delete-meta="建立時間：2026-04-30 11:06:36　·　更新人員：DeltaAdmin">刪除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>我們是勇敢的步兵隊</td>
+                  <td>1</td>
+                  <td>未讀：0封｜已讀：1封</td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-04-23 11:50:07</td>
+                  <td class="col-actions">
+                    <a class="btn-link" href="mail-read-status.html?title=%E6%88%91%E5%80%91%E6%98%AF%E5%8B%87%E6%95%A2%E7%9A%84%E6%AD%A5%E5%85%B5%E9%9A%8A&creator=DeltaAdmin&created=2026-04-23%2011%3A50%3A07&content=%E6%AD%A5%E5%85%B5%E9%9A%8A%E9%9B%86%E5%90%88%EF%BC%8C%E6%9C%AC%E9%80%B1%E4%BB%BB%E5%8B%99%E5%A5%96%E5%8B%B5%E5%B7%B2%E7%99%BC%E6%94%BE%E5%AE%8C%E7%95%A2%E3%80%82&count=1&unread=0&read=1">讀取狀態</a> ·
+                    <button class="btn-link danger" data-modal-target="modalDeleteSingle" data-delete-title="我們是勇敢的步兵隊" data-delete-meta="建立時間：2026-04-23 11:50:07　·　更新人員：DeltaAdmin">刪除</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>0423加密測試</td>
+                  <td>10067</td>
+                  <td>未讀：10063封｜已讀：4封</td>
+                  <td>DeltaAdmin</td>
+                  <td>2026-04-23 11:46:14</td>
+                  <td class="col-actions">
+                    <a class="btn-link" href="mail-read-status.html?title=0423%E5%8A%A0%E5%AF%86%E6%B8%AC%E8%A9%A6&creator=DeltaAdmin&created=2026-04-23%2011%3A46%3A14&content=123%0A456&count=10067&unread=10063&read=4">讀取狀態</a> ·
+                    <button class="btn-link danger" data-modal-target="modalDeleteSingle" data-delete-title="0423加密測試" data-delete-meta="建立時間：2026-04-23 11:46:14　·　更新人員：DeltaAdmin">刪除</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalDeleteSingle">
+  <div class="modal" style="max-width:420px;">
+    <div class="modal-header">
+      <h3>確認是否刪除資料？</h3>
+      <button class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-sm text-secondary">刪除後將無法復原，請確認欲刪除的信件資料：</p>
+      <div class="delete-preview">
+        <div class="delete-preview-title" data-delete-title-slot>-</div>
+        <div class="delete-preview-meta" data-delete-meta-slot></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-danger" data-modal-close data-delete-confirm>刪除</button>
+    </div>
+  </div>
+</div>
+
+<div class="modal-overlay" id="modalDeleteBatch">
+  <div class="modal" style="max-width:460px;">
+    <div class="modal-header">
+      <h3>確認是否刪除資料？</h3>
+      <button class="modal-close" data-modal-close>&times;</button>
+    </div>
+    <div class="modal-body">
+      <p class="text-sm text-secondary">刪除後將無法復原，即將刪除以下 <span data-delete-count-slot>0</span> 筆信件資料：</p>
+      <div class="delete-preview-list" data-delete-list-slot></div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-secondary" data-modal-close>取消</button>
+      <button class="btn btn-danger" data-modal-close data-delete-confirm>刪除</button>
+    </div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

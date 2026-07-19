@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新增資金調整 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'cash-adjustment-add', label: '資金調整', href: 'cash-adjustment-add.html' };
+  window.PAGE_BREADCRUMB = ['現金系統', '資金調整', '新增'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="cash" data-subactive="cash-adjustment"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div style="display:flex; justify-content:flex-end; gap: var(--space-3); margin-bottom: var(--space-5);">
+            <a class="btn btn-secondary" href="cash-adjustment.html">取消</a>
+            <button class="btn btn-primary" id="cashAdjSaveBtn" type="button">保存更改</button>
+          </div>
+
+          <div class="form-grid">
+            <div class="form-field"><label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select" id="cashAdjSiteSelect">
+                <option>請選擇</option>
+                <option>YZ 益兆</option>
+                <option selected>金錢母</option>
+                <option>Gamma 站</option>
+                <option>Delta 站</option>
+              </select></div>
+            </div>
+
+            <div class="form-field"><label class="field-label"><span class="required">*</span>類型</label>
+              <div class="select-wrap"><select class="select" id="cashAdjTypeSelect">
+                <option selected>請選擇</option>
+                <option>VIP層級批量</option>
+                <option>SID</option>
+                <option>公會</option>
+              </select></div>
+            </div>
+
+            <div class="form-field hidden" id="cashAdjTargetVip">
+              <label class="field-label"><span class="required">*</span>VIP 等級</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇</option>
+                <option>VIP0</option><option>VIP1</option><option>VIP2</option><option>VIP3</option><option>VIP4</option><option>VIP5</option>
+                <option>VIP6</option><option>VIP7</option><option>VIP8</option><option>VIP9</option><option>VIP10</option>
+              </select></div>
+            </div>
+
+            <div class="form-field span-2 hidden" id="cashAdjTargetSid">
+              <label class="field-label"><span class="required">*</span>SID</label>
+              <div class="tag-input" data-tag-input data-max="200" data-count-target="cashAdjSidCount">
+                <input class="tag-input-field" type="text" placeholder="輸入 SID 後按 Enter 新增，可貼上多筆（換行/逗號分隔）">
+              </div>
+              <div class="tag-input-count" id="cashAdjSidCount">0 / 200</div>
+            </div>
+
+            <div class="form-field span-2 hidden" id="cashAdjTargetGuild">
+              <label class="field-label"><span class="required">*</span>公會</label>
+              <div class="tag-input" data-tag-input data-max="200" data-count-target="cashAdjGuildCount">
+                <input class="tag-input-field" type="text" placeholder="輸入公會名稱後按 Enter 新增，可貼上多筆（換行/逗號分隔）">
+              </div>
+              <div class="tag-input-count" id="cashAdjGuildCount">0 / 200</div>
+            </div>
+
+            <div class="form-field hidden" id="cashAdjItemSelectWrap">
+              <label class="field-label"><span class="required">*</span>調整項目</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇</option>
+                <option>餘額</option>
+                <option>優惠</option>
+              </select></div>
+            </div>
+            <div class="form-field hidden" id="cashAdjItemFixedWrap">
+              <label class="field-label"><span class="required">*</span>調整項目</label>
+              <div class="detail-value" style="padding: 10px 2px;">公會金幣</div>
+            </div>
+
+            <div class="form-field"><label class="field-label"><span class="required">*</span>添加/扣除</label>
+              <div class="select-wrap"><select class="select" id="cashAdjActionSelect">
+                <option selected>請選擇</option>
+                <option>添加</option>
+                <option>扣除</option>
+              </select></div>
+            </div>
+
+            <div class="form-field">
+              <label class="field-label"><span class="required">*</span>金額</label>
+              <input class="input" type="text" placeholder="請輸入" id="cashAdjAmountInput">
+              <div class="text-xs" style="color: var(--color-danger); margin-top: 4px;">前台點數 = 0.00</div>
+            </div>
+
+            <div class="form-field span-2"><label class="field-label"><span class="required">*</span>後台備註</label>
+              <textarea class="textarea" placeholder="請輸入" id="cashAdjNoteTextarea"></textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  (function () {
+    var typeSelect = document.getElementById('cashAdjTypeSelect');
+    var targetVip = document.getElementById('cashAdjTargetVip');
+    var targetSid = document.getElementById('cashAdjTargetSid');
+    var targetGuild = document.getElementById('cashAdjTargetGuild');
+    var itemSelectWrap = document.getElementById('cashAdjItemSelectWrap');
+    var itemFixedWrap = document.getElementById('cashAdjItemFixedWrap');
+
+    function syncType() {
+      var v = typeSelect.value;
+      targetVip.classList.toggle('hidden', v !== 'VIP層級批量');
+      targetSid.classList.toggle('hidden', v !== 'SID');
+      targetGuild.classList.toggle('hidden', v !== '公會');
+      itemSelectWrap.classList.toggle('hidden', v !== 'VIP層級批量' && v !== 'SID');
+      itemFixedWrap.classList.toggle('hidden', v !== '公會');
+    }
+    typeSelect.addEventListener('change', syncType);
+    syncType();
+
+    /* 「再次派發」帶入：從清單頁點擊再次派發連結進來時，依網址參數預先帶入欄位值，讓操作者不用重新輸入一次 */
+    (function prefillFromRedispatch() {
+      var params = new URLSearchParams(window.location.search);
+      if (params.get('type') !== 'SID') return;
+      typeSelect.value = 'SID';
+      syncType();
+      var site = params.get('site');
+      if (site) document.getElementById('cashAdjSiteSelect').value = site;
+      var sid = params.get('sid');
+      if (sid) window.tagInputAddValues(targetSid.querySelector('.tag-input'), [sid]);
+      var item = params.get('item');
+      if (item) itemSelectWrap.querySelector('select').value = item;
+      var action = params.get('action');
+      if (action) document.getElementById('cashAdjActionSelect').value = action;
+      var amount = params.get('amount');
+      if (amount) document.getElementById('cashAdjAmountInput').value = amount;
+      var note = params.get('note');
+      if (note) document.getElementById('cashAdjNoteTextarea').value = note;
+    })();
+
+    /* 送出驗證示範：模擬已知有效的 SID / 公會名稱清單（對應 guild-members.html / guild-list.html 的樣本資料） */
+    var VALID_SIDS = ['252169763', '252170014', '252169999', '252169961', '252169934', '252169927', '252169926', '252169919', '252169916', '252169913'];
+    var VALID_GUILDS = ['龍城戰隊', '機器人大軍DT', '菇菇寶貝種田', '夜煌兄弟會', '風暴軍團', '銀河聯盟'];
+
+    document.getElementById('cashAdjSaveBtn').addEventListener('click', function () {
+      var type = typeSelect.value;
+      if (type === 'SID') {
+        var sidContainer = targetSid.querySelector('.tag-input');
+        var sidValues = window.tagInputGetValues(sidContainer);
+        var invalidSid = sidValues.filter(function (v) { return VALID_SIDS.indexOf(v) === -1; });
+        window.tagInputMarkInvalid(sidContainer, invalidSid);
+        if (!sidValues.length) { window.showToast('請輸入至少一筆 SID'); return; }
+        if (invalidSid.length) { window.showToast('查無資料：' + invalidSid.join('、')); return; }
+      } else if (type === '公會') {
+        var guildContainer = targetGuild.querySelector('.tag-input');
+        var guildValues = window.tagInputGetValues(guildContainer);
+        var invalidGuild = guildValues.filter(function (v) { return VALID_GUILDS.indexOf(v) === -1; });
+        window.tagInputMarkInvalid(guildContainer, invalidGuild);
+        if (!guildValues.length) { window.showToast('請輸入至少一筆公會名稱'); return; }
+        if (invalidGuild.length) { window.showToast('查無資料：' + invalidGuild.join('、')); return; }
+      }
+      window.showToast('資金調整已送出');
+    });
+  })();
+</script>
+</body>
+</html>

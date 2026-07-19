@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>資金調整 - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'cash-adjustment', label: '資金調整', href: 'cash-adjustment.html' };
+  window.PAGE_BREADCRUMB = ['現金系統', '資金調整'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="cash" data-subactive="cash-adjustment"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>資金調整</h1></div>
+
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option>YZ 益兆</option>
+                <option selected>金錢母</option>
+                <option>Gamma 站</option>
+                <option>Delta 站</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">類型</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇</option>
+                <option>SID</option>
+                <option>公會</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>完成時間</label>
+              <div class="daterange-trigger" data-daterange-target="drCashAdjTime">
+                <span class="daterange-text">2026-07-01 00:00:00 - 2026-07-18 23:59:59</span>
+                <svg class="daterange-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+              </div>
+              <div class="daterange-popover" id="drCashAdjTime">
+                <div class="dr-presets">
+                  <button type="button" class="chip" data-preset="today">今天</button>
+                  <button type="button" class="chip" data-preset="7">最近7天</button>
+                  <button type="button" class="chip" data-preset="30">最近30天</button>
+                  <button type="button" class="chip" data-preset="month">本月</button>
+                  <button type="button" class="chip" data-preset="lastmonth">上月</button>
+                </div>
+                <div class="dr-summary"></div>
+                <div class="dr-calendars">
+                  <div class="dr-cal" data-cal="left">
+                    <div class="dr-cal-header">
+                      <button type="button" class="dr-nav" data-nav="prev-year">&laquo;</button>
+                      <button type="button" class="dr-nav" data-nav="prev-month">&lsaquo;</button>
+                      <span class="dr-cal-title"></span>
+                      <span class="dr-nav-spacer"></span>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                  <div class="dr-cal" data-cal="right">
+                    <div class="dr-cal-header">
+                      <span class="dr-nav-spacer"></span>
+                      <span class="dr-cal-title"></span>
+                      <button type="button" class="dr-nav" data-nav="next-month">&rsaquo;</button>
+                      <button type="button" class="dr-nav" data-nav="next-year">&raquo;</button>
+                    </div>
+                    <div class="dr-weekdays"><span>日</span><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span></div>
+                    <div class="dr-days"></div>
+                  </div>
+                </div>
+                <div class="dr-time-row">
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">開始時間</span>
+                    <div class="dr-time-block" data-role="start">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="00"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                  <div class="dr-time-group">
+                    <span class="dr-time-label">結束時間</span>
+                    <div class="dr-time-block" data-role="end">
+                      <div class="dr-stepper" data-unit="h"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="23"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="m"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                      <span class="dr-colon">:</span>
+                      <div class="dr-stepper" data-unit="s"><button type="button" class="dr-stepper-btn" data-dir="up">&#9650;</button><input class="dr-stepper-val" type="text" inputmode="numeric" maxlength="2" value="59"><button type="button" class="dr-stepper-btn" data-dir="down">&#9660;</button></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="dr-footer">
+                  <button type="button" class="btn btn-secondary btn-sm" data-daterange-clear>清除</button>
+                  <button type="button" class="btn btn-primary btn-sm" data-daterange-apply>套用</button>
+                </div>
+              </div>
+            </div>
+            <div class="field">
+              <label class="field-label">交易類型</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇</option>
+                <option>餘額</option>
+                <option>優惠</option>
+                <option>公會金幣</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">狀態</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇</option>
+                <option>處理中</option>
+                <option>通過</option>
+                <option>駁回</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">VIP等級</label>
+              <div class="select-wrap"><select class="select">
+                <option selected>請選擇</option>
+                <option>VIP0</option><option>VIP1</option><option>VIP2</option><option>VIP3</option><option>VIP4</option><option>VIP5</option>
+                <option>VIP6</option><option>VIP7</option><option>VIP8</option><option>VIP9</option><option>VIP10</option>
+              </select></div>
+            </div>
+            <div class="field">
+              <label class="field-label">交易單號</label>
+              <input class="input" type="text" placeholder="請輸入">
+            </div>
+            <div class="field">
+              <label class="field-label">備註</label>
+              <input class="input" type="text" placeholder="請輸入">
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="stat-strip" style="border:1px solid var(--color-border); border-radius:var(--radius-md); margin-bottom: var(--space-4);">
+            <div class="stat-item">
+              <div class="stat-label">添加餘額</div>
+              <div class="stat-value accent-success">2,010.00</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">扣除餘額</div>
+              <div class="stat-value accent-danger">1,858.00</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">添加優惠</div>
+              <div class="stat-value accent-success">10.00</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">扣除優惠</div>
+              <div class="stat-value accent-danger">0.00</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">添加公會金幣</div>
+              <div class="stat-value accent-success">10.00</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">扣除公會金幣</div>
+              <div class="stat-value accent-danger">0.00</div>
+            </div>
+          </div>
+
+          <div class="table-toolbar">
+            <a class="btn btn-accent btn-sm" href="cash-adjustment-add.html">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12h14"/></svg>
+              新增
+            </a>
+            <button class="btn btn-secondary btn-sm" type="button" disabled>批量稽核</button>
+            <button class="btn btn-accent btn-sm" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M7 11l5 5 5-5"/><path d="M5 19h14"/></svg>
+              匯出
+            </button>
+            <span class="spacer"></span>
+            <span class="text-sm text-tertiary">尚未選取任何項目</span>
+            <div class="col-toggle" data-col-toggle-target="cashAdjustmentTable">
+              <button type="button" class="btn btn-secondary btn-sm col-toggle-trigger">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M9 4v16M15 4v16"/></svg>
+                欄位設定
+              </button>
+              <div class="col-toggle-menu">
+                <div class="col-toggle-menu-header">
+                  <span class="col-toggle-menu-title">顯示欄位</span>
+                  <button type="button" class="col-toggle-selectall">取消全選</button>
+                </div>
+                <div class="col-toggle-list">
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="vip">VIP等級</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="adjustedpoints">調整後點數</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="requiredturnover">必須流水點數</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="turnovercategory">流水限大類</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="note">備註</label>
+                  <label class="col-toggle-item"><input type="checkbox" checked data-col="completedtime">完成時間</label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-scroll">
+            <table class="data-table" id="cashAdjustmentTable">
+              <thead>
+                <tr>
+                  <th><input class="checkbox" type="checkbox"></th>
+                  <th>創建時間</th>
+                  <th>提案人員</th>
+                  <th>SID</th>
+                  <th data-col="vip">VIP等級</th>
+                  <th>交易金額</th>
+                  <th data-col="adjustedpoints">調整後點數</th>
+                  <th>狀態</th>
+                  <th data-col="requiredturnover">必須流水點數</th>
+                  <th data-col="turnovercategory">流水限大類</th>
+                  <th data-col="note">備註</th>
+                  <th data-col="completedtime">完成時間</th>
+                  <th class="col-actions">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>2026-07-18 15:01:44</td>
+                  <td>DeltaAdmin</td>
+                  <td><span class="cell-copy">252169961<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>VIP2</td>
+                  <td>-500.00</td>
+                  <td>1,200.00</td>
+                  <td><span class="status-processing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a10 10 0 0 1 10 10"/></svg>處理中</span></td>
+                  <td>0.00</td>
+                  <td>-</td>
+                  <td>待確認</td>
+                  <td>-</td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-link" data-modal-target="modalCashAdjDetail" data-sid="252169961" data-book-balance="1,200.00" data-tx-id="8b6e2f14-4a3d-4c9e-9a1b-7c5d8f2e6a03" data-adjust-item="扣除餘額" data-adjust-amount="-500.00" data-adjusted-points="1,200.00" data-turnover-multiple="0" data-turnover-category="-" data-auditor="-" data-note="待確認">詳情</button> · <a class="btn-link" href="#" data-unlock-trigger data-modal-target="modalCashAdjUnlock">解鎖</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>2026-07-18 14:22:10</td>
+                  <td>DeltaAdmin</td>
+                  <td><span class="cell-copy">252170014<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>VIP1</td>
+                  <td>100.00</td>
+                  <td>2,000.00</td>
+                  <td><span class="status-processing"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2a10 10 0 0 1 10 10"/></svg>處理中</span></td>
+                  <td>0.00</td>
+                  <td>-</td>
+                  <td>123</td>
+                  <td>-</td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-link" data-modal-target="modalCashAdjDetail" data-sid="252170014" data-book-balance="1,900.00" data-tx-id="27c4c4d7-635b-4bb7-8fd5-b16afbfa6f23" data-adjust-item="添加餘額" data-adjust-amount="100.00" data-adjusted-points="2,000.00" data-turnover-multiple="0" data-turnover-category="-" data-auditor="-" data-note="123">詳情</button> · <a class="btn-link" href="cash-adjustment-audit.html?site=%E9%87%91%E9%8C%A2%E6%AF%8D&amp;sid=252170014&amp;vip=VIP1&amp;created=2026-07-18%2014%3A22%3A10&amp;proposer=DeltaAdmin&amp;item=%E6%B7%BB%E5%8A%A0%E9%A4%98%E9%A1%8D&amp;amount=100.00&amp;points=2%2C000.00&amp;multiple=0&amp;category=-&amp;note=123">稽核</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>2026-07-13 23:56:03</td>
+                  <td>DeltaAdmin</td>
+                  <td><span class="cell-copy">252170014<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>VIP1</td>
+                  <td>2,000.00</td>
+                  <td>2,000.00</td>
+                  <td><span class="badge badge-success">通過</span></td>
+                  <td>0.00</td>
+                  <td>-</td>
+                  <td>測試</td>
+                  <td>2026-07-13 23:56:14</td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-link" data-modal-target="modalCashAdjDetail" data-sid="252170014" data-book-balance="0.00" data-tx-id="011cdde5-006e-4713-b57c-686d4aeaa118" data-adjust-item="添加餘額" data-adjust-amount="2,000.00" data-adjusted-points="2,000.00" data-turnover-multiple="0" data-turnover-category="-" data-auditor="DeltaAdmin" data-note="測試">詳情</button> · <a class="btn-link" href="cash-adjustment-add.html?type=SID&amp;site=%E9%87%91%E9%8C%A2%E6%AF%8D&amp;sid=252170014&amp;item=餘額&amp;action=添加&amp;amount=2000&amp;note=測試">再次派發</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>2026-07-09 11:19:23</td>
+                  <td>DeltaAdmin</td>
+                  <td><span class="cell-copy">252159810<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>VIP2</td>
+                  <td>10.00</td>
+                  <td>37,291.00</td>
+                  <td><span class="badge badge-success">通過</span></td>
+                  <td>0.00</td>
+                  <td>-</td>
+                  <td>測試資料</td>
+                  <td>2026-07-09 11:19:33</td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-link" data-modal-target="modalCashAdjDetail" data-sid="252159810" data-book-balance="37,291.00" data-tx-id="7a3f0c92-1b44-4e2a-9d6f-2c8815b6a204" data-adjust-item="添加優惠" data-adjust-amount="10.00" data-adjusted-points="37,291.00" data-turnover-multiple="0" data-turnover-category="-" data-auditor="DeltaAdmin" data-note="測試資料">詳情</button> · <a class="btn-link" href="cash-adjustment-add.html?type=SID&amp;site=%E9%87%91%E9%8C%A2%E6%AF%8D&amp;sid=252159810&amp;item=優惠&amp;action=添加&amp;amount=10&amp;note=測試資料">再次派發</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>2026-07-09 11:18:30</td>
+                  <td>DeltaAdmin</td>
+                  <td><span class="cell-copy">252159756<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>VIP5</td>
+                  <td>10.00</td>
+                  <td>6,147.67</td>
+                  <td><span class="badge badge-success">通過</span></td>
+                  <td>0.00</td>
+                  <td>-</td>
+                  <td>測試資料</td>
+                  <td>2026-07-09 11:19:34</td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-link" data-modal-target="modalCashAdjDetail" data-sid="252159756" data-book-balance="6,147.67" data-tx-id="55e19b3d-8f60-4c17-a2eb-91d4f7e0c6b8" data-adjust-item="添加優惠" data-adjust-amount="10.00" data-adjusted-points="6,147.67" data-turnover-multiple="0" data-turnover-category="-" data-auditor="DeltaAdmin" data-note="測試資料">詳情</button> · <a class="btn-link" href="cash-adjustment-add.html?type=SID&amp;site=%E9%87%91%E9%8C%A2%E6%AF%8D&amp;sid=252159756&amp;item=優惠&amp;action=添加&amp;amount=10&amp;note=測試資料">再次派發</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>2026-07-09 11:18:10</td>
+                  <td>DeltaAdmin</td>
+                  <td><span class="cell-copy">252159756<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>VIP5</td>
+                  <td>10.00</td>
+                  <td>6,147.67</td>
+                  <td><span class="badge badge-success">通過</span></td>
+                  <td>0.00</td>
+                  <td>-</td>
+                  <td>測試資料</td>
+                  <td>2026-07-09 11:19:34</td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-link" data-modal-target="modalCashAdjDetail" data-sid="252159756" data-book-balance="6,147.67" data-tx-id="c419a02e-77b4-4a05-8e13-6f2b5d3c9a71" data-adjust-item="添加優惠" data-adjust-amount="10.00" data-adjusted-points="6,147.67" data-turnover-multiple="0" data-turnover-category="-" data-auditor="DeltaAdmin" data-note="測試資料">詳情</button> · <a class="btn-link" href="cash-adjustment-add.html?type=SID&amp;site=%E9%87%91%E9%8C%A2%E6%AF%8D&amp;sid=252159756&amp;item=優惠&amp;action=添加&amp;amount=10&amp;note=測試資料">再次派發</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>2026-07-09 10:43:58</td>
+                  <td>DeltaAdmin</td>
+                  <td><span class="cell-copy">252169998<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>VIP3</td>
+                  <td>-1,828.00</td>
+                  <td>0.00</td>
+                  <td><span class="badge badge-success">通過</span></td>
+                  <td>0.00</td>
+                  <td>-</td>
+                  <td>0709</td>
+                  <td>2026-07-09 10:44:26</td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-link" data-modal-target="modalCashAdjDetail" data-sid="252169998" data-book-balance="0.00" data-tx-id="9dc4e731-2a05-4f38-b6d9-1e77c0a8f452" data-adjust-item="扣除餘額" data-adjust-amount="-1,828.00" data-adjusted-points="0.00" data-turnover-multiple="0" data-turnover-category="-" data-auditor="DeltaAdmin" data-note="0709">詳情</button> · <a class="btn-link" href="cash-adjustment-add.html?type=SID&amp;site=%E9%87%91%E9%8C%A2%E6%AF%8D&amp;sid=252169998&amp;item=餘額&amp;action=扣除&amp;amount=1828&amp;note=0709">再次派發</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td><input class="checkbox" type="checkbox"></td>
+                  <td>2026-07-09 10:42:27</td>
+                  <td>DeltaAdmin</td>
+                  <td><span class="cell-copy">252169999<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="12" height="12" rx="1.5"/><path d="M4 16V5a1 1 0 0 1 1-1h11"/></svg></span></td>
+                  <td>VIP1</td>
+                  <td>-30.00</td>
+                  <td>0.00</td>
+                  <td><span class="badge badge-success">通過</span></td>
+                  <td>0.00</td>
+                  <td>-</td>
+                  <td>後台備註</td>
+                  <td>2026-07-09 10:42:50</td>
+                  <td class="col-actions">
+                    <button type="button" class="btn-link" data-modal-target="modalCashAdjDetail" data-sid="252169999" data-book-balance="0.00" data-tx-id="0f6d8a4c-3e91-4b7a-95df-8b0c1a6e2d37" data-adjust-item="扣除餘額" data-adjust-amount="-30.00" data-adjusted-points="0.00" data-turnover-multiple="0" data-turnover-category="-" data-auditor="DeltaAdmin" data-note="後台備註">詳情</button> · <a class="btn-link" href="cash-adjustment-add.html?type=SID&amp;site=%E9%87%91%E9%8C%A2%E6%AF%8D&amp;sid=252169999&amp;item=餘額&amp;action=扣除&amp;amount=30&amp;note=後台備註">再次派發</a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="pagination">
+            <span class="page-btn">«</span><span class="page-btn">‹</span>
+            <span class="page-btn active">1</span>
+            <span class="page-btn">›</span><span class="page-btn">»</span>
+            <div class="select-wrap page-size-select"><select class="select"><option selected>50 筆/頁</option><option>100 筆/頁</option></select></div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+  </div>
+</div>
+
+<!-- 資金調整詳情 Modal -->
+<div class="modal-overlay" id="modalCashAdjDetail">
+  <div class="modal">
+    <div class="modal-header">
+      <h2>資金調整詳情<span class="text-sm text-tertiary" id="cashAdjDetailMeta" style="font-weight:400;margin-left:var(--space-3);">SID：252170014</span></h2>
+      <button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="modal-body">
+      <div class="detail-grid">
+        <div class="detail-item"><span class="detail-label">SID</span><span class="detail-value" id="cashAdjDetailSid">252170014</span></div>
+        <div class="detail-item"><span class="detail-label">存摺餘額</span><span class="detail-value" id="cashAdjDetailBookBalance">0.00</span></div>
+        <div class="detail-item"><span class="detail-label">調整項目</span><span class="detail-value" id="cashAdjDetailItem">-</span></div>
+        <div class="detail-item" style="grid-column: 1 / -1;"><span class="detail-label">交易單號</span><span class="detail-value" id="cashAdjDetailTxId">-</span></div>
+        <div class="detail-item"><span class="detail-label">調整金額</span><span class="detail-value" id="cashAdjDetailAmount">-</span></div>
+        <div class="detail-item"><span class="detail-label">調整後點數</span><span class="detail-value" id="cashAdjDetailPoints">-</span></div>
+        <div class="detail-item"><span class="detail-label">流水倍數</span><span class="detail-value" id="cashAdjDetailMultiple">-</span></div>
+        <div class="detail-item"><span class="detail-label">流水限大類</span><span class="detail-value" id="cashAdjDetailCategory">-</span></div>
+        <div class="detail-item"><span class="detail-label">稽核人員</span><span class="detail-value" id="cashAdjDetailAuditor">-</span></div>
+        <div class="detail-item" style="grid-column: 1 / -1;"><span class="detail-label">備註</span><span class="detail-value" id="cashAdjDetailNote">-</span></div>
+      </div>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>關閉</button></div>
+  </div>
+</div>
+
+<!-- 解鎖確認 Modal -->
+<div class="modal-overlay" id="modalCashAdjUnlock">
+  <div class="modal" style="max-width: 420px;">
+    <div class="modal-header"><h2>解鎖此筆資金調整</h2><button class="modal-close" data-modal-close><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <div class="modal-body">
+      <p class="text-sm text-secondary" style="line-height: 1.7;">解鎖後此筆資料將回到非鎖定狀態，可由任一稽核人員重新進入稽核；解鎖期間無法被通過或駁回。確認解鎖嗎？</p>
+    </div>
+    <div class="modal-footer"><button class="btn btn-secondary" data-modal-close>取消</button><button class="btn btn-primary" id="cashAdjUnlockConfirmBtn" data-modal-close>確認</button></div>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('[data-modal-target="modalCashAdjDetail"]').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        document.getElementById('cashAdjDetailMeta').textContent = 'SID：' + btn.getAttribute('data-sid');
+        document.getElementById('cashAdjDetailSid').textContent = btn.getAttribute('data-sid');
+        document.getElementById('cashAdjDetailBookBalance').textContent = btn.getAttribute('data-book-balance');
+        document.getElementById('cashAdjDetailTxId').textContent = btn.getAttribute('data-tx-id');
+        document.getElementById('cashAdjDetailItem').textContent = btn.getAttribute('data-adjust-item');
+        document.getElementById('cashAdjDetailAmount').textContent = btn.getAttribute('data-adjust-amount');
+        document.getElementById('cashAdjDetailPoints').textContent = btn.getAttribute('data-adjusted-points');
+        document.getElementById('cashAdjDetailMultiple').textContent = btn.getAttribute('data-turnover-multiple');
+        document.getElementById('cashAdjDetailCategory').textContent = btn.getAttribute('data-turnover-category');
+        document.getElementById('cashAdjDetailAuditor').textContent = btn.getAttribute('data-auditor');
+        document.getElementById('cashAdjDetailNote').textContent = btn.getAttribute('data-note');
+      });
+    });
+
+    /* 解鎖：確認後此列改回可稽核狀態，「解鎖」連結換成「稽核」連結（示範用，僅前端狀態切換） */
+    var unlockTargetLink = null;
+    document.querySelectorAll('[data-unlock-trigger]').forEach(function (link) {
+      link.addEventListener('click', function () { unlockTargetLink = link; });
+    });
+    document.getElementById('cashAdjUnlockConfirmBtn').addEventListener('click', function () {
+      if (!unlockTargetLink) return;
+      var row = unlockTargetLink.closest('tr');
+      var detailBtn = row.querySelector('[data-modal-target="modalCashAdjDetail"]');
+      var cells = row.querySelectorAll('td');
+      var params = new URLSearchParams({
+        site: '金錢母',
+        sid: detailBtn.getAttribute('data-sid'),
+        vip: cells[4].textContent.trim(),
+        created: cells[1].textContent.trim(),
+        proposer: cells[2].textContent.trim(),
+        item: detailBtn.getAttribute('data-adjust-item'),
+        amount: detailBtn.getAttribute('data-adjust-amount'),
+        points: detailBtn.getAttribute('data-adjusted-points'),
+        multiple: detailBtn.getAttribute('data-turnover-multiple'),
+        category: detailBtn.getAttribute('data-turnover-category'),
+        note: detailBtn.getAttribute('data-note')
+      });
+      unlockTargetLink.textContent = '稽核';
+      unlockTargetLink.href = 'cash-adjustment-audit.html?' + params.toString();
+      unlockTargetLink.removeAttribute('data-unlock-trigger');
+      unlockTargetLink.removeAttribute('data-modal-target');
+      unlockTargetLink = null;
+      window.showToast('已解鎖，此筆資料可重新進入稽核');
+    });
+  });
+</script>
+</body>
+</html>

@@ -66,6 +66,12 @@
 .btn-danger-ghost { color: var(--color-danger); background: var(--color-danger-light); }
 .btn-danger-ghost:hover { background: var(--color-danger-border); }
 
+.btn-success { background: var(--color-success); color: #fff; }
+.btn-success:hover { background: var(--color-success-hover); }
+
+.btn-danger { background: var(--color-danger); color: #fff; }
+.btn-danger:hover { background: var(--color-danger-hover); }
+
 .btn-ghost { color: var(--color-text-secondary); }
 .btn-ghost:hover { background: var(--color-bg-hover); color: var(--color-text-primary); }
 
@@ -516,6 +522,15 @@
 }
 .data-table th.col-actions { background: var(--color-bg-subtle); z-index: 6; }
 .data-table td.col-actions { background: inherit; z-index: 1; }
+/* Pin a leading column (e.g. 活動標題) to the left, mirroring .col-actions on the right */
+.data-table th.col-pinned-left,
+.data-table td.col-pinned-left {
+  position: sticky;
+  left: 0;
+  box-shadow: 6px 0 6px -6px rgba(15, 23, 42, 0.15);
+}
+.data-table th.col-pinned-left { background: var(--color-bg-subtle); z-index: 6; }
+.data-table td.col-pinned-left { background: inherit; z-index: 1; }
 .data-table .cell-copy,
 .subtable .cell-copy { display: inline-flex; align-items: center; gap: 6px; }
 .data-table .cell-copy svg,
@@ -543,6 +558,18 @@
 .badge-info { background: var(--color-info-light); color: var(--color-info); }
 .badge-neutral { background: var(--color-bg-hover); color: var(--color-text-secondary); }
 
+/* ---------- 處理中狀態：純文字 + 轉圈圖示，不使用 badge 底色底框 ---------- */
+.status-processing {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--color-warning);
+  font-weight: 600;
+  white-space: nowrap;
+}
+.status-processing svg { width: 14px; height: 14px; animation: status-processing-spin 1s linear infinite; }
+@keyframes status-processing-spin { to { transform: rotate(360deg); } }
+
 .status-toggle-btn {
   display: inline-flex;
   align-items: center;
@@ -555,6 +582,31 @@
 }
 .status-toggle-btn.is-on { background: var(--color-success-light); color: var(--color-success); border-color: var(--color-success-border); }
 .status-toggle-btn.is-off { background: var(--color-bg-hover); color: var(--color-text-tertiary); border-color: var(--color-border); }
+
+/* ---------- 刪除確認 modal：列出欲刪除的資料，取代單純「確認是否刪除資料？」的空泛提示（全站規範） ---------- */
+.delete-preview {
+  margin-top: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.delete-preview-title { font-size: var(--text-sm); font-weight: 600; color: var(--color-text-primary); }
+.delete-preview-meta { font-size: var(--text-xs); color: var(--color-text-tertiary); margin-top: 4px; }
+.delete-preview-list {
+  margin-top: var(--space-4);
+  max-height: 220px;
+  overflow-y: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+.delete-preview-item {
+  padding: var(--space-2) var(--space-4);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  border-top: 1px solid var(--color-border);
+}
+.delete-preview-item:first-child { border-top: none; }
 
 /* Solid pill button (e.g. 會員狀態-啟用 / 遊戲平台開啟 quick-toggle actions in dense tables) */
 .pill-btn-success {
@@ -1532,6 +1584,62 @@ tr.drag-over { box-shadow: inset 0 2px 0 var(--color-primary); }
 .gallery-card-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .gallery-card-actions { display: flex; gap: var(--space-2); }
 .gallery-card-actions .btn { flex: 1; }
+
+/* ---------- Tag input（批量快速輸入 + 驗證狀態，取代純 textarea 換行輸入，例如資金調整 SID/公會名稱） ---------- */
+.tag-input {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: center;
+  gap: 6px;
+  min-height: 104px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: #fff;
+  cursor: text;
+}
+.tag-input:focus-within { border-color: var(--color-primary); }
+.tag-input-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 6px 4px 10px;
+  border-radius: var(--radius-sm);
+  background: var(--color-bg-subtle);
+  border: 1px solid var(--color-border);
+  font-size: var(--text-sm);
+  color: var(--color-text-primary);
+  line-height: 1.4;
+  white-space: nowrap;
+}
+.tag-input-chip.is-invalid {
+  background: var(--color-danger-light);
+  border-color: var(--color-danger-border);
+  color: var(--color-danger);
+}
+.tag-input-chip-remove {
+  display: inline-flex;
+  cursor: pointer;
+  color: var(--color-text-tertiary);
+  border-radius: 3px;
+}
+.tag-input-chip-remove:hover { color: var(--color-text-primary); }
+.tag-input-chip.is-invalid .tag-input-chip-remove { color: var(--color-danger); }
+.tag-input-chip.is-invalid .tag-input-chip-remove:hover { color: var(--color-danger-hover); }
+.tag-input-field {
+  flex: 1;
+  min-width: 140px;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: var(--text-sm);
+  font-family: inherit;
+  color: var(--color-text-primary);
+  padding: 4px 2px;
+}
+.tag-input-count { font-size: var(--text-xs); color: var(--color-text-tertiary); margin-top: 4px; }
+.tag-input-count.is-over { color: var(--color-danger); }
 
 /* ---------- Utility ---------- */
 .mt-2 { margin-top: var(--space-2); }

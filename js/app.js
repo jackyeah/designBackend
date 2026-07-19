@@ -329,6 +329,67 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  /* ---------- 刪除確認 modal：列出欲刪除的資料（全站規範，取代單純「確認是否刪除資料？」的空泛提示） ----------
+     單筆刪除：觸發元素為 [data-modal-target="modalDeleteSingle"]，帶 data-delete-title（主要識別欄位，例如活動標題/名稱）
+     與 data-delete-meta（次要輔助資訊，例如「站台：xxx　·　建立時間：xxx」，單一字串、頁面自行組好）。
+     批次刪除：觸發元素為 [data-batch-delete-trigger="<modal id>"]（不用 data-modal-target，因為要先檢查是否有勾選才決定開啟），
+     會自動彙整目前表格中勾選列的主要識別欄位（優先取 .col-pinned-left，否則取第二欄）列出清單。
+     兩種 modal 內部都用 [data-delete-title-slot]/[data-delete-meta-slot]/[data-delete-list-slot]/[data-delete-count-slot]/[data-delete-confirm]
+     這組通用 slot 屬性標記填值位置與確認按鈕，讓此機制可套用到任何頁面，不需要額外寫頁面專屬 JS。 */
+  document.querySelectorAll('[data-modal-target="modalDeleteSingle"]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var modal = document.getElementById('modalDeleteSingle');
+      if (!modal) return;
+      var titleEl = modal.querySelector('[data-delete-title-slot]');
+      var metaEl = modal.querySelector('[data-delete-meta-slot]');
+      if (titleEl) titleEl.textContent = btn.getAttribute('data-delete-title') || '-';
+      if (metaEl) metaEl.textContent = btn.getAttribute('data-delete-meta') || '';
+      var confirmBtn = modal.querySelector('[data-delete-confirm]');
+      if (confirmBtn) {
+        confirmBtn.onclick = function () {
+          var row = btn.closest('tr');
+          if (row) row.remove();
+          showToast('已刪除');
+        };
+      }
+    });
+  });
+
+  document.querySelectorAll('[data-batch-delete-trigger]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var table = btn.closest('.card-section').querySelector('.data-table');
+      var rowCbs = table ? table.querySelectorAll('tbody td:first-child input[type="checkbox"]:checked') : [];
+      if (!rowCbs.length) { showToast('請先勾選要刪除的項目'); return; }
+      var modal = document.getElementById(btn.getAttribute('data-batch-delete-trigger'));
+      if (!modal) return;
+      var listEl = modal.querySelector('[data-delete-list-slot]');
+      var countEl = modal.querySelector('[data-delete-count-slot]');
+      var rows = [];
+      if (listEl) listEl.innerHTML = '';
+      rowCbs.forEach(function (cb) {
+        var row = cb.closest('tr');
+        rows.push(row);
+        if (listEl) {
+          var labelCell = row.querySelector('.col-pinned-left') || row.querySelector('td:nth-child(2)');
+          var item = document.createElement('div');
+          item.className = 'delete-preview-item';
+          item.textContent = labelCell ? labelCell.textContent.trim() : '';
+          listEl.appendChild(item);
+        }
+      });
+      if (countEl) countEl.textContent = rows.length;
+      modal.classList.add('open');
+      var confirmBtn = modal.querySelector('[data-delete-confirm]');
+      if (confirmBtn) {
+        confirmBtn.onclick = function () {
+          rows.forEach(function (r) { r.remove(); });
+          modal.classList.remove('open');
+          showToast('已刪除 ' + rows.length + ' 筆資料');
+        };
+      }
+    });
+  });
+
   /* ---------- Tabs bar: close tab (persists to sessionStorage history) ---------- */
   document.querySelectorAll('.tab-close').forEach(function (btn) {
     btn.addEventListener('click', function (e) {
@@ -845,4 +906,125 @@ document.addEventListener('DOMContentLoaded', function () {
       if (!wrap.contains(e.target)) wrap.classList.remove('open');
     });
   });
+
+  /* ---------- Tag input：批量快速輸入 + 驗證狀態，取代純 textarea 換行輸入（例如資金調整 SID/公會名稱）---------- */
+  document.querySelectorAll('[data-tag-input]').forEach(function (container) {
+    var input = container.querySelector('.tag-input-field');
+    if (!input) return;
+    var max = parseInt(container.getAttribute('data-max'), 10) || Infinity;
+    var countEl = container.getAttribute('data-count-target') ? document.getElementById(container.getAttribute('data-count-target')) : null;
+
+    function chips() { return Array.prototype.slice.call(container.querySelectorAll('.tag-input-chip')); }
+
+    function updateCount() {
+      if (!countEl) return;
+      var n = chips().length;
+      countEl.textContent = n + ' / ' + max;
+      countEl.classList.toggle('is-over', n > max);
+    }
+
+    function addChip(text) {
+      text = text.trim();
+      if (!text || chips().length >= max) return;
+      var chip = document.createElement('span');
+      chip.className = 'tag-input-chip';
+      chip.setAttribute('data-value', text);
+      var label = document.createElement('span');
+      label.textContent = text;
+      var remove = document.createElement('span');
+      remove.className = 'tag-input-chip-remove';
+      remove.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+      remove.addEventListener('click', function () {
+        chip.remove();
+        updateCount();
+      });
+      chip.appendChild(label);
+      chip.appendChild(remove);
+      container.insertBefore(chip, input);
+      updateCount();
+    }
+
+    function addMany(rawText) {
+      rawText.split(/[\n,，、]+/).forEach(function (part) { addChip(part); });
+    }
+
+    input.addEventListener('keydown', function (e) {
+      if (e.key === 'Enter' || e.key === ',' || e.key === '，') {
+        e.preventDefault();
+        addMany(input.value);
+        input.value = '';
+      } else if (e.key === 'Backspace' && input.value === '') {
+        var all = chips();
+        if (all.length) all[all.length - 1].remove();
+        updateCount();
+      }
+    });
+
+    input.addEventListener('paste', function (e) {
+      var text = (e.clipboardData || window.clipboardData).getData('text');
+      if (text && /[\n,，、]/.test(text)) {
+        e.preventDefault();
+        addMany(text);
+        input.value = '';
+      }
+    });
+
+    input.addEventListener('blur', function () {
+      if (input.value.trim()) {
+        addChip(input.value);
+        input.value = '';
+      }
+    });
+
+    container.addEventListener('click', function (e) {
+      if (e.target === container) input.focus();
+    });
+
+    updateCount();
+  });
 });
+
+/* 供頁面自訂送出驗證使用的輔助函式（tag input 讀值 / 標示驗證失敗） */
+window.tagInputGetValues = function (container) {
+  return Array.prototype.map.call(container.querySelectorAll('.tag-input-chip'), function (chip) {
+    return chip.getAttribute('data-value');
+  });
+};
+window.tagInputMarkInvalid = function (container, invalidValues) {
+  container.querySelectorAll('.tag-input-chip').forEach(function (chip) {
+    chip.classList.toggle('is-invalid', invalidValues.indexOf(chip.getAttribute('data-value')) !== -1);
+  });
+};
+/* 供頁面以程式方式預先帶入 chip（例如「再次派發」帶入清單資料）使用 */
+window.tagInputAddValues = function (container, values) {
+  var input = container.querySelector('.tag-input-field');
+  var max = parseInt(container.getAttribute('data-max'), 10) || Infinity;
+  var countEl = container.getAttribute('data-count-target') ? document.getElementById(container.getAttribute('data-count-target')) : null;
+  function chips() { return Array.prototype.slice.call(container.querySelectorAll('.tag-input-chip')); }
+  function updateCount() {
+    if (!countEl) return;
+    var n = chips().length;
+    countEl.textContent = n + ' / ' + max;
+    countEl.classList.toggle('is-over', n > max);
+  }
+  values.forEach(function (text) {
+    text = (text || '').trim();
+    if (!text || chips().length >= max) return;
+    var chip = document.createElement('span');
+    chip.className = 'tag-input-chip';
+    chip.setAttribute('data-value', text);
+    var label = document.createElement('span');
+    label.textContent = text;
+    var remove = document.createElement('span');
+    remove.className = 'tag-input-chip-remove';
+    remove.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+    remove.addEventListener('click', function () {
+      chip.remove();
+      updateCount();
+    });
+    chip.appendChild(label);
+    chip.appendChild(remove);
+    container.insertBefore(chip, input);
+  });
+  updateCount();
+};

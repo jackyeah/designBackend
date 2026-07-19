@@ -45,8 +45,14 @@
       { key: 'guild-settings', label: '公會設置', href: 'guild-settings.html' },
       { key: 'guild-list', label: '公會列表', href: 'guild-list.html' }
     ]},
-    { key: 'cash', label: '現金系統', icon: 'cash', href: '#' },
-    { key: 'announcement', label: '公告訊息', icon: 'megaphone', href: '#' },
+    { key: 'cash', label: '現金系統', icon: 'cash', submenu: [
+      { key: 'cash-adjustment', label: '資金調整', href: 'cash-adjustment.html' }
+    ]},
+    { key: 'announcement', label: '公告訊息', icon: 'megaphone', submenu: [
+      { key: 'announcement-management', label: '公告管理', href: 'announcement-management.html' },
+      { key: 'mail-management', label: '信件管理', href: 'mail-management.html' },
+      { key: 'new-member-announcement', label: '新會員公告設定', href: 'new-member-announcement.html' }
+    ]},
     { key: 'sms', label: '短信管理', icon: 'message', href: '#' },
     { key: 'report', label: '報表', icon: 'chart', href: '#' },
     { key: 'promotion', label: '優惠活動管理', icon: 'gift', submenu: [
