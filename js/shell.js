@@ -32,7 +32,8 @@
       { key: 'site-owners', label: '站長管理', href: 'site-owners.html' },
       { key: 'site-owner-sub-accounts', label: '站長子帳號', href: 'site-owner-sub-accounts.html' },
       { key: 'members', label: '會員管理', href: 'members.html' },
-      { key: 'member-registration', label: '會員註冊設定', href: 'member-registration.html' },
+      { key: 'member-registration-admin', label: '會員註冊設定（總控）', href: 'member-registration-admin.html' },
+      { key: 'member-registration-owner', label: '會員註冊設定（站長）', href: 'member-registration-owner.html' },
       { key: 'permission-groups', label: '權限群組', href: 'permission-groups.html' },
       { key: 'currency-providers', label: '幣商設定', href: 'currency-providers.html' }
     ]},

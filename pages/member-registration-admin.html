@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>會員註冊設定（總控） - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'member-registration-admin', label: '會員註冊設定（總控）', href: 'member-registration-admin.html' };
+  window.PAGE_BREADCRUMB = ['帳號管理', '會員註冊設定（總控）'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="account" data-subactive="member-registration-admin"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>會員註冊設定（總控）</h1></div>
+
+      <!-- 站台選擇沿用全站總控範圍設定頁的統一模式（filter-bar 站台下拉 + 搜尋/清除，見 guild-settings.html / vip-levels.html） -->
+      <div class="card">
+        <div class="card-section">
+          <div class="filter-bar">
+            <div class="field">
+              <label class="field-label"><span class="required">*</span>站台</label>
+              <div class="select-wrap"><select class="select">
+                <option>請選擇</option>
+                <option selected>金錢母</option>
+                <option>金錢母示範站</option>
+                <option>Gamma 站</option>
+                <option>YZ 益兆</option>
+                <option>YZ示範站</option>
+                <option>Delta 站</option>
+              </select></div>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-primary">搜尋</button>
+            <button class="btn btn-secondary">清除</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card mt-4">
+        <div class="card-section">
+          <div class="card-section-title">金錢母 · 註冊規則</div>
+
+          <div class="section-label">註冊開關</div>
+          <div class="field-box">
+            <div class="form-field">
+              <label class="field-label">LINE註冊</label>
+              <div class="radio-group">
+                <label class="radio-field"><input type="radio" name="jgm7-line-register">關閉</label>
+                <label class="radio-field"><input type="radio" name="jgm7-line-register" checked>開啟</label>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="field-label">會員帳號</label>
+              <div class="radio-group">
+                <label class="radio-field"><input type="radio" name="jgm7-account-register">關閉</label>
+                <label class="radio-field"><input type="radio" name="jgm7-account-register" checked>開啟</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-label mt-4">唯一驗證</div>
+          <div class="field-box">
+            <div class="form-field">
+              <label class="field-label">手機</label>
+              <div class="radio-group">
+                <label class="radio-field"><input type="radio" name="jgm7-phone-unique">否</label>
+                <label class="radio-field"><input type="radio" name="jgm7-phone-unique" checked>是</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4" style="border-top:1px solid var(--color-border); padding-top: var(--space-4);">
+            <button class="btn btn-primary">保存更改</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>

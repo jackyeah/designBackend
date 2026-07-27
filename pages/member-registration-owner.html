@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>會員註冊設定（站長） - 後台管理系統</title>
+<link rel="stylesheet" href="../css/tokens.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+<script>
+  window.CURRENT_TAB = { key: 'member-registration-owner', label: '會員註冊設定（站長）', href: 'member-registration-owner.html' };
+  window.PAGE_BREADCRUMB = ['帳號管理', '會員註冊設定（站長）'];
+</script>
+</head>
+<body>
+
+<div class="app-shell">
+  <aside class="sidebar" id="sidebar" data-active="account" data-subactive="member-registration-owner"></aside>
+
+  <div class="main-area">
+    <header class="topbar" id="topbar"></header>
+    <div class="tabsbar" id="tabsbar"></div>
+
+    <main class="content">
+      <div id="breadcrumb-mount"></div>
+
+      <div class="page-header"><h1>會員註冊設定（站長）</h1></div>
+
+      <!-- 站長僅能檢視並調整自己站台的設定，不顯示總控視角才需要的站台清單 -->
+      <div class="card">
+        <div class="card-section">
+          <div class="section-label">註冊開關</div>
+          <div class="field-box">
+            <div class="form-field">
+              <label class="field-label">LINE註冊</label>
+              <div class="radio-group">
+                <label class="radio-field"><input type="radio" name="owner-line-register">關閉</label>
+                <label class="radio-field"><input type="radio" name="owner-line-register" checked>開啟</label>
+              </div>
+            </div>
+            <div class="form-field">
+              <label class="field-label">會員帳號</label>
+              <div class="radio-group">
+                <label class="radio-field"><input type="radio" name="owner-account-register">關閉</label>
+                <label class="radio-field"><input type="radio" name="owner-account-register" checked>開啟</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-label mt-4">唯一驗證</div>
+          <div class="field-box">
+            <div class="form-field">
+              <label class="field-label">手機</label>
+              <div class="radio-group">
+                <label class="radio-field"><input type="radio" name="owner-phone-unique">否</label>
+                <label class="radio-field"><input type="radio" name="owner-phone-unique" checked>是</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-4" style="border-top:1px solid var(--color-border); padding-top: var(--space-4);">
+            <button class="btn btn-primary">保存更改</button>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script src="../js/shell.js"></script>
+<script src="../js/app.js"></script>
+</body>
+</html>
