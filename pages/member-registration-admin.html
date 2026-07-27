@@ -27,15 +27,17 @@
 
       <div class="page-header"><h1>會員註冊設定（總控）</h1></div>
 
-      <!-- 站台選擇沿用全站總控範圍設定頁的統一模式（filter-bar 站台下拉 + 搜尋/清除，見 guild-settings.html / vip-levels.html） -->
+      <!-- 站台選擇沿用全站總控範圍設定頁的統一模式（filter-bar 站台下拉 + 搜尋/清除，見 guild-settings.html / vip-levels.html）；
+           但此頁無法比照那些頁面預設帶入特定站台（總控管理站台眾多、沒有天然的預設對象），
+           故查詢前以 .empty-state 呈現明確的引導文字，取代直接留白或隱藏整個區塊 -->
       <div class="card">
         <div class="card-section">
           <div class="filter-bar">
             <div class="field">
               <label class="field-label"><span class="required">*</span>站台</label>
-              <div class="select-wrap"><select class="select">
-                <option>請選擇</option>
-                <option selected>金錢母</option>
+              <div class="select-wrap"><select class="select" id="regSiteSelect">
+                <option selected>請選擇</option>
+                <option>金錢母</option>
                 <option>金錢母示範站</option>
                 <option>Gamma 站</option>
                 <option>YZ 益兆</option>
@@ -45,15 +47,22 @@
             </div>
           </div>
           <div class="filter-actions">
-            <button class="btn btn-primary">搜尋</button>
-            <button class="btn btn-secondary">清除</button>
+            <button class="btn btn-primary" id="regSearchBtn">搜尋</button>
+            <button class="btn btn-secondary" id="regClearBtn">清除</button>
           </div>
         </div>
       </div>
 
       <div class="card mt-4">
-        <div class="card-section">
-          <div class="card-section-title">金錢母 · 註冊規則</div>
+        <div class="card-section" id="regEmptyState">
+          <div class="empty-state">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" style="margin: 0 auto var(--space-3);"><rect x="4" y="4.5" width="16" height="15" rx="1.5"/><path d="M4 9h16M9 9v10.5"/></svg>
+            <div>請先選擇站台並查詢，即可檢視/調整該站台的會員註冊規則</div>
+          </div>
+        </div>
+
+        <div class="card-section hidden" id="regRulesPanel">
+          <div class="card-section-title" id="regRulesTitle">註冊規則</div>
 
           <div class="section-label">註冊開關</div>
           <div class="field-box">
@@ -95,5 +104,32 @@
 
 <script src="../js/shell.js"></script>
 <script src="../js/app.js"></script>
+<script>
+  (function () {
+    var siteSelect = document.getElementById('regSiteSelect');
+    var searchBtn = document.getElementById('regSearchBtn');
+    var clearBtn = document.getElementById('regClearBtn');
+    var emptyState = document.getElementById('regEmptyState');
+    var rulesPanel = document.getElementById('regRulesPanel');
+    var rulesTitle = document.getElementById('regRulesTitle');
+
+    searchBtn.addEventListener('click', function () {
+      var site = siteSelect.value;
+      if (!site || site === '請選擇') {
+        window.showToast('請先選擇站台');
+        return;
+      }
+      rulesTitle.textContent = site + ' · 註冊規則';
+      emptyState.classList.add('hidden');
+      rulesPanel.classList.remove('hidden');
+    });
+
+    clearBtn.addEventListener('click', function () {
+      siteSelect.value = '請選擇';
+      emptyState.classList.remove('hidden');
+      rulesPanel.classList.add('hidden');
+    });
+  })();
+</script>
 </body>
 </html>
